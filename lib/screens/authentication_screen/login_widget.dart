@@ -1,7 +1,14 @@
+// Import the necessary packages and files
 import 'package:chip_in/services/auth_service.dart';
 import 'package:flutter/material.dart';
 
-// Define a class for the Login Widget
+/* The code defines a LoginWidget class that creates a login form with email and 
+password text fields and a login button. The form is validated using a GlobalKey<FormState> 
+object and the TextEditingController objects are disposed of when the widget is disposed. 
+When the login button is pressed, the email and password are retrieved from the text fields 
+and passed to the AppwriteAuth.createSession method to log in the user. If successful, a 
+success snackbar is shown, and if there was an error, an error snackbar is shown. */
+
 class LoginWidget extends StatefulWidget {
   @override
   _LoginWidgetState createState() => _LoginWidgetState();
@@ -62,13 +69,26 @@ class _LoginWidgetState extends State<LoginWidget> {
             // Login Button
             ElevatedButton(
               child: const Text('Login'),
-              onPressed: () {
+              onPressed: () async {
+                // Check if the form is valid
                 if (_formKey.currentState != null &&
                     _formKey.currentState!.validate()) {
+                  // Get the email and password from the text fields
                   final email = _emailController.text;
                   final password = _passwordController.text;
-
-                  AppwriteAuth.login(context, email, password);
+                  try {
+                    // Call the AppwriteAuth.createSession method to log in the user
+                    await AppwriteAuth.createSession(context, email, password);
+                    // If successful, show a success snackbar
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Logged in successfully')),
+                    );
+                  } catch (error) {
+                    // If there was an error, show an error snackbar
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Error logging in: $error')),
+                    );
+                  }
                 }
               },
             ),
