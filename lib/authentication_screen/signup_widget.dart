@@ -68,6 +68,10 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 if (value == null || value.isEmpty) {
                   return 'Please enter your email';
                 }
+                if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+                    .hasMatch(value)) {
+                  return 'Please enter a valid email address';
+                }
                 return null;
               },
             ),
@@ -128,7 +132,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
 
                   // Call the AppwriteAuth.signUp method to sign up the user
                   AppwriteAuth.signUp(
-                      firstname, lastname, email, username, password);
+                      firstname, lastname, username, email, password);
 
                   // Clear the form fields after sign up success
                   _firstNameController.text = '';
