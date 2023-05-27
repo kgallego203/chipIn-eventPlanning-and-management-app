@@ -15,7 +15,7 @@ class AuthenticationScreen extends StatelessWidget {
               Tab(icon: Icon(Icons.person_add), text: "Sign Up"),
             ],
           ),
-          title: const Text('Authentication'),
+          title: const Text('chipIn'),
         ),
         body: TabBarView(
           children: [
