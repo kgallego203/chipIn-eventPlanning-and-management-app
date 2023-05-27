@@ -1,3 +1,4 @@
+import 'package:chip_in/services/auth_service.dart';
 import 'package:flutter/material.dart';
 
 // Define a class for the Login Widget
@@ -12,14 +13,14 @@ class _LoginWidgetState extends State<LoginWidget> {
   final _formKey = GlobalKey<FormState>();
 
   // Define TextEditingController objects for the email and password fields
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   // Dispose of the TextEditingController objects when the widget is disposed
   @override
   void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
     super.dispose();
   }
 
@@ -35,7 +36,7 @@ class _LoginWidgetState extends State<LoginWidget> {
           children: [
             // Email Text Field
             TextFormField(
-              controller: emailController,
+              controller: _emailController,
               decoration: const InputDecoration(hintText: 'Email'),
               validator: (value) {
                 if (value == null || value.isEmpty) {
@@ -47,7 +48,7 @@ class _LoginWidgetState extends State<LoginWidget> {
 
             // Password Text Field
             TextFormField(
-              controller: passwordController,
+              controller: _passwordController,
               obscureText: true,
               decoration: const InputDecoration(hintText: 'Password'),
               validator: (value) {
@@ -64,8 +65,10 @@ class _LoginWidgetState extends State<LoginWidget> {
               onPressed: () {
                 if (_formKey.currentState != null &&
                     _formKey.currentState!.validate()) {
-                  // Implement your login logic here
-                  // handleLogin();
+                  final email = _emailController.text;
+                  final password = _passwordController.text;
+
+                  AppwriteAuth.login(context, email, password);
                 }
               },
             ),
