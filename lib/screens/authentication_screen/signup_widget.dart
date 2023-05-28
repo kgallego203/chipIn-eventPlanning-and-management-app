@@ -1,5 +1,5 @@
 // Import the necessary packages and files
-import 'package:chip_in/services/auth_service.dart';
+import 'package:chip_in/services/authentication_service.dart';
 import 'package:flutter/material.dart';
 
 /* The code defines a SignUpWidget class that creates a sign-up form with first name, 

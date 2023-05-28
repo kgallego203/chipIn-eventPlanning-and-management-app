@@ -1,5 +1,5 @@
 // Import the necessary packages and files
-import 'package:chip_in/services/auth_service.dart';
+import 'package:chip_in/services/authentication_service.dart';
 import 'package:flutter/material.dart';
 
 /* The code defines a LoginWidget class that creates a login form with email and 
