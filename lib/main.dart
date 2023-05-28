@@ -1,4 +1,4 @@
-import 'package:chip_in/app_colors.dart';
+import 'package:chip_in/config/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'screens/authentication_screen/authentication_screen.dart';
 
