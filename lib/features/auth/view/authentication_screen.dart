@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'login_widget.dart';
-import 'signup_widget.dart';
+import 'login_view.dart';
+import 'signup_view.dart';
 
 /* The code defines an AuthenticationScreen class that creates a tab bar with two tabs: 
 "Login" and "Sign Up". The DefaultTabController widget is used to set the length of the 
@@ -26,8 +26,8 @@ class AuthenticationScreen extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            LoginWidget(), // Add the Login Widget to the tab bar view
-            SignUpWidget(), // Add the Sign Up Widget to the tab bar view
+            LoginView(), // Add the Login Widget to the tab bar view
+            SignUpView(), // Add the Sign Up Widget to the tab bar view
           ],
         ),
       ),

@@ -1,6 +1,6 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:chip_in/models/event.dart';
-import 'package:chip_in/config/appwrite_config.dart';
+import 'package:chip_in/constants/appwrite_constants.dart';
 
 class EventService {
   final Client client;
@@ -13,8 +13,8 @@ class EventService {
   Future<bool> createEvent(Event event) async {
     // Initialize the client
     client
-            .setEndpoint(AppwriteConfig.endPoint) // Your API Endpoint
-            .setProject(AppwriteConfig.projectId) // Your project ID
+            .setEndpoint(AppwriteConstants.endPoint) // Your API Endpoint
+            .setProject(AppwriteConstants.projectId) // Your project ID
         ;
 
     Databases databases = Databases(client);

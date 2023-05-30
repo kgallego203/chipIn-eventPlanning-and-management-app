@@ -7,7 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:chip_in/config/app.dart';
+import 'package:chip_in/themes/app_theme.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
