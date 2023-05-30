@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../screens/authentication_screen/authentication_screen.dart';
+import '../features/authentication_screen/authentication_screen.dart';
 import '/themes/theme.dart';
 
 // Import the Appwrite palette

@@ -1,4 +1,4 @@
-import 'package:chip_in/screens/home_screen.dart';
+import 'package:chip_in/features/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:appwrite/appwrite.dart';
 import 'package:chip_in/constants/appwrite_constants.dart';
