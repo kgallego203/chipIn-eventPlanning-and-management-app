@@ -1,7 +1,8 @@
-import 'package:chip_in/config/app_colors.dart';
 import 'package:flutter/material.dart';
 import '../screens/authentication_screen/authentication_screen.dart';
+import '/themes/theme.dart';
 
+// Import the Appwrite palette
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -13,18 +14,18 @@ class MyApp extends StatelessWidget {
       // Set the app theme
       theme: ThemeData(
         // Set the primary color to Appwrite pink
-        primaryColor: AppColors.appwritePink,
+        primaryColor: Pallete.primary100,
         // Set the color scheme
         colorScheme: ThemeData().colorScheme.copyWith(
               // Set the secondary color to Appwrite dark pink
-              secondary: AppColors.appwriteDarkPink,
+              secondary: Pallete.primary200,
               // Set the background color to Appwrite light pink
-              background: AppColors.appwriteLightPink,
+              background: Pallete.primary300,
             ),
         // Set the app bar theme
-        appBarTheme: const AppBarTheme(
+        appBarTheme: AppBarTheme(
           // Set the app bar background color to Appwrite dark pink
-          backgroundColor: AppColors.appwriteDarkPink,
+          backgroundColor: Pallete.primary300,
         ),
       ),
       // Set the home screen to the authentication screen

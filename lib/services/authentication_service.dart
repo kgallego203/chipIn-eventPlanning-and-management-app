@@ -1,12 +1,12 @@
 import 'package:chip_in/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:appwrite/appwrite.dart';
-import 'package:chip_in/config/appwrite_config.dart';
+import 'package:chip_in/constants/appwrite_constants.dart';
 
 class AppwriteAuth {
   static final Client client = Client()
-    ..setEndpoint(AppwriteConfig.endPoint)
-    ..setProject(AppwriteConfig.projectId);
+    ..setEndpoint(AppwriteConstants.endPoint)
+    ..setProject(AppwriteConstants.projectId);
 
   static final Account account = Account(client);
 
