@@ -1,5 +1,5 @@
 import 'package:chip_in/constants/appwrite_constants.dart';
-import 'package:chip_in/services/authentication_service.dart';
+import 'package:chip_in/services/auth_service.dart';
 import 'package:chip_in/services/event_service.dart';
 import 'package:flutter/material.dart';
 import '../events/event_creation_screen.dart';

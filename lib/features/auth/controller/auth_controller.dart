@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:chip_in/services/authentication_service.dart';
+import 'package:chip_in/services/auth_service.dart';
 
 class LoginController {
   // Define TextEditingController objects for the email and password fields
