@@ -7,6 +7,7 @@ class Event {
   TimeOfDay time;
   String location;
   String description;
+  String creatorId;
 
   Event({
     required this.title,
@@ -14,6 +15,7 @@ class Event {
     required this.time,
     required this.location,
     required this.description,
+    required this.creatorId,
   });
 
   Map<String, dynamic> toJson() {
@@ -26,6 +28,7 @@ class Event {
       'location': location,
       'description': description,
       'time': "${time.hour}:${time.minute.toString().padLeft(2, '0')}",
+      'creatorId': creatorId,
     };
   }
 }

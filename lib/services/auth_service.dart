@@ -1,3 +1,4 @@
+import 'package:appwrite/models.dart';
 import 'package:chip_in/features/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:appwrite/appwrite.dart';
@@ -42,6 +43,16 @@ class AppwriteAuth {
     } catch (error) {
       print('Error creating session: $error');
       throw error;
+    }
+  }
+
+  static Future<String> getCreatorId() async {
+    try {
+      User response = await account.get();
+      return response.$id;
+    } catch (e) {
+      print('Failed to get user ID: $e');
+      throw e;
     }
   }
 }

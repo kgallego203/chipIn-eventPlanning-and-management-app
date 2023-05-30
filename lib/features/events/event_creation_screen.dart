@@ -1,3 +1,4 @@
+import 'package:chip_in/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:chip_in/services/event_service.dart';
 import 'package:chip_in/models/event.dart';
@@ -41,6 +42,7 @@ class _EventCreationScreenState extends State<EventCreationScreen> {
         time: _time,
         location: _location,
         description: _description,
+        creatorId: await AppwriteAuth.getCreatorId(), // add this line here
       );
 
       bool success = await widget.eventService.createEvent(newEvent);
