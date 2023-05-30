@@ -16,18 +16,14 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home Page'),
+        title: const Text('Home Page'),
         actions: [
           IconButton(
-            icon: Icon(Icons.add),
+            icon: const Icon(Icons.add),
             onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> origin/main
                   builder: (context) => EventCreationScreen(
                     eventService: EventService(
                         client: AppwriteAuth.client,
@@ -35,23 +31,12 @@ class _HomePageState extends State<HomePage> {
                         projectId: AppwriteConstants.projectId),
                   ),
                 ),
-<<<<<<< HEAD
-=======
-=======
-                    builder: (context) => EventCreationScreen(
-                          eventService: EventService(
-                              client: AppwriteAuth.client,
-                              endpoint: AppwriteConfig.endPoint,
-                              projectId: AppwriteConfig.projectId),
-                        )),
->>>>>>> improving-code
->>>>>>> origin/main
               );
             },
           ),
         ],
       ),
-      body: Center(
+      body: const Center(
         child: Text('Welcome to the Home Page!'),
       ),
     );
