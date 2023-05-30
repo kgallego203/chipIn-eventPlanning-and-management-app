@@ -24,6 +24,10 @@ class _HomePageState extends State<HomePage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/main
                   builder: (context) => EventCreationScreen(
                     eventService: EventService(
                         client: AppwriteAuth.client,
@@ -31,6 +35,17 @@ class _HomePageState extends State<HomePage> {
                         projectId: AppwriteConfig.projectId),
                   ),
                 ),
+<<<<<<< HEAD
+=======
+=======
+                    builder: (context) => EventCreationScreen(
+                          eventService: EventService(
+                              client: AppwriteAuth.client,
+                              endpoint: AppwriteConfig.endPoint,
+                              projectId: AppwriteConfig.projectId),
+                        )),
+>>>>>>> improving-code
+>>>>>>> origin/main
               );
             },
           ),
