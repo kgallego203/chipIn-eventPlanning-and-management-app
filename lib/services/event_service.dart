@@ -21,11 +21,9 @@ class EventService {
 
     try {
       await databases.createDocument(
-        databaseId:
-            '64734e007f78d838e9d4', // replace with your actual Database ID
-        collectionId:
-            '64735198d9f3b0da5ed6', // replace with your actual Collection ID
-        documentId: 'Your_Document_ID', // replace with your actual Document ID
+        databaseId: '64734e007f78d838e9d4',
+        collectionId: '64735198d9f3b0da5ed6',
+        documentId: 'Your_Document_ID',
         data: event.toJson(),
       );
       return true;
