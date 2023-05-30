@@ -1,1 +1,0 @@
-This contains the connection between view and the database files (apis)

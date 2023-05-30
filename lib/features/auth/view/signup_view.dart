@@ -1,4 +1,4 @@
-import 'package:chip_in/features/authentication_screen/controller/auth_controller.dart';
+import 'package:chip_in/features/auth/controller/auth_controller.dart';
 import 'package:flutter/material.dart';
 
 class SignUpView extends StatelessWidget {
