@@ -20,6 +20,20 @@ class _EventCreationScreenState extends State<EventCreationScreen> {
   String _location = '';
   String _description = '';
 
+  Future<void> _selectDate() async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: _date,
+      firstDate: DateTime.now(),
+      lastDate: DateTime(2100),
+    );
+    if (picked != null && picked != _date) {
+      setState(() {
+        _date = picked;
+      });
+    }
+  }
+
   Future<void> _selectTime() async {
     final TimeOfDay? newTime = await showTimePicker(
       context: context,
@@ -84,6 +98,12 @@ class _EventCreationScreenState extends State<EventCreationScreen> {
               validator: (value) =>
                   value!.isEmpty ? 'Please enter a description' : null,
               onSaved: (value) => _description = value!,
+            ),
+            ListTile(
+              leading: Icon(Icons.calendar_today),
+              title: Text('Date'),
+              subtitle: Text('${_date.year}-${_date.month}-${_date.day}'),
+              onTap: _selectDate,
             ),
             ListTile(
               leading: Icon(Icons.access_time),
