@@ -67,6 +67,16 @@ class _EventCreationScreenState extends State<EventCreationScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Event created successfully!')),
         );
+
+        // Clear form fields and navigate back to home screen
+        setState(() {
+          _title = '';
+          _date = DateTime.now();
+          _time = TimeOfDay.now();
+          _location = '';
+          _description = '';
+        });
+        Navigator.pop(context);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Failed to create event.')),
