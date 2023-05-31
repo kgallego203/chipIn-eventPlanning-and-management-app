@@ -22,20 +22,49 @@ class AuthenticationScreen extends StatelessWidget {
                       .primary100, // Set the color of the "chipIn" text to primary100 from the Pallete class
                 ),
               ),
-              Text(
-                'powered by Flutter and Appwrite',
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Pallete
-                      .neutral70, // Set the color of the "powered by Flutter and Appwrite" text to neutral60 from the Pallete class
-                ),
+              Row(
+                children: [
+                  Text(
+                    'powered by ',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Pallete
+                          .neutral70, // Set the color of the "powered by" text to neutral70 from the Pallete class
+                    ),
+                  ),
+                  Text(
+                    'Flutter',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Color(
+                          0xFF02569B), // Set the color of the "Flutter" text to the official Flutter brand color
+                    ),
+                  ),
+                  Text(
+                    ' and ',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Pallete
+                          .neutral70, // Set the color of the "and" text to neutral70 from the Pallete class
+                    ),
+                  ),
+                  Text(
+                    'Appwrite',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Pallete
+                          .primary300, // Set the color of the "Appwrite" text to the primary300 color from the Pallete class
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
           backgroundColor: Pallete
               .neutral0, // Set the background color of the app bar to neutral0 from the Pallete class
           bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(72),
+            preferredSize: const Size.fromHeight(
+                82), // Increase the height of the app bar to 72
             child: Container(
               color: Pallete
                   .neutral0, // Set the background color of the tab bar to neutral0 from the Pallete class
