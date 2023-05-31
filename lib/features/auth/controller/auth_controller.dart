@@ -1,3 +1,4 @@
+import 'package:chip_in/themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:chip_in/services/auth_service.dart';
 
@@ -71,15 +72,20 @@ class SignUpController {
       _confirmPasswordController.text = '';
 
       // Show a snackbar to indicate that the account was created
-      const snackBar = SnackBar(
+      final snackBar = SnackBar(
         content: Text('Account Created!'),
+        backgroundColor: Pallete.success200,
+        behavior: SnackBarBehavior.floating,
       );
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     } catch (error) {
       // If there was an error, show an error snackbar
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error creating account: $error')),
+      final snackBar = SnackBar(
+        content: Text('Error creating account: $error'),
+        backgroundColor: Pallete.warning200,
+        behavior: SnackBarBehavior.floating,
       );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
   }
 }
