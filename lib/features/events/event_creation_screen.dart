@@ -1,4 +1,5 @@
 import 'package:chip_in/services/auth_service.dart';
+import 'package:chip_in/themes/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:chip_in/services/event_service.dart';
 import 'package:chip_in/models/event.dart';
@@ -95,39 +96,76 @@ class _EventCreationScreenState extends State<EventCreationScreen> {
           padding: EdgeInsets.all(16.0),
           children: [
             TextFormField(
-              decoration: InputDecoration(labelText: 'Title'),
+              decoration: InputDecoration(
+                labelText: 'Title',
+                labelStyle: TextStyle(color: Pallete.neutral70),
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Pallete.neutral70),
+                ),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Pallete.primary200),
+                ),
+              ),
               validator: (value) =>
                   value!.isEmpty ? 'Please enter a title' : null,
               onSaved: (value) => _title = value!,
             ),
             TextFormField(
-              decoration: InputDecoration(labelText: 'Location'),
+              decoration: InputDecoration(
+                labelText: 'Location',
+                labelStyle: TextStyle(color: Pallete.neutral70),
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Pallete.neutral70),
+                ),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Pallete.primary200),
+                ),
+              ),
               validator: (value) =>
                   value!.isEmpty ? 'Please enter a location' : null,
               onSaved: (value) => _location = value!,
             ),
             TextFormField(
-              decoration: InputDecoration(labelText: 'Description'),
+              decoration: InputDecoration(
+                labelText: 'Description',
+                labelStyle: TextStyle(color: Pallete.neutral70),
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Pallete.neutral70),
+                ),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Pallete.primary200),
+                ),
+              ),
               validator: (value) =>
                   value!.isEmpty ? 'Please enter a description' : null,
               onSaved: (value) => _description = value!,
             ),
             ListTile(
-              leading: Icon(Icons.calendar_today),
-              title: Text('Date'),
-              subtitle: Text('${_date.year}-${_date.month}-${_date.day}'),
+              leading: Icon(Icons.calendar_today, color: Pallete.neutral70),
+              title: Text('Date', style: TextStyle(color: Pallete.neutral70)),
+              subtitle: Text(
+                '${_date.year}-${_date.month}-${_date.day}',
+                style: TextStyle(color: Pallete.neutral100),
+              ),
               onTap: _selectDate,
             ),
             ListTile(
-              leading: Icon(Icons.access_time),
-              title: Text('Time'),
-              subtitle: Text('${_time.format(context)}'),
+              leading: Icon(Icons.access_time, color: Pallete.neutral70),
+              title: Text('Time', style: TextStyle(color: Pallete.neutral70)),
+              subtitle: Text(
+                '${_time.format(context)}',
+                style: TextStyle(color: Pallete.neutral100),
+              ),
               onTap: _selectTime,
             ),
             SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: _submit,
               child: Text('Create Event'),
+              style: ElevatedButton.styleFrom(
+                primary: Pallete.primary200,
+                onPrimary: Pallete.neutral0,
+              ),
             ),
           ],
         ),
