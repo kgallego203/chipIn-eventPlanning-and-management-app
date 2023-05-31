@@ -1,33 +1,27 @@
 import 'package:chip_in/constants/appwrite_constants.dart';
-import 'package:flutter/material.dart';
 
 class Event {
   String title;
-  DateTime date;
-  TimeOfDay time;
+  DateTime dateTime;
   String location;
   String description;
   String creatorId;
 
   Event({
     required this.title,
-    required this.date,
-    required this.time,
+    required this.dateTime,
     required this.location,
     required this.description,
     required this.creatorId,
   });
 
   Map<String, dynamic> toJson() {
-    final dateTime =
-        DateTime(date.year, date.month, date.day, time.hour, time.minute);
     return {
       'eventId': AppwriteConstants.eventsCollection,
       'title': title,
       'date': dateTime.toIso8601String(),
       'location': location,
       'description': description,
-      'time': "${time.hour}:${time.minute.toString().padLeft(2, '0')}",
       'creatorId': creatorId,
     };
   }

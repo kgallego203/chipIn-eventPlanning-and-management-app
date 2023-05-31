@@ -50,13 +50,16 @@ class _EventCreationScreenState extends State<EventCreationScreen> {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
 
+      // Combine date and time into a single DateTime object
+      DateTime dateTime = DateTime(
+          _date.year, _date.month, _date.day, _time.hour, _time.minute);
+
       Event newEvent = Event(
         title: _title,
-        date: _date,
-        time: _time,
+        dateTime: dateTime,
         location: _location,
         description: _description,
-        creatorId: await AppwriteAuth.getCreatorId(), // add this line here
+        creatorId: await AppwriteAuth.getCreatorId(),
       );
 
       bool success = await widget.eventService.createEvent(newEvent);
