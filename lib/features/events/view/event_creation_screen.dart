@@ -1,8 +1,8 @@
-import 'package:chip_in/services/auth_service.dart';
+import 'package:chip_in/features/auth/services/auth_service.dart';
 import 'package:chip_in/themes/palette.dart';
 import 'package:flutter/material.dart';
-import 'package:chip_in/services/event_service.dart';
-import 'package:chip_in/models/event.dart';
+import 'package:chip_in/features/events/services/event_service.dart';
+import 'package:chip_in/features/events/models/event_model.dart';
 
 class EventCreationScreen extends StatefulWidget {
   final EventService eventService;

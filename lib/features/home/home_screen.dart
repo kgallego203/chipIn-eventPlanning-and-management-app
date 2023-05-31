@@ -1,8 +1,8 @@
 import 'package:chip_in/constants/appwrite_constants.dart';
-import 'package:chip_in/services/auth_service.dart';
-import 'package:chip_in/services/event_service.dart';
+import 'package:chip_in/features/auth/services/auth_service.dart';
+import 'package:chip_in/features/events/services/event_service.dart';
 import 'package:flutter/material.dart';
-import '../events/event_creation_screen.dart';
+import '../events/view/event_creation_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
