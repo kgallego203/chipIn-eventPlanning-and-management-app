@@ -1,5 +1,5 @@
 import 'package:appwrite/appwrite.dart';
-import 'package:chip_in/models/event.dart';
+import 'package:chip_in/features/events/models/event_model.dart';
 import 'package:chip_in/constants/appwrite_constants.dart';
 
 class EventService {

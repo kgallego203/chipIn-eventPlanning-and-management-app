@@ -1,6 +1,6 @@
 import 'package:chip_in/themes/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:chip_in/services/auth_service.dart';
+import 'package:chip_in/features/auth/services/auth_service.dart';
 
 class LoginController {
   // Define TextEditingController objects for the email and password fields
