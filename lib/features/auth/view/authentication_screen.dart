@@ -18,8 +18,7 @@ class AuthenticationScreen extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  color: Pallete
-                      .primary100, // Set the color of the "chipIn" text to primary100 from the Pallete class
+                  color: Pallete.primary100,
                 ),
               ),
               Row(
@@ -28,46 +27,41 @@ class AuthenticationScreen extends StatelessWidget {
                     'powered by ',
                     style: TextStyle(
                       fontSize: 12,
-                      color: Pallete
-                          .neutral70, // Set the color of the "powered by" text to neutral70 from the Pallete class
+                      color: Pallete.neutral70,
                     ),
                   ),
                   Text(
                     'Flutter',
                     style: TextStyle(
                       fontSize: 12,
-                      color: Color(
-                          0xFF02569B), // Set the color of the "Flutter" text to the official Flutter brand color
+                      fontStyle: FontStyle.italic,
+                      color: Color(0xFF02569B),
                     ),
                   ),
                   Text(
                     ' and ',
                     style: TextStyle(
                       fontSize: 12,
-                      color: Pallete
-                          .neutral70, // Set the color of the "and" text to neutral70 from the Pallete class
+                      color: Pallete.neutral70,
                     ),
                   ),
                   Text(
                     'Appwrite',
                     style: TextStyle(
                       fontSize: 12,
-                      color: Pallete
-                          .primary300, // Set the color of the "Appwrite" text to the primary300 color from the Pallete class
+                      fontStyle: FontStyle.italic,
+                      color: Pallete.primary300,
                     ),
                   ),
                 ],
               ),
             ],
           ),
-          backgroundColor: Pallete
-              .neutral0, // Set the background color of the app bar to neutral0 from the Pallete class
+          backgroundColor: Pallete.neutral0,
           bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(
-                82), // Increase the height of the app bar to 72
+            preferredSize: const Size.fromHeight(72),
             child: Container(
-              color: Pallete
-                  .neutral0, // Set the background color of the tab bar to neutral0 from the Pallete class
+              color: Pallete.neutral0,
               child: TabBar(
                 tabs: const [
                   Tab(
@@ -81,13 +75,10 @@ class AuthenticationScreen extends StatelessWidget {
                 ],
                 indicator: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
-                  color: Pallete
-                      .primary100, // Set the color of the tab indicator to primary100 from the Pallete class
+                  color: Pallete.primary100,
                 ),
-                labelColor: Pallete
-                    .neutral0, // Set the color of the selected tab label to neutral0 from the Pallete class
-                unselectedLabelColor: Pallete
-                    .neutral70, // Set the color of the unselected tab label to neutral70 from the Pallete class
+                labelColor: Pallete.neutral0,
+                unselectedLabelColor: Pallete.neutral70,
               ),
             ),
           ),
