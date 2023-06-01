@@ -1,9 +1,11 @@
 import 'package:chip_in/features/auth/services/auth_service.dart';
+import 'package:chip_in/features/events/models/event_model.dart';
+import 'package:chip_in/features/events/services/event_service.dart';
+import 'package:chip_in/features/events/view/event_creation_screen.dart';
 import 'package:chip_in/features/events/view/event_joining_screen.dart';
+import 'package:chip_in/features/events/widgets/event_card.dart';
 import 'package:chip_in/themes/palette.dart';
 import 'package:flutter/material.dart';
-import '/features/events/view/event_creation_screen.dart';
-import '/features/events/services/event_service.dart';
 import '/constants/appwrite_constants.dart';
 
 class HomePage extends StatefulWidget {
@@ -18,6 +20,7 @@ class _HomePageState extends State<HomePage>
   int _selectedIndex = 0;
   late AnimationController _animationController;
   late Animation<double>? _animation;
+  late EventService eventService;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -33,6 +36,12 @@ class _HomePageState extends State<HomePage>
       duration: const Duration(milliseconds: 300),
     );
     _animation = Tween<double>(begin: 0, end: 1).animate(_animationController);
+
+    eventService = EventService(
+      client: AppwriteAuth.client, // ensure you have AppwriteAuth.client
+      endpoint: AppwriteConstants.endPoint,
+      projectId: AppwriteConstants.projectId,
+    );
   }
 
   @override
@@ -52,10 +61,10 @@ class _HomePageState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Pallete.neutral0, // background color of scaffold
+      backgroundColor: Pallete.neutral0,
       appBar: AppBar(
         title: const Text('Home Page'),
-        backgroundColor: Pallete.primary200, // color of AppBar
+        backgroundColor: Pallete.primary200,
         automaticallyImplyLeading: false,
       ),
       body: Stack(
@@ -71,18 +80,21 @@ class _HomePageState extends State<HomePage>
                 ),
               ),
               Expanded(
-                child: ListView.builder(
-                  itemCount: 5,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text('Event ${index + 1}'),
-                      subtitle: Text('Event description'),
-                      trailing: const Icon(Icons.arrow_forward_ios,
-                          color: Pallete.primary300), // color of trailing icon
-                      onTap: () {
-                        // TODO: Implement event details screen
-                      },
-                    );
+                child: FutureBuilder<List<Event>>(
+                  future: eventService.getAllEvents(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return ListView.builder(
+                        itemCount: snapshot.data!.length,
+                        itemBuilder: (context, index) {
+                          return EventCard(event: snapshot.data![index]);
+                        },
+                      );
+                    } else if (snapshot.hasError) {
+                      return Text('Failed to load events: ${snapshot.error}');
+                    } else {
+                      return CircularProgressIndicator();
+                    }
                   },
                 ),
               ),
@@ -105,10 +117,7 @@ class _HomePageState extends State<HomePage>
                             context,
                             MaterialPageRoute(
                               builder: (context) => EventCreationScreen(
-                                eventService: EventService(
-                                    client: AppwriteAuth.client,
-                                    endpoint: AppwriteConstants.endPoint,
-                                    projectId: AppwriteConstants.projectId),
+                                eventService: eventService,
                               ),
                             ),
                           );
@@ -131,8 +140,7 @@ class _HomePageState extends State<HomePage>
                         },
                         label: const Text('Join Event'),
                         icon: const Icon(Icons.group_add),
-                        backgroundColor: Pallete
-                            .information100, // color of floating action button
+                        backgroundColor: Pallete.information100,
                       ),
                     ],
                   ),
@@ -145,7 +153,7 @@ class _HomePageState extends State<HomePage>
       floatingActionButton: FloatingActionButton(
         onPressed: _toggleOptions,
         child: const Icon(Icons.add),
-        backgroundColor: Pallete.primary200, // color of floating action button
+        backgroundColor: Pallete.primary200,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       bottomNavigationBar: BottomNavigationBar(
@@ -164,13 +172,10 @@ class _HomePageState extends State<HomePage>
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor:
-            Pallete.primary300, // selected item color in bottom navigation bar
-        unselectedItemColor:
-            Pallete.neutral50, // unselected item color in bottom navigation bar
+        selectedItemColor: Pallete.primary300,
+        unselectedItemColor: Pallete.neutral50,
         onTap: _onItemTapped,
-        backgroundColor:
-            Pallete.neutral10, // background color of bottom navigation bar
+        backgroundColor: Pallete.neutral10,
       ),
     );
   }
