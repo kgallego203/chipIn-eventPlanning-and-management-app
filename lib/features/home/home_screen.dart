@@ -1,4 +1,9 @@
+import 'package:chip_in/features/auth/services/auth_service.dart';
+import 'package:chip_in/themes/palette.dart';
 import 'package:flutter/material.dart';
+import '/features/events/view/event_creation_screen.dart';
+import '/features/events/services/event_service.dart';
+import '/constants/appwrite_constants.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -12,12 +17,6 @@ class _HomePageState extends State<HomePage>
   int _selectedIndex = 0;
   late AnimationController _animationController;
   late Animation<double>? _animation;
-
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text('My Events'),
-    Text('My Own Events'),
-    Text('Logout'),
-  ];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -52,8 +51,11 @@ class _HomePageState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Pallete.neutral0, // background color of scaffold
       appBar: AppBar(
         title: const Text('Home Page'),
+        backgroundColor: Pallete.primary200, // color of AppBar
+        automaticallyImplyLeading: false,
       ),
       body: Stack(
         children: [
@@ -63,7 +65,7 @@ class _HomePageState extends State<HomePage>
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
-                  'Upcoming Events',
+                  'Event Listing',
                   style: Theme.of(context).textTheme.headline6,
                 ),
               ),
@@ -74,7 +76,8 @@ class _HomePageState extends State<HomePage>
                     return ListTile(
                       title: Text('Event ${index + 1}'),
                       subtitle: Text('Event description'),
-                      trailing: const Icon(Icons.arrow_forward_ios),
+                      trailing: const Icon(Icons.arrow_forward_ios,
+                          color: Pallete.primary300), // color of trailing icon
                       onTap: () {
                         // TODO: Implement event details screen
                       },
@@ -84,12 +87,11 @@ class _HomePageState extends State<HomePage>
               ),
             ],
           ),
-          // AnimatedBuilder widget rebuilds the widget tree when the animation changes
           AnimatedBuilder(
             animation: _animationController,
             builder: (context, child) {
               return Positioned(
-                bottom: 80 * (1 - (_animation?.value ?? 0)),
+                bottom: 80 * (_animation?.value ?? 0),
                 right: 16,
                 child: Opacity(
                   opacity: _animation?.value ?? 0,
@@ -98,11 +100,22 @@ class _HomePageState extends State<HomePage>
                     children: [
                       FloatingActionButton.extended(
                         onPressed: () {
-                          // TODO: Implement event creation screen
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => EventCreationScreen(
+                                eventService: EventService(
+                                    client: AppwriteAuth.client,
+                                    endpoint: AppwriteConstants.endPoint,
+                                    projectId: AppwriteConstants.projectId),
+                              ),
+                            ),
+                          );
                           _toggleOptions();
                         },
                         label: const Text('Create Event'),
                         icon: const Icon(Icons.add),
+                        backgroundColor: Pallete.success100,
                       ),
                       const SizedBox(height: 16),
                       FloatingActionButton.extended(
@@ -112,6 +125,8 @@ class _HomePageState extends State<HomePage>
                         },
                         label: const Text('Join Event'),
                         icon: const Icon(Icons.group_add),
+                        backgroundColor: Pallete
+                            .information100, // color of floating action button
                       ),
                     ],
                   ),
@@ -124,6 +139,7 @@ class _HomePageState extends State<HomePage>
       floatingActionButton: FloatingActionButton(
         onPressed: _toggleOptions,
         child: const Icon(Icons.add),
+        backgroundColor: Pallete.primary200, // color of floating action button
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       bottomNavigationBar: BottomNavigationBar(
@@ -142,8 +158,13 @@ class _HomePageState extends State<HomePage>
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Theme.of(context).primaryColor,
+        selectedItemColor:
+            Pallete.primary300, // selected item color in bottom navigation bar
+        unselectedItemColor:
+            Pallete.neutral50, // unselected item color in bottom navigation bar
         onTap: _onItemTapped,
+        backgroundColor:
+            Pallete.neutral10, // background color of bottom navigation bar
       ),
     );
   }
