@@ -32,4 +32,27 @@ class EventService {
       return false;
     }
   }
+
+  // New function for fetching all events/documents
+  Future<List<Event>> getAllEvents() async {
+    List<Event> eventList = [];
+
+    Databases databases = Databases(client);
+
+    try {
+      var response = await databases.listDocuments(
+        databaseId: AppwriteConstants.databaseId,
+        collectionId: AppwriteConstants.eventsCollection,
+      );
+
+      if (response.documents.isNotEmpty) {
+        for (var item in response.documents) {
+          eventList.add(Event.fromJson(item.data));
+        }
+      }
+    } catch (e) {
+      print('Failed to get events: $e');
+    }
+    return eventList;
+  }
 }

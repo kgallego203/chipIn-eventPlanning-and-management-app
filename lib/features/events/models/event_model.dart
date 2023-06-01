@@ -15,6 +15,14 @@ class Event {
     required this.creatorId,
   });
 
+  // add .fromJson to retrieve documents from Appwrite
+  Event.fromJson(Map<String, dynamic> json)
+      : title = json['title'],
+        dateTime = DateTime.parse(json['date']),
+        location = json['location'],
+        description = json['description'],
+        creatorId = json['creatorId'];
+
   Map<String, dynamic> toJson() {
     return {
       'eventId': AppwriteConstants.eventsCollection,

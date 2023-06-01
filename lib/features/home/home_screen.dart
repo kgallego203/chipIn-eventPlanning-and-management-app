@@ -1,4 +1,5 @@
 import 'package:chip_in/features/auth/services/auth_service.dart';
+import 'package:chip_in/features/events/view/event_joining_screen.dart';
 import 'package:chip_in/themes/palette.dart';
 import 'package:flutter/material.dart';
 import '/features/events/view/event_creation_screen.dart';
@@ -120,7 +121,12 @@ class _HomePageState extends State<HomePage>
                       const SizedBox(height: 16),
                       FloatingActionButton.extended(
                         onPressed: () {
-                          // TODO: Implement event joining screen
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const EventJoiningScreen(),
+                            ),
+                          );
                           _toggleOptions();
                         },
                         label: const Text('Join Event'),
