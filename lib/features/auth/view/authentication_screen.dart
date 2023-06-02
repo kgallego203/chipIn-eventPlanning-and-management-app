@@ -6,10 +6,12 @@ import '/themes/theme.dart';
 class AuthenticationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // It's like an appbar but it has 2 tabs to navigate between Login and Signup forms
     return DefaultTabController(
       length: 2,
       child: Scaffold(
         appBar: AppBar(
+          // App bar title
           title: const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -57,12 +59,14 @@ class AuthenticationScreen extends StatelessWidget {
               ),
             ],
           ),
+          // App bar background color
           backgroundColor: Pallete.neutral0,
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(72),
             child: Container(
               color: Pallete.neutral0,
               child: TabBar(
+                // Tabs
                 tabs: const [
                   Tab(
                     icon: Icon(Icons.login),
@@ -73,10 +77,12 @@ class AuthenticationScreen extends StatelessWidget {
                     text: "Sign Up",
                   ),
                 ],
+                // Tab indicator
                 indicator: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
                   color: Pallete.primary100,
                 ),
+                // Tab label colors
                 labelColor: Pallete.neutral0,
                 unselectedLabelColor: Pallete.neutral70,
               ),
@@ -84,6 +90,7 @@ class AuthenticationScreen extends StatelessWidget {
           ),
         ),
         body: TabBarView(
+          // Tab views
           children: [
             LoginView(),
             SignUpView(),

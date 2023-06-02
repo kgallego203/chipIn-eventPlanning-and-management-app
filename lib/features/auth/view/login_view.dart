@@ -58,7 +58,7 @@ class LoginView extends StatelessWidget {
             ElevatedButton(
               child: const Text('Login'),
               style: ElevatedButton.styleFrom(
-                primary: Pallete
+                backgroundColor: Pallete
                     .primary100, // Set the background color of the button to primary100 from the Pallete class
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
