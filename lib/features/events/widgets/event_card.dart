@@ -1,12 +1,13 @@
+import 'package:chip_in/features/events/models/event_model.dart';
+import 'package:chip_in/features/events/view/event_details_screen.dart';
 import 'package:chip_in/themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:chip_in/features/events/models/event_model.dart';
 
 class EventCard extends StatelessWidget {
   final Event event;
 
-  EventCard({required this.event});
+  const EventCard({required this.event});
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +61,16 @@ class EventCard extends StatelessWidget {
               children: <Widget>[
                 ElevatedButton(
                   onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    primary: Pallete.success100,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 24.0,
+                      vertical: 12.0,
+                    ),
+                  ),
                   child: Text(
                     'Join',
                     style: TextStyle(
@@ -68,35 +79,32 @@ class EventCard extends StatelessWidget {
                       color: Pallete.neutral0,
                     ),
                   ),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => EventDetailsScreen(event: event),
+                      ),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
-                    primary: Pallete.success100,
+                    backgroundColor: Pallete.primary100,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                     ),
-                    padding: EdgeInsets.symmetric(
+                    padding: const EdgeInsets.symmetric(
                       horizontal: 24.0,
                       vertical: 12.0,
                     ),
                   ),
-                ),
-                ElevatedButton(
-                  onPressed: () {},
                   child: Text(
                     'Details',
                     style: TextStyle(
                       fontSize: 16.0,
                       fontWeight: FontWeight.bold,
                       color: Pallete.neutral0,
-                    ),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    primary: Pallete.primary100,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 24.0,
-                      vertical: 12.0,
                     ),
                   ),
                 ),
