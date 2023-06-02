@@ -3,17 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:chip_in/features/auth/services/auth_service.dart';
 
 class LoginController {
-  // Define TextEditingController objects for the email and password fields
+  // Define GlobalKey<FormState> object for the form key
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
 
-  TextEditingController get emailController => _emailController;
-  TextEditingController get passwordController => _passwordController;
+  // Define TextEditingController objects for the email and password fields
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   Future<void> login(BuildContext context) async {
-    final email = _emailController.text;
-    final password = _passwordController.text;
+    final email = emailController.text;
+    final password = passwordController.text;
 
     try {
       // Call the AppwriteAuth.createSession method to log in the user
@@ -33,30 +32,24 @@ class LoginController {
 }
 
 class SignUpController {
-  // Define TextEditingController objects for the form fields
+  // Define GlobalKey<FormState> object for the form key
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final TextEditingController _firstNameController = TextEditingController();
-  final TextEditingController _lastNameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController =
+
+  // Define TextEditingController objects for the form fields
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
       TextEditingController();
 
-  TextEditingController get firstNameController => _firstNameController;
-  TextEditingController get lastNameController => _lastNameController;
-  TextEditingController get emailController => _emailController;
-  TextEditingController get usernameController => _usernameController;
-  TextEditingController get passwordController => _passwordController;
-  TextEditingController get confirmPasswordController =>
-      _confirmPasswordController;
-
   Future<void> signUp(BuildContext context) async {
-    final firstname = _firstNameController.text;
-    final lastname = _lastNameController.text;
-    final email = _emailController.text;
-    final username = _usernameController.text;
-    final password = _passwordController.text;
+    final firstname = firstNameController.text;
+    final lastname = lastNameController.text;
+    final email = emailController.text;
+    final username = usernameController.text;
+    final password = passwordController.text;
 
     try {
       // Call the AppwriteAuth.createUser method to sign up the user
@@ -64,15 +57,15 @@ class SignUpController {
           firstname, lastname, username, email, password);
 
       // Clear the form fields after sign up success
-      _firstNameController.text = '';
-      _lastNameController.text = '';
-      _emailController.text = '';
-      _usernameController.text = '';
-      _passwordController.text = '';
-      _confirmPasswordController.text = '';
+      firstNameController.text = '';
+      lastNameController.text = '';
+      emailController.text = '';
+      usernameController.text = '';
+      passwordController.text = '';
+      confirmPasswordController.text = '';
 
       // Show a snackbar to indicate that the account was created
-      final snackBar = SnackBar(
+      const snackBar = SnackBar(
         content: Text('Account Created!'),
         backgroundColor: Pallete.success200,
         behavior: SnackBarBehavior.floating,
