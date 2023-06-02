@@ -10,6 +10,7 @@ class LoginController {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  // This function is responsible for logging in the user by calling the AppwriteAuth.createSession method with the email and password entered by the user.
   Future<void> login(BuildContext context) async {
     final email = emailController.text;
     final password = passwordController.text;
@@ -45,6 +46,7 @@ class SignUpController {
       TextEditingController();
 
   Future<void> signUp(BuildContext context) async {
+    // Get the values from the form fields
     final firstname = firstNameController.text;
     final lastname = lastNameController.text;
     final email = emailController.text;
