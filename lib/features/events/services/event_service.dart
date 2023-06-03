@@ -10,6 +10,7 @@ class EventService {
   EventService(
       {required this.client, required this.endpoint, required this.projectId});
 
+// * FUNCTION FOR CREATING AN EVENT
   Future<bool> createEvent(Event event) async {
     // Initialize the client with the endpoint and project ID
     client
@@ -36,9 +37,10 @@ class EventService {
     }
   }
 
-  // New function for fetching all events/documents
+// * FUNCTION FOR GETTING ALL EVENTS
+  // Future<List<Event>> means that this function will return a list of events in the future
   Future<List<Event>> getAllEvents() async {
-    List<Event> eventList = [];
+    List<Event> eventList = []; // Create an empty list of events
 
     // Create a Databases object using the initialized client
     Databases databases = Databases(client);
@@ -63,6 +65,7 @@ class EventService {
     return eventList;
   }
 
+// * FUNCTION FOR GETTING AN EVENT BY ID
   Future<bool> joinEvent(String eventId, String userId) async {
     Databases databases = Databases(
         client); // create a Databases object using the initialized client. This object is used to interact with the Appwrite databases.

@@ -6,13 +6,17 @@ import 'package:chip_in/themes/palette.dart';
 import 'package:flutter/material.dart';
 import '/constants/appwrite_constants.dart';
 
+/*
+TODO: Implement logout functionality, MyCreatedEvents button, MyJoined Events button
+ */
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     final eventService = EventService(
-      client: AppwriteAuth.client, // ensure you have AppwriteAuth.client
+      client: AppwriteAuth.client,
       endpoint: AppwriteConstants.endPoint,
       projectId: AppwriteConstants.projectId,
     );
