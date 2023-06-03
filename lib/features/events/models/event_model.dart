@@ -1,6 +1,7 @@
 import 'package:chip_in/constants/appwrite_constants.dart';
 
 class Event {
+  String id; // Event ID
   String title; // Event title
   DateTime dateTime; // Event date and time
   String location; // Event location
@@ -10,6 +11,7 @@ class Event {
       attendeeIds; // Will be used to fetch userIds when users would like to join an event
 
   Event({
+    required this.id,
     required this.title,
     required this.dateTime,
     required this.location,
@@ -23,7 +25,8 @@ class Event {
   Event.fromJson(
       Map<String, dynamic>
           json) // The first method is fromJson which takes a Map<String, dynamic> as input and returns an Event object. This method is used to convert a JSON object to an Event object. It sets the values of the Event object's properties based on the values in the JSON object.
-      : title = json['title'],
+      : id = json['id'],
+        title = json['title'],
         dateTime = DateTime.parse(json['date']),
         location = json['location'],
         description = json['description'],

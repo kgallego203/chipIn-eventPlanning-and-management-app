@@ -18,11 +18,12 @@ class _EventCreationScreenState extends State<EventCreationScreen> {
   final _formKey = GlobalKey<FormState>();
 
   // Form fields
-  String _title = '';
+  late String _id;
+  late String _title;
   DateTime _date = DateTime.now();
   TimeOfDay _time = TimeOfDay.now();
-  String _location = '';
-  String _description = '';
+  late String _location;
+  late String _description;
 
   // Function to show a date picker and update the selected date
   Future<void> _selectDate() async {
@@ -63,6 +64,7 @@ class _EventCreationScreenState extends State<EventCreationScreen> {
 
       // Create a new Event object with the entered data
       Event newEvent = Event(
+        id: _id, // provide a value for the id parameter
         title: _title,
         dateTime: dateTime,
         location: _location,
