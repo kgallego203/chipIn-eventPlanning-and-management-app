@@ -62,4 +62,32 @@ class EventService {
     }
     return eventList;
   }
+
+  Future<bool> joinEvent(String eventId, String userId) async {
+    Databases databases = Databases(
+        client); // create a Databases object using the initialized client. This object is used to interact with the Appwrite databases.
+    try {
+      var response = await databases.getDocument(
+        databaseId: AppwriteConstants.databaseId,
+        collectionId: AppwriteConstants.eventsCollection,
+        documentId: eventId,
+      );
+
+      Event event = Event.fromJson(response.data);
+      // Add the user to the list of attendeeIds if they're not already in it
+      if (!event.attendeeIds.contains(userId)) {
+        event.attendeeIds.add(userId);
+        await databases.updateDocument(
+          databaseId: AppwriteConstants.databaseId,
+          collectionId: AppwriteConstants.eventsCollection,
+          documentId: eventId,
+          data: event.toJson(),
+        );
+      }
+      return true;
+    } catch (e) {
+      print('Failed to get event: $e');
+      return false;
+    }
+  }
 }
