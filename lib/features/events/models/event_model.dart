@@ -22,17 +22,17 @@ class Event {
 
 /* These are two methods of the Event class in the event_model.dart file. */
 
-  Event.fromJson(
-      Map<String, dynamic>
-          json) // The first method is fromJson which takes a Map<String, dynamic> as input and returns an Event object. This method is used to convert a JSON object to an Event object. It sets the values of the Event object's properties based on the values in the JSON object.
-      : id = json['id'],
+  Event.fromJson(Map<String, dynamic> json)
+      : id = json['id'] ?? '', // provide a default value
         title = json['title'],
         dateTime = DateTime.parse(json['date']),
         location = json['location'],
         description = json['description'],
         creatorId = json['creatorId'],
-        attendeeIds = List<String>.from(
-            json['attendeeIds'] ?? []); // retrieve the list of attendees
+        attendeeIds =
+            json['attendeeIds'] != null // check if 'attendeeIds' is not null
+                ? List<String>.from(json['attendeeIds'])
+                : []; // provide an empty list as default value
 
   Map<String, dynamic> toJson() {
     // The second method is toJson which returns a Map<String, dynamic>. This method is used to convert an Event object to a JSON object. It creates a Map with the values of the Event object's properties and returns it.
