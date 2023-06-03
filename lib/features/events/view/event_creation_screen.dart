@@ -3,6 +3,7 @@ import 'package:chip_in/themes/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:chip_in/features/events/services/event_service.dart';
 import 'package:chip_in/features/events/models/event_model.dart';
+import '/utils/form_utilities.dart'; // import form_utilities.dart
 
 class EventCreationScreen extends StatefulWidget {
   final EventService eventService;
@@ -26,12 +27,8 @@ class _EventCreationScreenState extends State<EventCreationScreen> {
   /// * This function is named _selectDate() and it is a Future that shows a date picker dialog to the user and updates the _date
   /// * instance variable with the selected date. It is called when the user taps on the "Select Date" button in the EventCreationScreen widget.
   Future<void> _selectDate() async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: _date,
-      firstDate: DateTime.now(),
-      lastDate: DateTime(2100),
-    );
+    final DateTime? picked =
+        await selectDate(context, _date); // use selectDate from utilities
     if (picked != null && picked != _date) {
       setState(() {
         _date = picked;
@@ -43,10 +40,8 @@ class _EventCreationScreenState extends State<EventCreationScreen> {
   /// * This code defines a function named _selectTime() that shows a time picker dialog to the user and updates the _time instance
   /// * variable with the selected time. It is called when the user taps on the "Select Time" button in the EventCreationScreen widget.
   Future<void> _selectTime() async {
-    final TimeOfDay? newTime = await showTimePicker(
-      context: context,
-      initialTime: _time,
-    );
+    final TimeOfDay? newTime =
+        await selectTime(context, _time); // use selectTime from utilities
     if (newTime != null) {
       setState(() {
         _time = newTime;
@@ -110,47 +105,20 @@ class _EventCreationScreenState extends State<EventCreationScreen> {
         child: ListView(
           padding: const EdgeInsets.all(16.0),
           children: [
-            TextFormField(
-              decoration: const InputDecoration(
-                labelText: 'Title',
-                labelStyle: TextStyle(color: Pallete.neutral70),
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Pallete.neutral70),
-                ),
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Pallete.primary200),
-                ),
-              ),
+            customFormField(
+              labelText: 'Title',
               validator: (value) =>
                   value!.isEmpty ? 'Please enter a title' : null,
               onSaved: (value) => _title = value!,
             ),
-            TextFormField(
-              decoration: const InputDecoration(
-                labelText: 'Location',
-                labelStyle: TextStyle(color: Pallete.neutral70),
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Pallete.neutral70),
-                ),
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Pallete.primary200),
-                ),
-              ),
+            customFormField(
+              labelText: 'Location',
               validator: (value) =>
                   value!.isEmpty ? 'Please enter a location' : null,
               onSaved: (value) => _location = value!,
             ),
-            TextFormField(
-              decoration: const InputDecoration(
-                labelText: 'Description',
-                labelStyle: TextStyle(color: Pallete.neutral70),
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Pallete.neutral70),
-                ),
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Pallete.primary200),
-                ),
-              ),
+            customFormField(
+              labelText: 'Description',
               validator: (value) =>
                   value!.isEmpty ? 'Please enter a description' : null,
               onSaved: (value) => _description = value!,

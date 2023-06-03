@@ -20,7 +20,7 @@ Future<TimeOfDay?> selectTime(
   );
 }
 
-// A TextFormField with common decorators and styles
+// A TextFormField with common decorators and styles (reusable)
 TextFormField customFormField({
   required String labelText,
   required String? Function(String?) validator,
