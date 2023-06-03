@@ -98,7 +98,6 @@ class _EventCreationScreenState extends State<EventCreationScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Create Event'),
-        leading: Container(), // Remove the back button from the app bar
       ),
       body: Form(
         key: _formKey,
