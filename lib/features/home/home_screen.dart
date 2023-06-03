@@ -93,7 +93,7 @@ class _HomePageState extends State<HomePage>
                     } else if (snapshot.hasError) {
                       return Text('Failed to load events: ${snapshot.error}');
                     } else {
-                      return CircularProgressIndicator();
+                      return const CircularProgressIndicator();
                     }
                   },
                 ),
@@ -133,7 +133,7 @@ class _HomePageState extends State<HomePage>
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => EventJoiningScreen(),
+                              builder: (context) => const EventJoiningScreen(),
                             ),
                           );
                           _toggleOptions();

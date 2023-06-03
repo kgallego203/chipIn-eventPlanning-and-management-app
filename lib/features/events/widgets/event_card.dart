@@ -26,43 +26,43 @@ class EventCard extends StatelessWidget {
           children: <Widget>[
             Text(
               event.title,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 20.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             Text(
               dateFormat.format(event.dateTime),
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 16.0,
                 color: Pallete.neutral70,
               ),
             ),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             Text(
               timeFormat.format(event.dateTime),
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 16.0,
                 color: Pallete.neutral70,
               ),
             ),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             Text(
               event.location,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 16.0,
                 color: Pallete.neutral70,
               ),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    primary: Pallete.success100,
+                    backgroundColor: Pallete.success100,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                     ),
@@ -71,7 +71,7 @@ class EventCard extends StatelessWidget {
                       vertical: 12.0,
                     ),
                   ),
-                  child: Text(
+                  child: const Text(
                     'Join',
                     style: TextStyle(
                       fontSize: 16.0,
@@ -99,7 +99,7 @@ class EventCard extends StatelessWidget {
                       vertical: 12.0,
                     ),
                   ),
-                  child: Text(
+                  child: const Text(
                     'Details',
                     style: TextStyle(
                       fontSize: 16.0,

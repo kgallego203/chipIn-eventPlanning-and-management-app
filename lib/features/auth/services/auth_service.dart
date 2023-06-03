@@ -46,6 +46,7 @@ class AppwriteAuth {
     }
   }
 
+// This method is used to retrieve the ID of the currently logged in user. It does this by making a request to the Appwrite server to get the user data and then returning the ID of the user.
   static Future<String> getCreatorId() async {
     try {
       User response = await account.get();
