@@ -94,4 +94,35 @@ class EventService {
       return false;
     }
   }
+
+// * FUNCTION FOR GETTING EVENTS CREATED BY THE USER
+// TODO: If you have time, create a backend function that filters the events
+  Future<List<Event>> getMyCreatedEvents(String userId) async {
+    List<Event> eventList = []; // Create an empty list of events
+
+    // Create a Databases object using the initialized client
+    Databases databases = Databases(client);
+
+    try {
+      // Get all documents in the events collection
+      var response = await databases.listDocuments(
+        databaseId: AppwriteConstants.databaseId,
+        collectionId: AppwriteConstants.eventsCollection,
+      );
+
+      // If there are documents, add them to the eventList
+      if (response.documents.isNotEmpty) {
+        for (var item in response.documents) {
+          Event event = Event.fromJson(item.data);
+          if (event.creatorId == userId) {
+            eventList.add(event);
+          }
+        }
+      }
+    } catch (e) {
+      // If there was an error, log the error
+      print('Failed to get events: $e');
+    }
+    return eventList;
+  }
 }
