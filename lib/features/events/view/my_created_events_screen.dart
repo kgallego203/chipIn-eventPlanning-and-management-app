@@ -1,7 +1,8 @@
+import 'package:chip_in/features/events/widgets/event_card.dart';
+import 'package:flutter/material.dart';
 import 'package:chip_in/features/auth/services/auth_service.dart';
 import 'package:chip_in/features/events/models/event_model.dart';
 import 'package:chip_in/features/events/services/event_service.dart';
-import 'package:flutter/material.dart';
 
 class MyCreatedEventsScreen extends StatefulWidget {
   final EventService eventService;
@@ -53,14 +54,7 @@ class _MyCreatedEventsScreenState extends State<MyCreatedEventsScreen> {
                   itemCount: myCreatedEvents.length,
                   itemBuilder: (context, index) {
                     Event event = myCreatedEvents[index];
-                    return ListTile(
-                      title: Text(event.title),
-                      subtitle: Text(event.location),
-                      // Add other event details as needed
-                      onTap: () {
-                        // Handle event tapping
-                      },
-                    );
+                    return EventCard(event: event); // Use the EventCard widget
                   },
                 ),
     );
