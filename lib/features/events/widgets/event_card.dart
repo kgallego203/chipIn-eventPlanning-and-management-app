@@ -5,8 +5,9 @@ import 'package:chip_in/features/events/models/event_model.dart';
 
 class EventCard extends StatelessWidget {
   final Event event;
+  final bool showJoinButton;
 
-  const EventCard({required this.event});
+  const EventCard({required this.event, this.showJoinButton = true});
 
   @override
   Widget build(BuildContext context) {
@@ -72,19 +73,21 @@ class EventCard extends StatelessWidget {
             ),
           ],
         ),
-        trailing: ElevatedButton(
-          onPressed: () {
-            // Handle join button press
-          },
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Pallete.primary100,
-            foregroundColor: Pallete.neutral0,
-            textStyle: const TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          child: const Text('Join'),
-        ),
+        trailing: showJoinButton
+            ? ElevatedButton(
+                onPressed: () {
+                  // Handle join button press
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Pallete.primary100,
+                  foregroundColor: Pallete.neutral0,
+                  textStyle: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                child: const Text('Join'),
+              )
+            : null,
         onTap: () {
           // Handle event tapping
         },

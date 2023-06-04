@@ -54,7 +54,10 @@ class _MyCreatedEventsScreenState extends State<MyCreatedEventsScreen> {
                   itemCount: myCreatedEvents.length,
                   itemBuilder: (context, index) {
                     Event event = myCreatedEvents[index];
-                    return EventCard(event: event); // Use the EventCard widget
+                    return EventCard(
+                        event: event,
+                        showJoinButton:
+                            false); // Use the updated EventCard widget without the join button
                   },
                 ),
     );
