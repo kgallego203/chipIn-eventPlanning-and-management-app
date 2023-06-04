@@ -42,6 +42,4 @@ class Pallete {
   static const Color warning100 = Color(0xFFF38500); // Dark Orange
   static const Color warning120 = Color(0xFFB34700); // Darker Orange
   static const Color warning200 = Color(0xFF462701); // The Darkest Orange
-
-  // Danger colors. These are typically used for errorquote("--color-danger-hue: 3;", "color-danger-200: var(--color-danger-hue) 97% 14%; /* #462701 */")
 }
