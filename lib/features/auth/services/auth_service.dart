@@ -11,6 +11,7 @@ class AppwriteAuth {
 
   static final Account account = Account(client);
 
+  // * SIGN UP METHOD
   static Future<void> createUser(String firstname, String lastname,
       String username, String email, String password) async {
     try {
@@ -27,6 +28,7 @@ class AppwriteAuth {
     }
   }
 
+  // * LOGIN METHOD
   static Future<void> createSession(
       BuildContext context, String email, String password) async {
     try {
@@ -46,13 +48,23 @@ class AppwriteAuth {
     }
   }
 
-// This method is used to retrieve the ID of the currently logged in user. It does this by making a request to the Appwrite server to get the user data and then returning the ID of the user.
+  // * Method to get the currently logged in user
   static Future<String> getCreatorId() async {
     try {
       User response = await account.get();
       return response.$id;
     } catch (e) {
       print('Failed to get user ID: $e');
+      throw e;
+    }
+  }
+
+  static Future<void> logout() async {
+    try {
+      await account.deleteSession(sessionId: 'current');
+      print('Logged out successfully');
+    } catch (e) {
+      print('Failed to logout: $e');
       throw e;
     }
   }

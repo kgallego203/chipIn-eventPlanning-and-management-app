@@ -11,6 +11,7 @@ class EventService {
       {required this.client, required this.endpoint, required this.projectId});
 
 // * FUNCTION FOR CREATING AN EVENT
+
   Future<bool> createEvent(Event event) async {
     // Initialize the client with the endpoint and project ID
     client

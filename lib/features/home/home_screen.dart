@@ -1,4 +1,5 @@
 import 'package:chip_in/features/auth/services/auth_service.dart';
+import 'package:chip_in/features/auth/view/authentication_screen.dart';
 import 'package:chip_in/features/events/services/event_service.dart';
 import 'package:chip_in/features/events/view/event_creation_screen.dart';
 import 'package:chip_in/features/events/view/event_joining_screen.dart';
@@ -7,7 +8,7 @@ import 'package:flutter/material.dart';
 import '/constants/appwrite_constants.dart';
 
 /*
-TODO: Implement logout functionality, MyCreatedEvents button, MyJoined Events button
+TODO: MyCreatedEvents button, MyJoined Events button
  */
 
 class HomePage extends StatelessWidget {
@@ -57,7 +58,7 @@ class HomePage extends StatelessWidget {
           actions: [
             PopupMenuButton(
               itemBuilder: (BuildContext context) {
-                return const [
+                return [
                   PopupMenuItem(
                     value: 'view_profile',
                     child: Text('View Profile'),
@@ -65,6 +66,14 @@ class HomePage extends StatelessWidget {
                   PopupMenuItem(
                     value: 'logout',
                     child: Text('Logout'),
+                    onTap: () async {
+                      await AppwriteAuth.logout();
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => AuthenticationScreen(),
+                        ),
+                      );
+                    },
                   ),
                 ];
               },
