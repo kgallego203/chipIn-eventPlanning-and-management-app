@@ -3,7 +3,7 @@ import 'package:chip_in/features/auth/view/authentication_screen.dart';
 import 'package:chip_in/features/events/services/event_service.dart';
 import 'package:chip_in/features/events/view/event_creation_screen.dart';
 import 'package:chip_in/features/events/view/my_created_events_screen.dart';
-import 'package:chip_in/features/events/view/my_joined_events_screen.dart';
+import 'package:chip_in/features/events/view/events_joining_screen.dart';
 import 'package:chip_in/themes/palette.dart';
 import 'package:flutter/material.dart';
 import '/constants/appwrite_constants.dart';

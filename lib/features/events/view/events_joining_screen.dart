@@ -35,7 +35,7 @@ class _JoinEventsScreenState extends State<JoinEventsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Join Events'),
+        title: const Text('All Events'),
       ),
       body: ListView.builder(
         itemCount: allEvents.length,
