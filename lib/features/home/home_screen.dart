@@ -3,6 +3,7 @@ import 'package:chip_in/features/auth/view/authentication_screen.dart';
 import 'package:chip_in/features/events/services/event_service.dart';
 import 'package:chip_in/features/events/view/event_creation_screen.dart';
 import 'package:chip_in/features/events/view/my_created_events_screen.dart';
+import 'package:chip_in/features/events/view/my_joined_events_screen.dart';
 import 'package:chip_in/themes/palette.dart';
 import 'package:flutter/material.dart';
 import '/constants/appwrite_constants.dart';
@@ -59,13 +60,13 @@ class HomePage extends StatelessWidget {
             PopupMenuButton(
               itemBuilder: (BuildContext context) {
                 return [
-                  PopupMenuItem(
+                  const PopupMenuItem(
                     value: 'view_profile',
                     child: Text('View Profile'),
                   ),
                   PopupMenuItem(
                     value: 'logout',
-                    child: Text('Logout'),
+                    child: const Text('Logout'),
                     onTap: () async {
                       await AppwriteAuth.logout();
                       Navigator.of(context).push(
@@ -107,7 +108,6 @@ class HomePage extends StatelessWidget {
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
-                  // TODO: Implement My Created Events functionality
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -121,14 +121,21 @@ class HomePage extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => JoinEventsScreen(
+                        eventService: eventService,
+                      ),
+                    ),
+                  );
+                },
                 child: const Text('Join Events'),
               ),
               const SizedBox(height: 16),
               ElevatedButton(
-                onPressed: () {
-                  // TODO: Implement My Joined Events functionality
-                },
+                onPressed: () {},
                 child: const Text('My Joined Events'),
               ),
             ],
