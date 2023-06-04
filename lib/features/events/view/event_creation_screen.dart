@@ -16,7 +16,7 @@ class EventCreationScreen extends StatefulWidget {
 class _EventCreationScreenState extends State<EventCreationScreen> {
   final _formKey = GlobalKey<FormState>(); // Instantiating a GlobalKey
   // Instance Variables
-  late String _id;
+  late final String _id = '';
   late String _title;
   DateTime _date = DateTime.now();
   TimeOfDay _time = TimeOfDay.now();

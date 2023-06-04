@@ -14,6 +14,7 @@ class MyCreatedEventsScreen extends StatefulWidget {
 
 class _MyCreatedEventsScreenState extends State<MyCreatedEventsScreen> {
   List<Event> myCreatedEvents = [];
+  bool loading = true;
 
   @override
   void initState() {
@@ -28,8 +29,12 @@ class _MyCreatedEventsScreenState extends State<MyCreatedEventsScreen> {
           .getMyCreatedEvents(userId); // Pass the user ID as an argument
       setState(() {
         myCreatedEvents = events;
+        loading = false;
       });
     } catch (error) {
+      setState(() {
+        loading = false;
+      });
       // Handle error
     }
   }
@@ -40,20 +45,24 @@ class _MyCreatedEventsScreenState extends State<MyCreatedEventsScreen> {
       appBar: AppBar(
         title: const Text('My Created Events'),
       ),
-      body: ListView.builder(
-        itemCount: myCreatedEvents.length,
-        itemBuilder: (context, index) {
-          Event event = myCreatedEvents[index];
-          return ListTile(
-            title: Text(event.title),
-            subtitle: Text(event.location),
-            // Add other event details as needed
-            onTap: () {
-              // Handle event tapping
-            },
-          );
-        },
-      ),
+      body: loading
+          ? Center(child: CircularProgressIndicator())
+          : myCreatedEvents.isEmpty
+              ? Center(child: Text('No events created'))
+              : ListView.builder(
+                  itemCount: myCreatedEvents.length,
+                  itemBuilder: (context, index) {
+                    Event event = myCreatedEvents[index];
+                    return ListTile(
+                      title: Text(event.title),
+                      subtitle: Text(event.location),
+                      // Add other event details as needed
+                      onTap: () {
+                        // Handle event tapping
+                      },
+                    );
+                  },
+                ),
     );
   }
 }

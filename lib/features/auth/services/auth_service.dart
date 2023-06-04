@@ -12,6 +12,7 @@ class AppwriteAuth {
   static final Account account = Account(client);
 
   // * SIGN UP METHOD
+  // TODO: After the user was created, it should automatically log them in (create session)
   static Future<void> createUser(String firstname, String lastname,
       String username, String email, String password) async {
     try {
