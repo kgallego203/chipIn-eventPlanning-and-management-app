@@ -2,7 +2,7 @@ import 'package:chip_in/features/auth/services/auth_service.dart';
 import 'package:chip_in/features/auth/view/authentication_screen.dart';
 import 'package:chip_in/features/events/services/event_service.dart';
 import 'package:chip_in/features/events/view/event_creation_screen.dart';
-import 'package:chip_in/features/events/view/event_joining_screen.dart';
+import 'package:chip_in/features/events/view/my_created_events_screen.dart';
 import 'package:chip_in/themes/palette.dart';
 import 'package:flutter/material.dart';
 import '/constants/appwrite_constants.dart';
@@ -108,19 +108,20 @@ class HomePage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   // TODO: Implement My Created Events functionality
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MyCreatedEventsScreen(
+                        eventService: eventService,
+                      ),
+                    ),
+                  );
                 },
                 child: const Text('My Created Events'),
               ),
               const SizedBox(height: 16),
               ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const EventJoiningScreen(),
-                    ),
-                  );
-                },
+                onPressed: () {},
                 child: const Text('Join Events'),
               ),
               const SizedBox(height: 16),
