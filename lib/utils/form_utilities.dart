@@ -22,22 +22,29 @@ Future<TimeOfDay?> selectTime(
 
 // A TextFormField with common decorators and styles (reusable)
 TextFormField customFormField({
-  required String labelText,
-  required String? Function(String?) validator,
-  required void Function(String?) onSaved,
+  required String labelText, // The label text for the form field
+  required String? Function(String?)
+      validator, // A function that takes a string and returns a string or null. Used for form field validation.
+  required void Function(String?)
+      onSaved, // A function that takes a string and returns void. Used to save the form field value.
 }) {
   return TextFormField(
     decoration: InputDecoration(
-      labelText: labelText,
-      labelStyle: const TextStyle(color: Pallete.neutral70),
+      labelText: labelText, // Set the label text
+      labelStyle:
+          const TextStyle(color: Pallete.neutral70), // Set the label text color
       enabledBorder: const UnderlineInputBorder(
-        borderSide: BorderSide(color: Pallete.neutral70),
+        borderSide: BorderSide(
+            color: Pallete
+                .neutral70), // Set the border color when the field is not focused
       ),
       focusedBorder: const UnderlineInputBorder(
-        borderSide: BorderSide(color: Pallete.primary200),
+        borderSide: BorderSide(
+            color: Pallete
+                .primary200), // Set the border color when the field is focused
       ),
     ),
-    validator: validator,
-    onSaved: onSaved,
+    validator: validator, // Set the validation function
+    onSaved: onSaved, // Set the save function
   );
 }

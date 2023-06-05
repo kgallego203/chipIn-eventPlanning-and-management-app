@@ -1,8 +1,6 @@
 /* 
 
-- Values that should never change 
-- These values are used throughout the app to perform CRUD 
-(Create, Read, Update, Delete) operations on the collections.
+- Values that should never change.
 
 */
 class AppwriteConstants {
