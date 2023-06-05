@@ -27,6 +27,7 @@ User Stories & Flows: https://smoggy-look-b1d.notion.site/User-Stories-User-Flow
 
 
 ## Codebase Structure
+'''
 chip_in/lib/
 ├── constants
 │   ├── README.md
@@ -86,3 +87,4 @@ chip_in/lib/
     ├── README.md
     ├── form_utilities.dart
     └── validators.dart
+'''
