@@ -4,6 +4,8 @@ import 'package:chip_in/themes/palette.dart';
 import 'package:chip_in/features/events/models/event_model.dart';
 import 'package:chip_in/features/events/view/event_details_screen.dart';
 
+/// TODO: Make the event creator's first name and last name visible instead of their creator id
+
 class EventCard extends StatelessWidget {
   final Event event; // The event object to display
   final bool
@@ -27,31 +29,43 @@ class EventCard extends StatelessWidget {
           ),
         );
       },
-      child: Card(
-        color: Pallete.neutral0, // Set the background color of the card
-        child: ListTile(
-          title: Text(
-            event.title, // Set the title of the event
-            style: const TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-              fontSize: 18.0,
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 8.0),
+        decoration: BoxDecoration(
+          color: Pallete.neutral0,
+          borderRadius: BorderRadius.circular(8.0),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.3),
+              spreadRadius: 1,
+              blurRadius: 5,
+              offset: const Offset(0, 3),
             ),
-          ),
-          subtitle: Column(
+          ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Text(
+                event.title,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18.0,
+                ),
+              ),
+              const SizedBox(height: 8.0),
               Row(
                 children: [
                   const Icon(
-                    Icons
-                        .access_time, // Add an icon to indicate the time of the event
+                    Icons.access_time,
                     color: Colors.grey,
                     size: 16.0,
                   ),
                   const SizedBox(width: 4.0),
                   Text(
-                    '$formattedDate at $formattedTime', // Display the formatted date and time of the event
+                    '$formattedDate at $formattedTime',
                     style: const TextStyle(
                       color: Colors.grey,
                       fontSize: 14.0,
@@ -59,17 +73,35 @@ class EventCard extends StatelessWidget {
                   ),
                 ],
               ),
+              const SizedBox(height: 8.0),
               Row(
                 children: [
                   const Icon(
-                    Icons
-                        .location_on, // Add an icon to indicate the location of the event
+                    Icons.location_on,
                     color: Colors.grey,
                     size: 16.0,
                   ),
                   const SizedBox(width: 4.0),
                   Text(
-                    event.location, // Display the location of the event
+                    event.location,
+                    style: const TextStyle(
+                      color: Colors.grey,
+                      fontSize: 14.0,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8.0),
+              Row(
+                children: [
+                  const Icon(
+                    Icons.person,
+                    color: Colors.grey,
+                    size: 16.0,
+                  ),
+                  const SizedBox(width: 4.0),
+                  Text(
+                    'Created by ${event.creatorId}',
                     style: const TextStyle(
                       color: Colors.grey,
                       fontSize: 14.0,
