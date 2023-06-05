@@ -23,6 +23,7 @@ class AuthenticationScreen extends StatelessWidget {
                   color: Pallete.primary100,
                 ),
               ),
+              // "powered by Flutter and Appwrite" text design
               Row(
                 children: [
                   Text(

@@ -9,14 +9,15 @@ import 'package:flutter/material.dart';
 import '/constants/appwrite_constants.dart';
 
 /*
-TODO: MyCreatedEvents button, MyJoined Events button
+TODO: MyJoined Events button
  */
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    // Create an instance of EventService with the client, endpoint, and projectId from AppwriteAuth and AppwriteConstants
     final eventService = EventService(
       client: AppwriteAuth.client,
       endpoint: AppwriteConstants.endPoint,
@@ -25,20 +26,21 @@ class HomePage extends StatelessWidget {
 
     return Theme(
       data: ThemeData(
-        primaryColor: Pallete.primary200,
-        backgroundColor: Pallete.neutral0,
-        scaffoldBackgroundColor: Pallete.neutral0,
+        colorScheme: ColorScheme.fromSwatch().copyWith(
+          background: Pallete.neutral0,
+        ),
         textTheme: const TextTheme(
-          headline1: TextStyle(
+          displayLarge: TextStyle(
             color: Pallete.neutral100,
             fontSize: 24,
             fontWeight: FontWeight.bold,
           ),
-          bodyText1: TextStyle(
+          bodyLarge: TextStyle(
             color: Pallete.neutral100,
             fontSize: 16,
           ),
         ),
+        // Set the elevatedButtonTheme for the ThemeData
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all(Pallete.primary200),
@@ -52,22 +54,30 @@ class HomePage extends StatelessWidget {
         ),
       ),
       child: Scaffold(
+        // Set the appBar for the Scaffold widget
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: const Text('Home Page'),
-          backgroundColor: Theme.of(context).primaryColor,
+          backgroundColor: Theme.of(context)
+              .primaryColor, // Use primaryColor from current theme
           actions: [
             PopupMenuButton(
               itemBuilder: (BuildContext context) {
+                // Build the menu items for the PopupMenuButton
                 return [
                   const PopupMenuItem(
-                    value: 'view_profile',
-                    child: Text('View Profile'),
+                    value:
+                        'view_profile', // Set value to identify menu item when selected
+                    child: Text(
+                        'View Profile'), // Set text to display for menu item
                   ),
                   PopupMenuItem(
-                    value: 'logout',
-                    child: const Text('Logout'),
+                    value:
+                        'logout', // Set value to identify menu item when selected
+                    child: const Text(
+                        'Logout'), // Set text to display for menu item
                     onTap: () async {
+                      // Function to execute when menu item is tapped
                       await AppwriteAuth.logout();
                       Navigator.of(context).push(
                         MaterialPageRoute(
@@ -79,6 +89,7 @@ class HomePage extends StatelessWidget {
                 ];
               },
               onSelected: (value) {
+                // Function to execute when a menu item is selected
                 if (value == 'view_profile') {
                   // TODO: Implement view profile functionality
                 } else if (value == 'logout') {
@@ -89,54 +100,80 @@ class HomePage extends StatelessWidget {
           ],
         ),
         body: Center(
+          // Center the child widget horizontally and vertically within the parent widget
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            // Arrange child widgets in a vertical array
+            mainAxisAlignment: MainAxisAlignment
+                .center, // Center child widgets along the main axis (vertically)
             children: [
               ElevatedButton(
+                // Create an ElevatedButton widget
                 onPressed: () {
+                  // Function to execute when button is pressed
                   Navigator.push(
+                    // Navigate to a new screen using MaterialPageRoute
                     context,
                     MaterialPageRoute(
                       builder: (context) => EventCreationScreen(
+                        // Navigate to EventCreationScreen and pass eventService as an argument
                         eventService: eventService,
                       ),
                     ),
                   );
                 },
-                child: const Text('Create Event'),
+                child:
+                    const Text('Create Event'), // Set text to display on button
               ),
-              const SizedBox(height: 16),
+              const SizedBox(
+                  height:
+                      16), // Create an empty box with a specified height to add space between widgets
               ElevatedButton(
+                // Create an ElevatedButton widget
                 onPressed: () {
+                  // Function to execute when button is pressed
                   Navigator.push(
+                    // Navigate to a new screen using MaterialPageRoute
                     context,
                     MaterialPageRoute(
                       builder: (context) => MyCreatedEventsScreen(
+                        // Navigate to MyCreatedEventsScreen and pass eventService as an argument
                         eventService: eventService,
                       ),
                     ),
                   );
                 },
-                child: const Text('My Created Events'),
+                child: const Text(
+                    'My Created Events'), // Set text to display on button
               ),
-              const SizedBox(height: 16),
+              const SizedBox(
+                  height:
+                      16), // Create an empty box with a specified height to add space between widgets
               ElevatedButton(
+                // Create an ElevatedButton widget
                 onPressed: () {
+                  // Function to execute when button is pressed
                   Navigator.push(
+                    // Navigate to a new screen using MaterialPageRoute
                     context,
                     MaterialPageRoute(
                       builder: (context) => JoinEventsScreen(
+                        // Navigate to JoinEventsScreen and pass eventService as an argument
                         eventService: eventService,
                       ),
                     ),
                   );
                 },
-                child: const Text('Join Events'),
+                child:
+                    const Text('Join Events'), // Set text to display on button
               ),
-              const SizedBox(height: 16),
+              const SizedBox(
+                  height:
+                      16), // Create an empty box with a specified height to add space between widgets
               ElevatedButton(
-                onPressed: () {},
-                child: const Text('My Joined Events'),
+                onPressed:
+                    () {}, // Empty function for onPressed (button does nothing when pressed)
+                child: const Text(
+                    'My Joined Events'), // Set text to display on button
               ),
             ],
           ),

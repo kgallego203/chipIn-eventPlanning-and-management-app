@@ -7,6 +7,7 @@ class SignUpView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // A form with several text form fields for the user to enter their information
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Form(
@@ -14,6 +15,7 @@ class SignUpView extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // Text form field for the user's first name
             TextFormField(
               controller: _signUpController.firstNameController,
               decoration: InputDecoration(
@@ -34,6 +36,7 @@ class SignUpView extends StatelessWidget {
               },
             ),
             const SizedBox(height: 16),
+            // Text form field for the user's last name
             TextFormField(
               controller: _signUpController.lastNameController,
               decoration: InputDecoration(
@@ -54,6 +57,7 @@ class SignUpView extends StatelessWidget {
               },
             ),
             const SizedBox(height: 16),
+            // Text form field for the user's email address
             TextFormField(
               controller: _signUpController.emailController,
               decoration: InputDecoration(
@@ -78,6 +82,7 @@ class SignUpView extends StatelessWidget {
               },
             ),
             const SizedBox(height: 16),
+            // Text form field for the user's desired username
             TextFormField(
               controller: _signUpController.usernameController,
               decoration: InputDecoration(
@@ -98,6 +103,7 @@ class SignUpView extends StatelessWidget {
               },
             ),
             const SizedBox(height: 16),
+            // Text form field for the user's desired password
             TextFormField(
               controller: _signUpController.passwordController,
               decoration: InputDecoration(
@@ -119,6 +125,7 @@ class SignUpView extends StatelessWidget {
               },
             ),
             const SizedBox(height: 16),
+            // Text form field to confirm the user's desired password
             TextFormField(
               controller: _signUpController.confirmPasswordController,
               decoration: InputDecoration(
@@ -143,15 +150,16 @@ class SignUpView extends StatelessWidget {
               },
             ),
             const SizedBox(height: 16),
+            // Button to submit the form and sign up the user
             ElevatedButton(
-              child: const Text('Sign Up'),
               style: ElevatedButton.styleFrom(
-                primary: Pallete
+                backgroundColor: Pallete
                     .primary100, // Set the background color of the button to primary100 from the Pallete class
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
+              child: const Text('Sign Up'),
               onPressed: () async {
                 if (_signUpController.formKey.currentState != null &&
                     _signUpController.formKey.currentState!.validate()) {

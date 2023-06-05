@@ -1,3 +1,4 @@
+// * Not used yet
 import 'package:flutter/material.dart';
 import 'package:chip_in/features/events/models/event_model.dart';
 

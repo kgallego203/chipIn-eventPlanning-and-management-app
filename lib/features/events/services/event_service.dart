@@ -2,22 +2,25 @@ import 'package:appwrite/appwrite.dart';
 import 'package:chip_in/features/events/models/event_model.dart';
 import 'package:chip_in/constants/appwrite_constants.dart';
 
+// This is a class EventService that contains methods for interacting with the Appwrite server
 class EventService {
+  // The constructor takes in a client, endpoint, and projectId as required parameters
   final Client client;
   final String endpoint;
   final String projectId;
 
-  EventService(
-      {required this.client, required this.endpoint, required this.projectId});
+  EventService({
+    required this.client,
+    required this.endpoint,
+    required this.projectId,
+  });
 
-// * FUNCTION FOR CREATING AN EVENT
-
+  // * Function for creating an event
   Future<bool> createEvent(Event event) async {
     // Initialize the client with the endpoint and project ID
     client
-            .setEndpoint(AppwriteConstants.endPoint) // Your API Endpoint
-            .setProject(AppwriteConstants.projectId) // Your project ID
-        ;
+      ..setEndpoint(AppwriteConstants.endPoint) // Your API Endpoint
+      ..setProject(AppwriteConstants.projectId); // Your project ID
 
     // Create a Databases object using the initialized client
     Databases databases = Databases(client);
@@ -38,8 +41,7 @@ class EventService {
     }
   }
 
-// * FUNCTION FOR GETTING ALL EVENTS
-  // Future<List<Event>> means that this function will return a list of events in the future
+  // * Function for getting all events
   Future<List<Event>> getAllEvents() async {
     List<Event> eventList = []; // Create an empty list of events
 
@@ -66,7 +68,7 @@ class EventService {
     return eventList;
   }
 
-// * FUNCTION FOR GETTING AN EVENT BY ID
+  // * Function for getting an event by ID and adding a user to the attendeeIds list
   Future<bool> joinEvent(String eventId, String userId) async {
     Databases databases = Databases(
         client); // create a Databases object using the initialized client. This object is used to interact with the Appwrite databases.
@@ -95,8 +97,8 @@ class EventService {
     }
   }
 
-// * FUNCTION FOR GETTING EVENTS CREATED BY THE USER
-// TODO: If you have time, create a backend function that filters the events
+  // * Function for getting events created by the user
+  // TODO: If you have time, create a backend function that filters the events
   Future<List<Event>> getMyCreatedEvents(String userId) async {
     List<Event> eventList = []; // Create an empty list of events
 

@@ -55,37 +55,53 @@ class _EventCreationScreenState extends State<EventCreationScreen> {
   /// * If the event is successfully created, it shows a success message and resets the form. If it fails, it shows an error message.
   void _submit() async {
     if (_formKey.currentState!.validate()) {
-      _formKey.currentState!.save();
+      // Check if the form is valid
+      _formKey.currentState!.save(); // Save the form data
 
       DateTime dateTime = DateTime(
-          _date.year, _date.month, _date.day, _time.hour, _time.minute);
+          _date.year,
+          _date.month,
+          _date.day,
+          _time.hour,
+          _time
+              .minute); // Create a DateTime object from the selected date and time
 
       Event newEvent = Event(
-        id: _id,
-        title: _title,
-        dateTime: dateTime,
-        location: _location,
-        description: _description,
-        creatorId: await AppwriteAuth.getCreatorId(),
+        id: _id, // Set the id of the new event
+        title: _title, // Set the title of the new event
+        dateTime: dateTime, // Set the date and time of the new event
+        location: _location, // Set the location of the new event
+        description: _description, // Set the description of the new event
+        creatorId: await AppwriteAuth
+            .getCreatorId(), // Set the creatorId of the new event
       );
 
-      bool success = await widget.eventService.createEvent(newEvent);
+      bool success = await widget.eventService.createEvent(
+          newEvent); // Call the createEvent method of the eventService and pass in the newEvent object
       if (success) {
+        // If the event was created successfully
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Event created successfully!')),
+          const SnackBar(
+              content: Text(
+                  'Event created successfully!')), // Show a snackbar with a success message
         );
 
         setState(() {
+          // Reset the form fields
           _title = '';
           _date = DateTime.now();
           _time = TimeOfDay.now();
           _location = '';
           _description = '';
         });
-        Navigator.pop(context);
+        Navigator.pop(
+            context); // Pop the current screen off the navigation stack
       } else {
+        // If the event creation failed
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to create event.')),
+          SnackBar(
+              content: Text(
+                  'Failed to create event.')), // Show a snackbar with an error message
         );
       }
     }
@@ -97,60 +113,82 @@ class _EventCreationScreenState extends State<EventCreationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Create Event'),
+        title: const Text('Create Event'), // Set the title of the app bar
       ),
       body: Form(
-        key: _formKey,
+        key: _formKey, // Set the key for the form
         child: ListView(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0), // Set padding for the list view
           children: [
             customFormField(
-              labelText: 'Title',
-              validator: (value) =>
-                  value!.isEmpty ? 'Please enter a title' : null,
-              onSaved: (value) => _title = value!,
+              labelText: 'Title', // Set the label text for the form field
+              validator: (value) => value!.isEmpty
+                  ? 'Please enter a title'
+                  : null, // Set the validator for the form field
+              onSaved: (value) => _title =
+                  value!, // Set the onSaved callback for the form field
             ),
             customFormField(
-              labelText: 'Location',
-              validator: (value) =>
-                  value!.isEmpty ? 'Please enter a location' : null,
-              onSaved: (value) => _location = value!,
+              labelText: 'Location', // Set the label text for the form field
+              validator: (value) => value!.isEmpty
+                  ? 'Please enter a location'
+                  : null, // Set the validator for the form field
+              onSaved: (value) => _location =
+                  value!, // Set the onSaved callback for the form field
             ),
             customFormField(
-              labelText: 'Description',
-              validator: (value) =>
-                  value!.isEmpty ? 'Please enter a description' : null,
-              onSaved: (value) => _description = value!,
+              labelText: 'Description', // Set the label text for the form field
+              validator: (value) => value!.isEmpty
+                  ? 'Please enter a description'
+                  : null, // Set the validator for the form field
+              onSaved: (value) => _description =
+                  value!, // Set the onSaved callback for the form field
             ),
             ListTile(
-              leading:
-                  const Icon(Icons.calendar_today, color: Pallete.neutral70),
+              leading: const Icon(Icons.calendar_today,
+                  color: Pallete
+                      .neutral70), // Set the leading icon for the list tile
               title: const Text('Date',
-                  style: TextStyle(color: Pallete.neutral70)),
+                  style: TextStyle(
+                      color: Pallete
+                          .neutral70)), // Set the title text for the list tile
               subtitle: Text(
-                '${_date.year}-${_date.month}-${_date.day}',
-                style: const TextStyle(color: Pallete.neutral100),
+                '${_date.year}-${_date.month}-${_date.day}', // Set the subtitle text for the list tile
+                style: const TextStyle(
+                    color: Pallete
+                        .neutral100), // Set the style for the subtitle text
               ),
-              onTap: _selectDate,
+              onTap: _selectDate, // Set the onTap callback for the list tile
             ),
             ListTile(
-              leading: const Icon(Icons.access_time, color: Pallete.neutral70),
+              leading: const Icon(Icons.access_time,
+                  color: Pallete
+                      .neutral70), // Set the leading icon for the list tile
               title: const Text('Time',
-                  style: TextStyle(color: Pallete.neutral70)),
+                  style: TextStyle(
+                      color: Pallete
+                          .neutral70)), // Set the title text for the list tile
               subtitle: Text(
-                _time.format(context),
-                style: const TextStyle(color: Pallete.neutral100),
+                _time
+                    .format(context), // Set the subtitle text for the list tile
+                style: const TextStyle(
+                    color: Pallete
+                        .neutral100), // Set the style for the subtitle text
               ),
-              onTap: _selectTime,
+              onTap: _selectTime, // Set the onTap callback for the list tile
             ),
-            const SizedBox(height: 16.0),
+            const SizedBox(height: 16.0), // Add a sized box with a fixed height
             ElevatedButton(
-              onPressed: _submit,
+              onPressed:
+                  _submit, // Set the onPressed callback for the elevated button
               style: ElevatedButton.styleFrom(
-                backgroundColor: Pallete.primary200,
-                foregroundColor: Pallete.neutral0,
+                backgroundColor: Pallete
+                    .primary200, // Set the background color for the elevated button
+                foregroundColor: Pallete
+                    .neutral0, // Set the foreground color for the elevated button
               ),
-              child: const Text('Create Event'),
+              child: const Text(
+                  'Create Event'), // Set the text for the elevated button
             ),
           ],
         ),
