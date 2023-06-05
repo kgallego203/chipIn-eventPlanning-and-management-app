@@ -50,12 +50,12 @@ class _MyCreatedEventsScreenState extends State<MyCreatedEventsScreen> {
         title: const Text('My Created Events'), // Set the title of the app bar
       ),
       body: loading // If the events are still loading
-          ? Center(
+          ? const Center(
               child: CircularProgressIndicator()) // Show a loading indicator
           : myCreatedEvents.isEmpty // If the user has not created any events
-              ? Center(
+              ? const Center(
                   child: Text(
-                      'No events created')) // Show a message indicating that no events have been created
+                      'You do not have events created')) // Show a message indicating that no events have been created
               : ListView.builder(
                   itemCount: myCreatedEvents
                       .length, // Set the number of items in the list view to the length of the myCreatedEvents list

@@ -40,15 +40,22 @@ class _JoinEventsScreenState extends State<JoinEventsScreen> {
       appBar: AppBar(
         title: const Text('Join Events'), // Set the title of the app bar
       ),
-      body: ListView.builder(
-        itemCount: allEvents
-            .length, // Set the number of items in the list view to the length of the allEvents list
-        itemBuilder: (context, index) {
-          Event event = allEvents[index]; // Get the event at the current index
-          return EventCard(
-              event: event); // Use the EventCard widget to display the event
-        },
-      ),
+      body: allEvents.isEmpty // If there are no events to join
+          ? Center(
+              child: Text(
+                  'No events to join'), // Show a message indicating that there are no events to join
+            )
+          : ListView.builder(
+              itemCount: allEvents
+                  .length, // Set the number of items in the list view to the length of the allEvents list
+              itemBuilder: (context, index) {
+                Event event =
+                    allEvents[index]; // Get the event at the current index
+                return EventCard(
+                    event:
+                        event); // Use the EventCard widget to display the event
+              },
+            ),
     );
   }
 }
