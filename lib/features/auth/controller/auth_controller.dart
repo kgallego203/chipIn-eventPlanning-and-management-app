@@ -1,6 +1,6 @@
 import 'package:chip_in/themes/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:chip_in/features/auth/services/auth_service.dart';
+import 'package:chip_in/features/auth/services/user_service.dart';
 
 class LoginController {
   // Define GlobalKey<FormState> object for the form key

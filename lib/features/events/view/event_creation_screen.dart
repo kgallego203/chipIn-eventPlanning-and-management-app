@@ -1,4 +1,4 @@
-import 'package:chip_in/features/auth/services/auth_service.dart';
+import 'package:chip_in/features/auth/services/user_service.dart';
 import 'package:chip_in/themes/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:chip_in/features/events/services/event_service.dart';
@@ -99,7 +99,7 @@ class _EventCreationScreenState extends State<EventCreationScreen> {
       } else {
         // If the event creation failed
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
+          const SnackBar(
               content: Text(
                   'Failed to create event.')), // Show a snackbar with an error message
         );

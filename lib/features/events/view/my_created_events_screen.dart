@@ -1,6 +1,6 @@
 import 'package:chip_in/features/events/widgets/event_card.dart'; // Import the EventCard widget
 import 'package:flutter/material.dart';
-import 'package:chip_in/features/auth/services/auth_service.dart';
+import 'package:chip_in/features/auth/services/user_service.dart';
 import 'package:chip_in/features/events/models/event_model.dart';
 import 'package:chip_in/features/events/services/event_service.dart';
 

@@ -1,4 +1,4 @@
-import 'package:chip_in/features/auth/services/auth_service.dart';
+import 'package:chip_in/features/auth/services/user_service.dart';
 import 'package:chip_in/features/auth/view/authentication_screen.dart';
 import 'package:chip_in/features/events/services/event_service.dart';
 import 'package:chip_in/features/events/view/event_creation_screen.dart';
