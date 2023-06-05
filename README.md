@@ -27,64 +27,62 @@ User Stories & Flows: https://smoggy-look-b1d.notion.site/User-Stories-User-Flow
 
 
 ## Codebase Structure
-'''
-chip_in/lib/
-├── constants
-│   ├── README.md
-│   ├── appwrite_constants.dart
-│   └── constants.dart
-├── features
-│   ├── README.md
-│   ├── auth
-│   │   ├── controller
-│   │   │   └── auth_controller.dart
-│   │   ├── models
-│   │   │   └── user_model.dart
-│   │   ├── services
-│   │   │   └── auth_service.dart
-│   │   └── view
-│   │       ├── authentication_screen.dart
-│   │       ├── login_view.dart
-│   │       └── signup_view.dart
-│   ├── events
-│   │   ├── models
-│   │   │   └── event_model.dart
-│   │   ├── services
-│   │   │   └── event_service.dart
-│   │   ├── view
-│   │   │   ├── attendee_list_screen.dart
-│   │   │   ├── event_creation_screen.dart
-│   │   │   ├── event_details_screen.dart
-│   │   │   ├── events_joining_screen.dart
-│   │   │   ├── my_created_events_screen.dart
-│   │   │   └── my_joined_events_screen.dart
-│   │   └── widgets
-│   │       ├── attendee_item.dart
-│   │       └── event_card.dart
-│   ├── home
-│   │   └── home_screen.dart
-│   ├── notifications
-│   │   ├── services
-│   │   │   └── notification_service.dart
-│   │   ├── view
-│   │   │   └── notification_screen.dart
-│   │   └── widgets
-│   │       └── notification_card.dart
-│   └── profile
-│       ├── services
-│       │   └── user_service.dart
-│       ├── view
-│       │   └── profile_screen.dart
-│       └── widgets
-│           └── profile_card.dart
-├── main.dart
-├── themes
-│   ├── README.md
-│   ├── app_theme.dart
-│   ├── palette.dart
-│   └── theme.dart
-└── utils
-    ├── README.md
-    ├── form_utilities.dart
-    └── validators.dart
-'''
+    chip_in/lib/
+    ├── constants
+    │   ├── README.md
+    │   ├── appwrite_constants.dart
+    │   └── constants.dart
+    ├── features
+    │   ├── README.md
+    │   ├── auth
+    │   │   ├── controller
+    │   │   │   └── auth_controller.dart
+    │   │   ├── models
+    │   │   │   └── user_model.dart
+    │   │   ├── services
+    │   │   │   └── auth_service.dart
+    │   │   └── view
+    │   │       ├── authentication_screen.dart
+    │   │       ├── login_view.dart
+    │   │       └── signup_view.dart
+    │   ├── events
+    │   │   ├── models
+    │   │   │   └── event_model.dart
+    │   │   ├── services
+    │   │   │   └── event_service.dart
+    │   │   ├── view
+    │   │   │   ├── attendee_list_screen.dart
+    │   │   │   ├── event_creation_screen.dart
+    │   │   │   ├── event_details_screen.dart
+    │   │   │   ├── events_joining_screen.dart
+    │   │   │   ├── my_created_events_screen.dart
+    │   │   │   └── my_joined_events_screen.dart
+    │   │   └── widgets
+    │   │       ├── attendee_item.dart
+    │   │       └── event_card.dart
+    │   ├── home
+    │   │   └── home_screen.dart
+    │   ├── notifications
+    │   │   ├── services
+    │   │   │   └── notification_service.dart
+    │   │   ├── view
+    │   │   │   └── notification_screen.dart
+    │   │   └── widgets
+    │   │       └── notification_card.dart
+    │   └── profile
+    │       ├── services
+    │       │   └── user_service.dart
+    │       ├── view
+    │       │   └── profile_screen.dart
+    │       └── widgets
+    │           └── profile_card.dart
+    ├── main.dart
+    ├── themes
+    │   ├── README.md
+    │   ├── app_theme.dart
+    │   ├── palette.dart
+    │   └── theme.dart
+    └── utils
+        ├── README.md
+        ├── form_utilities.dart
+        └── validators.dart
