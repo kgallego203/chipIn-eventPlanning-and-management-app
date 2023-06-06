@@ -1,4 +1,5 @@
 import 'package:appwrite/models.dart';
+import 'package:chip_in/features/auth/models/user_model.dart';
 import 'package:chip_in/features/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:appwrite/appwrite.dart';
@@ -12,6 +13,7 @@ class UserService {
     ..setEndpoint(AppwriteConstants.endPoint)
     ..setProject(AppwriteConstants.projectId);
   static final Account account = Account(client);
+  static final Databases databases = Databases(client);
 
   // * SIGN UP METHOD
   // This method creates a new user account with the given details
@@ -28,6 +30,30 @@ class UserService {
         password: password,
       );
       print('User created successfully');
+      try {
+        MyUserModel usermodel = MyUserModel(
+          userId: ID.unique(),
+          username: username,
+          name: '$firstname $lastname',
+          email: email,
+          password: password,
+          profilePicture: '',
+          additionalDetails: '',
+          phoneNumber: '',
+        );
+
+        /// NOTE - .createDocument is still a work in progress.
+        /// flutter: AppwriteException: document_invalid_structure,
+        /// Invalid document structure: Missing required attribute "userID" (400)
+        await databases.createDocument(
+          databaseId: AppwriteConstants.databaseId,
+          collectionId: AppwriteConstants.usersCollection,
+          documentId: ID.unique(),
+          data: usermodel.toJson(),
+        );
+      } on AppwriteException catch (e) {
+        print(e);
+      }
     } catch (error) {
       print('Error creating user: $error');
       throw error;
