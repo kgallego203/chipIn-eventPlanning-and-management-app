@@ -1,51 +1,29 @@
-class MyUserModel {
-  final String userId; // Unique userIdentifier for the user
+class UserAuthModel {
   final String name; // User's full name
   final String email; // User's email address
   final String username; // User's username
-  final String password; // User's password
-  final String profilePicture; // URL to user's profile picture
-  final String additionalDetails; // Additional details about the user
-  final String phoneNumber; // User's phone number
 
-  MyUserModel({
-    required this.userId,
+  UserAuthModel({
     required this.name,
     required this.email,
     required this.username,
-    required this.password,
-    required this.profilePicture,
-    required this.additionalDetails,
-    required this.phoneNumber,
   });
 
   // Create a User from JSON data
-  factory MyUserModel.fromJson(Map<String, dynamic> json) {
-    return MyUserModel(
-      userId: json['userId'],
+  factory UserAuthModel.fromJson(Map<String, dynamic> json) {
+    return UserAuthModel(
       name: json['name'],
       email: json['email'],
-      username: json[
-          'useruserId'], // The key in the JSON data is 'useruserId', but it maps to the 'username' field in the User class
-      password: json['password'],
-      profilePicture: json['profile_picture'],
-      additionalDetails: json['additional_details'],
-      phoneNumber: json['phone_number'],
+      username: json['username'],
     );
   }
 
   // Convert our User to JSON to make it easier when we store it in the database
   Map<String, dynamic> toJson() {
     return {
-      'userId': userId,
       'name': name,
       'email': email,
-      'useruserId':
-          username, // The key in the JSON data is 'useruserId', but it maps to the 'username' field in the User class
-      'password': password,
-      'profile_picture': profilePicture,
-      'additional_details': additionalDetails,
-      'phone_number': phoneNumber,
+      'username': username,
     };
   }
 }

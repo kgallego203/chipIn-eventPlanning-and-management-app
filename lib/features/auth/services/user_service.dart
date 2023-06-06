@@ -31,7 +31,7 @@ class UserService {
       );
       print('User created successfully');
       try {
-        MyUserModel usermodel = MyUserModel(
+        UserAuthModel usermodel = UserAuthModel(
           userId: ID.unique(),
           username: username,
           name: '$firstname $lastname',
