@@ -16,7 +16,7 @@ class EventService {
   });
 
   // * Function for creating an event
-  Future<bool> createEvent(Event event) async {
+  Future<bool> createEvent(MyEventModel event) async {
     // Initialize the client with the endpoint and project ID
     client
       ..setEndpoint(AppwriteConstants.endPoint) // Your API Endpoint
@@ -42,8 +42,8 @@ class EventService {
   }
 
   // * Function for getting all events
-  Future<List<Event>> getAllEvents() async {
-    List<Event> eventList = []; // Create an empty list of events
+  Future<List<MyEventModel>> getAllEvents() async {
+    List<MyEventModel> eventList = []; // Create an empty list of events
 
     // Create a Databases object using the initialized client
     Databases databases = Databases(client);
@@ -58,7 +58,7 @@ class EventService {
       // If there are documents, add them to the eventList
       if (response.documents.isNotEmpty) {
         for (var item in response.documents) {
-          eventList.add(Event.fromJson(item.data));
+          eventList.add(MyEventModel.fromJson(item.data));
         }
       }
     } catch (e) {
@@ -79,7 +79,7 @@ class EventService {
         documentId: eventId,
       );
 
-      Event event = Event.fromJson(response.data);
+      MyEventModel event = MyEventModel.fromJson(response.data);
       // Add the user to the list of attendeeIds if they're not already in it
       if (!event.attendeeIds.contains(userId)) {
         event.attendeeIds.add(userId);
@@ -99,8 +99,8 @@ class EventService {
 
   // * Function for getting events created by the user
   // TODO: If you have time, create a backend function that filters the events
-  Future<List<Event>> getMyCreatedEvents(String userId) async {
-    List<Event> eventList = []; // Create an empty list of events
+  Future<List<MyEventModel>> getMyCreatedEvents(String userId) async {
+    List<MyEventModel> eventList = []; // Create an empty list of events
 
     // Create a Databases object using the initialized client
     Databases databases = Databases(client);
@@ -115,7 +115,7 @@ class EventService {
       // If there are documents, add them to the eventList
       if (response.documents.isNotEmpty) {
         for (var item in response.documents) {
-          Event event = Event.fromJson(item.data);
+          MyEventModel event = MyEventModel.fromJson(item.data);
           if (event.creatorId == userId) {
             eventList.add(event);
           }

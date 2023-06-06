@@ -1,5 +1,5 @@
-class User {
-  final String id; // Unique identifier for the user
+class MyUserModel {
+  final String userId; // Unique userIdentifier for the user
   final String name; // User's full name
   final String email; // User's email address
   final String username; // User's username
@@ -7,8 +7,8 @@ class User {
   final String additionalDetails; // Additional details about the user
   final String phoneNumber; // User's phone number
 
-  User({
-    required this.id,
+  MyUserModel({
+    required this.userId,
     required this.name,
     required this.email,
     required this.username,
@@ -18,13 +18,13 @@ class User {
   });
 
   // Create a User from JSON data
-  factory User.fromJson(Map<String, dynamic> json) {
-    return User(
-      id: json['id'],
+  factory MyUserModel.fromJson(Map<String, dynamic> json) {
+    return MyUserModel(
+      userId: json['userId'],
       name: json['name'],
       email: json['email'],
       username: json[
-          'userId'], // The key in the JSON data is 'userId', but it maps to the 'username' field in the User class
+          'useruserId'], // The key in the JSON data is 'useruserId', but it maps to the 'username' field in the User class
       profilePicture: json['profile_picture'],
       additionalDetails: json['additional_details'],
       phoneNumber: json['phone_number'],
@@ -34,11 +34,11 @@ class User {
   // Convert our User to JSON to make it easier when we store it in the database
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
+      'userId': userId,
       'name': name,
       'email': email,
-      'userId':
-          username, // The key in the JSON data is 'userId', but it maps to the 'username' field in the User class
+      'useruserId':
+          username, // The key in the JSON data is 'useruserId', but it maps to the 'username' field in the User class
       'profile_picture': profilePicture,
       'additional_details': additionalDetails,
       'phone_number': phoneNumber,

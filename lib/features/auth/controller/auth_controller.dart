@@ -17,7 +17,7 @@ class LoginController {
 
     try {
       // Call the AppwriteAuth.createSession method to log in the user
-      await AppwriteAuth.createSession(context, email, password);
+      await UserService.createSession(context, email, password);
 
       // If successful, show a success snackbar
       ScaffoldMessenger.of(context).showSnackBar(
@@ -55,7 +55,7 @@ class SignUpController {
 
     try {
       // Call the AppwriteAuth.createUser method to sign up the user
-      await AppwriteAuth.createUser(
+      await UserService.createUser(
           firstname, lastname, username, email, password);
 
       // Clear the form fields after sign up success

@@ -1,6 +1,6 @@
 import 'package:chip_in/constants/appwrite_constants.dart';
 
-class Event {
+class MyEventModel {
   String id; // Unique identifier for the event
   String title; // Title of the event
   DateTime dateTime; // Date and time of the event
@@ -10,7 +10,7 @@ class Event {
   List<String>
       attendeeIds; // List of unique identifiers for the users who are attending the event
 
-  Event({
+  MyEventModel({
     required this.id,
     required this.title,
     required this.dateTime,
@@ -22,7 +22,7 @@ class Event {
   });
 
   // Create an Event from JSON data
-  Event.fromJson(Map<String, dynamic> json)
+  MyEventModel.fromJson(Map<String, dynamic> json)
       : id = json['id'] ??
             '', // If the 'id' key is null, set id to an empty string
         title = json['title'],

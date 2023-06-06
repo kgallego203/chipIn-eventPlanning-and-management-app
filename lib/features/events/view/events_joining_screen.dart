@@ -13,7 +13,7 @@ class JoinEventsScreen extends StatefulWidget {
 }
 
 class _JoinEventsScreenState extends State<JoinEventsScreen> {
-  List<Event> allEvents = []; // Create a list to hold all the events
+  List<MyEventModel> allEvents = []; // Create a list to hold all the events
 
   @override
   void initState() {
@@ -23,7 +23,7 @@ class _JoinEventsScreenState extends State<JoinEventsScreen> {
 
   Future<void> fetchAllEvents() async {
     try {
-      List<Event> events = await widget.eventService
+      List<MyEventModel> events = await widget.eventService
           .getAllEvents(); // Call the getAllEvents method of the eventService
       setState(() {
         allEvents =
@@ -49,7 +49,7 @@ class _JoinEventsScreenState extends State<JoinEventsScreen> {
               itemCount: allEvents
                   .length, // Set the number of items in the list view to the length of the allEvents list
               itemBuilder: (context, index) {
-                Event event =
+                MyEventModel event =
                     allEvents[index]; // Get the event at the current index
                 return EventCard(
                     event:

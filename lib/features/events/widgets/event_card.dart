@@ -7,7 +7,7 @@ import 'package:chip_in/features/events/view/event_details_screen.dart';
 /// TODO: Make the event creator's first name and last name visible instead of their creator id
 
 class EventCard extends StatelessWidget {
-  final Event event; // The event object to display
+  final MyEventModel event; // The event object to display
   final bool
       showJoinButton; // A boolean to determine whether to show the join button or not
 

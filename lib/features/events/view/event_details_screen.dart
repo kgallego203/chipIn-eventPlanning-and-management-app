@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:chip_in/features/events/models/event_model.dart';
 
 class EventDetailsScreen extends StatefulWidget {
-  final Event event;
+  final MyEventModel event;
 
   EventDetailsScreen({required this.event});
 

@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final eventService = EventService(
-      client: AppwriteAuth.client,
+      client: UserService.client,
       endpoint: AppwriteConstants.endPoint,
       projectId: AppwriteConstants.projectId,
     );
@@ -71,7 +71,7 @@ class HomePage extends StatelessWidget {
                     value: 'logout',
                     child: const Text('Logout'),
                     onTap: () async {
-                      await AppwriteAuth.logout();
+                      await UserService.logout();
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) => AuthenticationScreen(),
@@ -106,7 +106,7 @@ class HomePage extends StatelessWidget {
             const SizedBox(
               height: 16,
             ),
-            FutureBuilder<List<Event>>(
+            FutureBuilder<List<MyEventModel>>(
               future: eventService.getAllEvents(),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {

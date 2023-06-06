@@ -14,7 +14,7 @@ class MyCreatedEventsScreen extends StatefulWidget {
 }
 
 class _MyCreatedEventsScreenState extends State<MyCreatedEventsScreen> {
-  List<Event> myCreatedEvents =
+  List<MyEventModel> myCreatedEvents =
       []; // Create a list to hold the user's created events
   bool loading =
       true; // Create a boolean to track whether the events are still loading
@@ -27,8 +27,8 @@ class _MyCreatedEventsScreenState extends State<MyCreatedEventsScreen> {
 
   Future<void> fetchMyCreatedEvents() async {
     try {
-      String userId = await AppwriteAuth.getCreatorId(); // Obtain the user ID
-      List<Event> events = await widget.eventService.getMyCreatedEvents(
+      String userId = await UserService.getCreatorId(); // Obtain the user ID
+      List<MyEventModel> events = await widget.eventService.getMyCreatedEvents(
           userId); // Call the getMyCreatedEvents method of the eventService and pass in the user ID
       setState(() {
         myCreatedEvents =
@@ -60,7 +60,7 @@ class _MyCreatedEventsScreenState extends State<MyCreatedEventsScreen> {
                   itemCount: myCreatedEvents
                       .length, // Set the number of items in the list view to the length of the myCreatedEvents list
                   itemBuilder: (context, index) {
-                    Event event = myCreatedEvents[
+                    MyEventModel event = myCreatedEvents[
                         index]; // Get the event at the current index
                     return EventCard(
                         event: event,
