@@ -6,7 +6,6 @@ class UserProfileModel {
   final DateTime dateOfBirth; // User's date of birth
   final String phoneNumber; // User's phone number
   final String profilePicture; // URL to user's profile picture
-  final String bio; // Bio about the user
   final String location; // User's location
 
   UserProfileModel({
@@ -17,7 +16,6 @@ class UserProfileModel {
     required this.dateOfBirth,
     required this.phoneNumber,
     required this.profilePicture,
-    required this.bio,
     required this.location,
   });
 
@@ -31,7 +29,6 @@ class UserProfileModel {
       dateOfBirth: DateTime.parse(json['dateOfBirth']),
       phoneNumber: json['phoneNumber'],
       profilePicture: json['profilePicture'],
-      bio: json['bio'],
       location: json['location'],
     );
   }
@@ -46,7 +43,6 @@ class UserProfileModel {
       'dateOfBirth': dateOfBirth.toIso8601String(),
       'phoneNumber': phoneNumber,
       'profilePicture': profilePicture,
-      'bio': bio,
       'location': location,
     };
   }
