@@ -31,7 +31,7 @@ class HomePage extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
       ),
-      minimumSize: const Size(double.infinity, 48),
+      minimumSize: const Size(200, 48), // Fixed button size
     );
 
     return Theme(
