@@ -10,8 +10,14 @@ class EventCard extends StatelessWidget {
   final MyEventModel event; // The event object to display
   final bool
       showJoinButton; // A boolean to determine whether to show the join button or not
+  final VoidCallback?
+      onJoinPressed; // A callback to handle the join button press
 
-  const EventCard({required this.event, this.showJoinButton = true});
+  const EventCard({
+    required this.event,
+    this.showJoinButton = true,
+    this.onJoinPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -109,6 +115,11 @@ class EventCard extends StatelessWidget {
                   ),
                 ],
               ),
+              if (showJoinButton) // Conditionally show the Join button
+                ElevatedButton(
+                  onPressed: onJoinPressed,
+                  child: const Text('Join'),
+                ),
             ],
           ),
         ),

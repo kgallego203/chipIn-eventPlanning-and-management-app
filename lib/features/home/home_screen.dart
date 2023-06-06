@@ -6,6 +6,7 @@ import 'package:chip_in/features/events/services/event_service.dart';
 import 'package:chip_in/features/events/view/event_creation_screen.dart';
 import 'package:chip_in/features/events/view/my_created_events_screen.dart';
 import 'package:chip_in/features/events/view/events_joining_screen.dart';
+import 'package:chip_in/features/events/view/my_joined_events_screen.dart';
 import 'package:chip_in/features/events/widgets/event_card.dart';
 import 'package:chip_in/themes/palette.dart';
 import 'package:flutter/material.dart';
@@ -192,10 +193,17 @@ class HomePage extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                // TODO: Implement My Joined Events functionality
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MyJoinedEventsScreen(
+                      eventService: eventService,
+                    ),
+                  ),
+                );
               },
-              child: const Text('My Joined Events'),
               style: buttonStyle,
+              child: const Text('My Joined Events'),
             ),
           ],
         ),

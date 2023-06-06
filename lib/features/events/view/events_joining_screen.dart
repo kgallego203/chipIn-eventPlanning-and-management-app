@@ -39,6 +39,10 @@ class _JoinEventsScreenState extends State<JoinEventsScreen> {
     }
   }
 
+  Future<void> joinEvent(MyEventModel event) async {
+    // TODO: Implement join event logic
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +50,7 @@ class _JoinEventsScreenState extends State<JoinEventsScreen> {
         title: const Text('Join Events'),
       ),
       body: allEvents.isEmpty
-          ? Center(
+          ? const Center(
               child: Text('No events to join'),
             )
           : ListView.builder(
@@ -56,8 +60,8 @@ class _JoinEventsScreenState extends State<JoinEventsScreen> {
                 bool showJoinButton = event.creatorId != currentUserId;
                 return EventCard(
                   event: event,
-                  showJoinButton:
-                      showJoinButton, // Pass the showJoinButton parameter to the EventCard widget
+                  showJoinButton: showJoinButton,
+                  onJoinPressed: () => joinEvent(event),
                 );
               },
             ),
