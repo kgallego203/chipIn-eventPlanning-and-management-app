@@ -10,19 +10,12 @@ import 'package:chip_in/features/events/view/my_joined_events_screen.dart';
 import 'package:chip_in/features/events/widgets/event_card.dart';
 import 'package:chip_in/themes/palette.dart';
 import 'package:flutter/material.dart';
-import '/constants/appwrite_constants.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final eventService = EventService(
-      client: UserService.client,
-      endpoint: AppwriteConstants.endPoint,
-      projectId: AppwriteConstants.projectId,
-    );
-
     final buttonStyle = ElevatedButton.styleFrom(
       backgroundColor: Pallete.primary100,
       textStyle: const TextStyle(
@@ -108,7 +101,7 @@ class HomePage extends StatelessWidget {
               height: 16,
             ),
             FutureBuilder<List<MyEventModel>>(
-              future: eventService.getAllEvents(),
+              future: EventService.getAllEvents(),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   final events = snapshot.data!;
@@ -146,7 +139,7 @@ class HomePage extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) => EventCreationScreen(
-                      eventService: eventService,
+                      eventService: EventService(),
                     ),
                   ),
                 );
@@ -163,7 +156,7 @@ class HomePage extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) => MyCreatedEventsScreen(
-                      eventService: eventService,
+                      eventService: EventService(),
                     ),
                   ),
                 );
@@ -180,7 +173,7 @@ class HomePage extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) => JoinEventsScreen(
-                      eventService: eventService,
+                      eventService: EventService(),
                     ),
                   ),
                 );
@@ -197,7 +190,7 @@ class HomePage extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) => MyJoinedEventsScreen(
-                      eventService: eventService,
+                      eventService: EventService(),
                     ),
                   ),
                 );

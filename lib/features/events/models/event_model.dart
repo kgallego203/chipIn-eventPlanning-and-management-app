@@ -7,8 +7,6 @@ class MyEventModel {
   String location; // Location of the event
   String description; // Description of the event
   String creatorId; // Unique identifier for the user who created the event
-  List<String>
-      attendeeIds; // List of unique identifiers for the users who are attending the event
 
   MyEventModel({
     required this.id,
@@ -17,8 +15,6 @@ class MyEventModel {
     required this.location,
     required this.description,
     required this.creatorId,
-    this.attendeeIds =
-        const [], // Default value for attendeeIds is an empty list
   });
 
   // Create an Event from JSON data
@@ -30,11 +26,7 @@ class MyEventModel {
             json['date']), // Parse the 'date' string into a DateTime object
         location = json['location'],
         description = json['description'],
-        creatorId = json['creatorId'],
-        attendeeIds = json['attendeeIds'] != null
-            ? List<String>.from(json[
-                'attendeeIds']) // If attendeeIds is not null, convert it to a list of strings
-            : [];
+        creatorId = json['creatorId'];
 
   // Convert our Event to JSON to make it easier when we store it in the database
   Map<String, dynamic> toJson() {
@@ -47,7 +39,6 @@ class MyEventModel {
       'location': location,
       'description': description,
       'creatorId': creatorId,
-      'attendeeIds': attendeeIds,
     };
   }
 }

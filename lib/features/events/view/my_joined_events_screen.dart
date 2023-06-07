@@ -1,4 +1,3 @@
-import 'package:chip_in/features/auth/services/user_service.dart';
 import 'package:chip_in/features/events/models/event_model.dart';
 import 'package:chip_in/features/events/services/event_service.dart';
 import 'package:chip_in/features/events/widgets/event_card.dart';
@@ -19,29 +18,29 @@ class _MyJoinedEventsScreenState extends State<MyJoinedEventsScreen> {
   bool loading =
       true; // Create a boolean to track whether the events are still loading
 
-  @override
-  void initState() {
-    super.initState();
-    fetchMyJoinedEvents(); // Call the fetchMyJoinedEvents method when the screen is initialized
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   fetchMyJoinedEvents(); // Call the fetchMyJoinedEvents method when the screen is initialized
+  // }
 
-  Future<void> fetchMyJoinedEvents() async {
-    try {
-      String userId = await UserService.getCreatorId(); // Obtain the user ID
-      List<MyEventModel> events = await widget.eventService.getMyJoinedEvents(
-          userId); // Call the getMyJoinedEvents method of the eventService and pass in the user ID
-      setState(() {
-        myJoinedEvents =
-            events; // Set the myJoinedEvents list to the events returned by the getMyJoinedEvents method
-        loading = false; // Set loading to false
-      });
-    } catch (error) {
-      setState(() {
-        loading = false; // Set loading to false
-      });
-      // Handle error
-    }
-  }
+  // Future<void> fetchMyJoinedEvents() async {
+  //   try {
+  //     String userId = await UserService.getCreatorId(); // Obtain the user ID
+  //     List<MyEventModel> events = EventService.getMyJoinedEvents(
+  //         userId); // Call the getMyJoinedEvents method of the eventService and pass in the user ID
+  //     setState(() {
+  //       myJoinedEvents =
+  //           events; // Set the myJoinedEvents list to the events returned by the getMyJoinedEvents method
+  //       loading = false; // Set loading to false
+  //     });
+  //   } catch (error) {
+  //     setState(() {
+  //       loading = false; // Set loading to false
+  //     });
+  //     // Handle error
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {

@@ -116,7 +116,6 @@ class EventCard extends StatelessWidget {
                   if (showJoinButton)
                     ElevatedButton(
                       onPressed: onJoinPressed,
-                      child: const Text('Join'),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Pallete.primary100,
                         textStyle: const TextStyle(
@@ -128,6 +127,7 @@ class EventCard extends StatelessWidget {
                         ),
                         minimumSize: const Size(double.infinity, 48),
                       ),
+                      child: const Text('Join'),
                     ),
                 ],
               ),

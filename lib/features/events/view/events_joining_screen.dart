@@ -30,7 +30,7 @@ class _JoinEventsScreenState extends State<JoinEventsScreen> {
 
   Future<void> fetchAllEvents() async {
     try {
-      List<MyEventModel> events = await widget.eventService.getAllEvents();
+      List<MyEventModel> events = await EventService.getAllEvents();
       setState(() {
         allEvents = events;
       });

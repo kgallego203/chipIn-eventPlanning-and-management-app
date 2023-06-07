@@ -4,27 +4,14 @@ import 'package:chip_in/constants/appwrite_constants.dart';
 
 // This is a class EventService that contains methods for interacting with the Appwrite server
 class EventService {
-  // The constructor takes in a client, endpoint, and projectId as required parameters
-  final Client client;
-  final String endpoint;
-  final String projectId;
-
-  EventService({
-    required this.client,
-    required this.endpoint,
-    required this.projectId,
-  });
+  static final Client client = Client()
+    ..setEndpoint(AppwriteConstants.endPoint)
+    ..setProject(AppwriteConstants.projectId);
+  static final Account account = Account(client);
+  static final Databases databases = Databases(client);
 
   // * Function for creating an event
   Future<bool> createEvent(MyEventModel event) async {
-    // Initialize the client with the endpoint and project ID
-    client
-      ..setEndpoint(AppwriteConstants.endPoint) // Your API Endpoint
-      ..setProject(AppwriteConstants.projectId); // Your project ID
-
-    // Create a Databases object using the initialized client
-    Databases databases = Databases(client);
-
     try {
       // Create a new document in the events collection with the provided event data
       await databases.createDocument(
@@ -42,11 +29,8 @@ class EventService {
   }
 
   // * Function for getting all events
-  Future<List<MyEventModel>> getAllEvents() async {
+  static Future<List<MyEventModel>> getAllEvents() async {
     List<MyEventModel> eventList = []; // Create an empty list of events
-
-    // Create a Databases object using the initialized client
-    Databases databases = Databases(client);
 
     try {
       // Get all documents in the events collection
@@ -58,7 +42,9 @@ class EventService {
       // If there are documents, add them to the eventList
       if (response.documents.isNotEmpty) {
         for (var item in response.documents) {
-          eventList.add(MyEventModel.fromJson(item.data));
+          eventList.add(
+            MyEventModel.fromJson(item.data),
+          );
         }
       }
     } catch (e) {
@@ -69,41 +55,36 @@ class EventService {
   }
 
   // * Function for getting an event by ID and adding a user to the attendeeIds list
-  Future<bool> joinEvent(String eventId, String userId) async {
-    Databases databases = Databases(
-        client); // create a Databases object using the initialized client. This object is used to interact with the Appwrite databases.
-    try {
-      var response = await databases.getDocument(
-        databaseId: AppwriteConstants.databaseId,
-        collectionId: AppwriteConstants.eventsCollection,
-        documentId: eventId,
-      );
+  // Future<bool> joinEvent(String eventId, String userId) async {
+  //   try {
+  //     var response = await databases.getDocument(
+  //       databaseId: AppwriteConstants.databaseId,
+  //       collectionId: AppwriteConstants.eventsCollection,
+  //       documentId: eventId,
+  //     );
 
-      MyEventModel event = MyEventModel.fromJson(response.data);
-      // Add the user to the list of attendeeIds if they're not already in it
-      if (!event.attendeeIds.contains(userId)) {
-        event.attendeeIds.add(userId);
-        await databases.updateDocument(
-          databaseId: AppwriteConstants.databaseId,
-          collectionId: AppwriteConstants.eventsCollection,
-          documentId: eventId,
-          data: event.toJson(),
-        );
-      }
-      return true;
-    } catch (e) {
-      print('Failed to get event: $e');
-      return false;
-    }
-  }
+  //     MyEventModel event = MyEventModel.fromJson(response.data);
+  //     // Add the user to the list of attendeeIds if they're not already in it
+  //     if (!event.attendeeIds.contains(userId)) {
+  //       event.attendeeIds.add(userId);
+  //       await databases.updateDocument(
+  //         databaseId: AppwriteConstants.databaseId,
+  //         collectionId: AppwriteConstants.eventsCollection,
+  //         documentId: eventId,
+  //         data: event.toJson(),
+  //       );
+  //     }
+  //     return true;
+  //   } catch (e) {
+  //     print('Failed to get event: $e');
+  //     return false;
+  //   }
+  // }
 
   // * Function for getting events created by the user
   // TODO: If you have time, create a backend function that filters the events
   Future<List<MyEventModel>> getMyCreatedEvents(String userId) async {
     List<MyEventModel> eventList = []; // Create an empty list of events
-
-    // Create a Databases object using the initialized client
-    Databases databases = Databases(client);
 
     try {
       // Get all documents in the events collection
@@ -129,32 +110,29 @@ class EventService {
   }
 
   // Function for getting events joined by the user
-  Future<List<MyEventModel>> getMyJoinedEvents(String userId) async {
-    List<MyEventModel> eventList = []; // Create an empty list of events
+  // Future<List<MyEventModel>> getMyJoinedEvents(String userId) async {
+  //   List<MyEventModel> eventList = []; // Create an empty list of events
 
-    // Create a Databases object using the initialized client
-    Databases databases = Databases(client);
+  //   try {
+  //     // Get all documents in the events collection
+  //     var response = await databases.listDocuments(
+  //       databaseId: AppwriteConstants.databaseId,
+  //       collectionId: AppwriteConstants.eventsCollection,
+  //     );
 
-    try {
-      // Get all documents in the events collection
-      var response = await databases.listDocuments(
-        databaseId: AppwriteConstants.databaseId,
-        collectionId: AppwriteConstants.eventsCollection,
-      );
-
-      // If there are documents, add them to the eventList
-      if (response.documents.isNotEmpty) {
-        for (var item in response.documents) {
-          MyEventModel event = MyEventModel.fromJson(item.data);
-          if (event.attendeeIds.contains(userId)) {
-            eventList.add(event);
-          }
-        }
-      }
-    } catch (e) {
-      // If there was an error, log the error
-      print('Failed to get events: $e');
-    }
-    return eventList;
-  }
+  //     // If there are documents, add them to the eventList
+  //     if (response.documents.isNotEmpty) {
+  //       for (var item in response.documents) {
+  //         MyEventModel event = MyEventModel.fromJson(item.data);
+  //         if (event.attendeeIds.contains(userId)) {
+  //           eventList.add(event);
+  //         }
+  //       }
+  //     }
+  //   } catch (e) {
+  //     // If there was an error, log the error
+  //     print('Failed to get events: $e');
+  //   }
+  //   return eventList;
+  // }
 }
