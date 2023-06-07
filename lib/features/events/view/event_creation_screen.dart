@@ -1,4 +1,4 @@
-import 'package:chip_in/features/auth/services/auth_service.dart';
+import 'package:chip_in/features/auth/services/user_service.dart';
 import 'package:chip_in/themes/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:chip_in/features/events/services/event_service.dart';
@@ -67,13 +67,13 @@ class _EventCreationScreenState extends State<EventCreationScreen> {
         _time.minute,
       );
 
-      Event newEvent = Event(
+      MyEventModel newEvent = MyEventModel(
         id: _id, // Set the id of the new event
         title: _title, // Set the title of the new event
         dateTime: dateTime, // Set the date and time of the new event
         location: _location, // Set the location of the new event
         description: _description, // Set the description of the new event
-        creatorId: await AppwriteAuth
+        creatorId: await UserService
             .getCreatorId(), // Set the creatorId of the new event
       );
 
@@ -102,9 +102,9 @@ class _EventCreationScreenState extends State<EventCreationScreen> {
       } else {
         // If the event creation failed
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Failed to create event.'),
-          ),
+          const SnackBar(
+              content: Text(
+                  'Failed to create event.')), // Show a snackbar with an error message
         );
       }
     }

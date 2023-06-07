@@ -1,7 +1,7 @@
 import 'package:chip_in/features/home/home_screen.dart';
 import 'package:chip_in/themes/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:chip_in/features/auth/services/auth_service.dart';
+import 'package:chip_in/features/auth/services/user_service.dart';
 
 class LoginController {
   // Define GlobalKey<FormState> object for the form key
@@ -18,7 +18,7 @@ class LoginController {
 
     try {
       // Call the AppwriteAuth.createSession method to log in the user
-      await AppwriteAuth.createSession(context, email, password);
+      await UserService.createSession(context, email, password);
 
       // Navigate to HomePage after successful login
       // This is possible because the context parameter is passed to the createSession method

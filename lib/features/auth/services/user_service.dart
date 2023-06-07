@@ -4,7 +4,7 @@ import 'package:appwrite/appwrite.dart';
 import 'package:chip_in/constants/appwrite_constants.dart';
 
 // This is a static class AppwriteAuth that contains methods for user authentication
-class AppwriteAuth {
+class UserService {
   // The code block initializes a Client and an Account object from the appwrite package,
   // which will be used for making API requests to the Appwrite server
   static final Client client = Client()
@@ -15,6 +15,7 @@ class AppwriteAuth {
   // * SIGN UP METHOD
   // This method creates a new user account with the given details
   // TODO: After the user was created, it should automatically log them in (create session)
+  // TODO: The user's information should also be stored in the User Collection
   static Future<void> createUser(String firstname, String lastname,
       String username, String email, String password) async {
     try {

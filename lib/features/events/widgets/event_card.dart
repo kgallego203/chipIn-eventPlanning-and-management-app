@@ -2,13 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:chip_in/themes/palette.dart';
 import 'package:chip_in/features/events/models/event_model.dart';
+import 'package:chip_in/features/events/view/event_details_screen.dart';
+
+/// TODO: Make the event creator's first name and last name visible instead of their creator id
 
 class EventCard extends StatelessWidget {
-  final Event event; // The event object to display
+  final MyEventModel event; // The event object to display
   final bool
       showJoinButton; // A boolean to determine whether to show the join button or not
+  final VoidCallback?
+      onJoinPressed; // A callback to handle the join button press
 
-  const EventCard({required this.event, this.showJoinButton = true});
+  const EventCard({
+    required this.event,
+    this.showJoinButton = true,
+    this.onJoinPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,87 +26,103 @@ class EventCard extends StatelessWidget {
     final formattedTime = DateFormat('h:mm a')
         .format(event.dateTime); // Format the time of the event
 
-    return Card(
-      color: Pallete.neutral0, // Set the background color of the card
-      child: ListTile(
-        title: Text(
-          event.title, // Set the title of the event
-          style: const TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 18.0,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => EventDetailsScreen(event: event),
           ),
-        ),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                const Icon(
-                  Icons
-                      .access_time, // Add an icon to indicate the time of the event
-                  color: Colors.grey,
-                  size: 16.0,
-                ),
-                const SizedBox(width: 4.0),
-                Text(
-                  '$formattedDate at $formattedTime', // Display the formatted date and time of the event
-                  style: const TextStyle(
-                    color: Colors.grey,
-                    fontSize: 14.0,
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                const Icon(
-                  Icons
-                      .location_on, // Add an icon to indicate the location of the event
-                  color: Colors.grey,
-                  size: 16.0,
-                ),
-                const SizedBox(width: 4.0),
-                Text(
-                  event.location, // Set the location of the event
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 14.0,
-                  ),
-                ),
-              ],
-            ),
-            Text(
-              event.description, // Set the description of the event
-              maxLines: 3,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                color: Colors.black,
-                fontSize: 14.0,
-              ),
+        );
+      },
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 8.0),
+        decoration: BoxDecoration(
+          color: Pallete.neutral0,
+          borderRadius: BorderRadius.circular(8.0),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.3),
+              spreadRadius: 1,
+              blurRadius: 5,
+              offset: const Offset(0, 3),
             ),
           ],
         ),
-        trailing: showJoinButton // If showJoinButton is true
-            ? ElevatedButton(
-                onPressed: () {
-                  // Handle join button press
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Pallete
-                      .primary100, // Set the background color of the button
-                  foregroundColor:
-                      Pallete.neutral0, // Set the text color of the button
-                  textStyle: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                event.title,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18.0,
                 ),
-                child: const Text('Join'), // Set the text of the button
-              )
-            : null, // If showJoinButton is false, set the trailing widget to null
-        onTap: () {
-          // Handle event tapping
-        },
+              ),
+              const SizedBox(height: 8.0),
+              Row(
+                children: [
+                  const Icon(
+                    Icons.access_time,
+                    color: Colors.grey,
+                    size: 16.0,
+                  ),
+                  const SizedBox(width: 4.0),
+                  Text(
+                    '$formattedDate at $formattedTime',
+                    style: const TextStyle(
+                      color: Colors.grey,
+                      fontSize: 14.0,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8.0),
+              Row(
+                children: [
+                  const Icon(
+                    Icons.location_on,
+                    color: Colors.grey,
+                    size: 16.0,
+                  ),
+                  const SizedBox(width: 4.0),
+                  Text(
+                    event.location,
+                    style: const TextStyle(
+                      color: Colors.grey,
+                      fontSize: 14.0,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8.0),
+              Row(
+                children: [
+                  const Icon(
+                    Icons.person,
+                    color: Colors.grey,
+                    size: 16.0,
+                  ),
+                  const SizedBox(width: 4.0),
+                  Text(
+                    'Created by ${event.creatorId}',
+                    style: const TextStyle(
+                      color: Colors.grey,
+                      fontSize: 14.0,
+                    ),
+                  ),
+                ],
+              ),
+              if (showJoinButton) // Conditionally show the Join button
+                ElevatedButton(
+                  onPressed: onJoinPressed,
+                  child: const Text('Join'),
+                ),
+            ],
+          ),
+        ),
       ),
     );
   }

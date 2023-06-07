@@ -1,4 +1,5 @@
-import 'package:chip_in/features/events/widgets/event_card.dart'; // Import the EventCard widget
+import 'package:chip_in/features/auth/services/user_service.dart';
+import 'package:chip_in/features/events/widgets/event_card.dart';
 import 'package:flutter/material.dart';
 import 'package:chip_in/features/events/models/event_model.dart';
 import 'package:chip_in/features/events/services/event_service.dart';
@@ -13,42 +14,57 @@ class JoinEventsScreen extends StatefulWidget {
 }
 
 class _JoinEventsScreenState extends State<JoinEventsScreen> {
-  List<Event> allEvents = []; // Create a list to hold all the events
+  List<MyEventModel> allEvents = [];
+  String currentUserId = '';
 
   @override
   void initState() {
     super.initState();
-    fetchAllEvents(); // Call the fetchAllEvents method when the screen is initialized
+    fetchAllEvents();
+    getCurrentUserId();
+  }
+
+  Future<void> getCurrentUserId() async {
+    currentUserId = await UserService.getCreatorId();
   }
 
   Future<void> fetchAllEvents() async {
     try {
-      List<Event> events = await widget.eventService
-          .getAllEvents(); // Call the getAllEvents method of the eventService
+      List<MyEventModel> events = await widget.eventService.getAllEvents();
       setState(() {
-        allEvents =
-            events; // Set the allEvents list to the events returned by the getAllEvents method
+        allEvents = events;
       });
     } catch (error) {
       // Handle error
     }
   }
 
+  Future<void> joinEvent(MyEventModel event) async {
+    // TODO: Implement join event logic
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Join Events'), // Set the title of the app bar
+        title: const Text('Join Events'),
       ),
-      body: ListView.builder(
-        itemCount: allEvents
-            .length, // Set the number of items in the list view to the length of the allEvents list
-        itemBuilder: (context, index) {
-          Event event = allEvents[index]; // Get the event at the current index
-          return EventCard(
-              event: event); // Use the EventCard widget to display the event
-        },
-      ),
+      body: allEvents.isEmpty
+          ? const Center(
+              child: Text('No events to join'),
+            )
+          : ListView.builder(
+              itemCount: allEvents.length,
+              itemBuilder: (context, index) {
+                MyEventModel event = allEvents[index];
+                bool showJoinButton = event.creatorId != currentUserId;
+                return EventCard(
+                  event: event,
+                  showJoinButton: showJoinButton,
+                  onJoinPressed: () => joinEvent(event),
+                );
+              },
+            ),
     );
   }
 }
