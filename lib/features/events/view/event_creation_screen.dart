@@ -3,10 +3,11 @@ import 'package:chip_in/themes/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:chip_in/features/events/services/event_service.dart';
 import 'package:chip_in/features/events/models/event_model.dart';
-import '/utils/form_utilities.dart'; // import form_utilities.dart
+import '/utils/form_utilities.dart';
 
 class EventCreationScreen extends StatefulWidget {
   final EventService eventService;
+
   const EventCreationScreen({required this.eventService});
 
   @override
@@ -23,7 +24,7 @@ class _EventCreationScreenState extends State<EventCreationScreen> {
   late String _location;
   late String _description;
 
-/* ------------------------------------------------------------------------------------------------------------------------------ */
+  /* ------------------------------------------------------------------------------------------------------------------------------ */
   /// * This function is named _selectDate() and it is a Future that shows a date picker dialog to the user and updates the _date
   /// * instance variable with the selected date. It is called when the user taps on the "Select Date" button in the EventCreationScreen widget.
   Future<void> _selectDate() async {
@@ -36,7 +37,7 @@ class _EventCreationScreenState extends State<EventCreationScreen> {
     }
   }
 
-/* ------------------------------------------------------------------------------------------------------------------------------ */
+  /* ------------------------------------------------------------------------------------------------------------------------------ */
   /// * This code defines a function named _selectTime() that shows a time picker dialog to the user and updates the _time instance
   /// * variable with the selected time. It is called when the user taps on the "Select Time" button in the EventCreationScreen widget.
   Future<void> _selectTime() async {
@@ -49,7 +50,7 @@ class _EventCreationScreenState extends State<EventCreationScreen> {
     }
   }
 
-/* ------------------------------------------------------------------------------------------------------------------------------ */
+  /* ------------------------------------------------------------------------------------------------------------------------------ */
   /// * This function called _submit() is responsible for validating the form and creating a new event based on the user's input.
   /// * It also saves the new event to the database using the eventService instance passed to the EventCreationScreen widget.
   /// * If the event is successfully created, it shows a success message and resets the form. If it fails, it shows an error message.
@@ -59,12 +60,12 @@ class _EventCreationScreenState extends State<EventCreationScreen> {
       _formKey.currentState!.save(); // Save the form data
 
       DateTime dateTime = DateTime(
-          _date.year,
-          _date.month,
-          _date.day,
-          _time.hour,
-          _time
-              .minute); // Create a DateTime object from the selected date and time
+        _date.year,
+        _date.month,
+        _date.day,
+        _time.hour,
+        _time.minute,
+      );
 
       Event newEvent = Event(
         id: _id, // Set the id of the new event
@@ -78,12 +79,13 @@ class _EventCreationScreenState extends State<EventCreationScreen> {
 
       bool success = await widget.eventService.createEvent(
           newEvent); // Call the createEvent method of the eventService and pass in the newEvent object
+
       if (success) {
         // If the event was created successfully
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-              content: Text(
-                  'Event created successfully!')), // Show a snackbar with a success message
+            content: Text('Event created successfully!'),
+          ),
         );
 
         setState(() {
@@ -94,20 +96,21 @@ class _EventCreationScreenState extends State<EventCreationScreen> {
           _location = '';
           _description = '';
         });
+
         Navigator.pop(
             context); // Pop the current screen off the navigation stack
       } else {
         // If the event creation failed
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-              content: Text(
-                  'Failed to create event.')), // Show a snackbar with an error message
+            content: Text('Failed to create event.'),
+          ),
         );
       }
     }
   }
 
-/* ------------------------------------------------------------------------------------------------------------------------------ */
+  /* ------------------------------------------------------------------------------------------------------------------------------ */
   /// * UI SECTION
   @override
   Widget build(BuildContext context) {

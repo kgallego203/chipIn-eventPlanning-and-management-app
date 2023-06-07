@@ -163,7 +163,8 @@ class SignUpView extends StatelessWidget {
               onPressed: () async {
                 if (_signUpController.formKey.currentState != null &&
                     _signUpController.formKey.currentState!.validate()) {
-                  await _signUpController.signUp(context);
+                  await _signUpController.signUp(
+                      context); // If it's true, it will trigger the .signUp method from the SignUpController class
                 }
               },
             ),

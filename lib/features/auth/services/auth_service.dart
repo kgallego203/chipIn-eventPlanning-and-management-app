@@ -1,5 +1,4 @@
 import 'package:appwrite/models.dart';
-import 'package:chip_in/features/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:appwrite/appwrite.dart';
 import 'package:chip_in/constants/appwrite_constants.dart';
@@ -44,12 +43,6 @@ class AppwriteAuth {
         password: password,
       );
       print('Session created successfully');
-      // Navigate to HomePage after successful login
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => const HomePage(),
-        ),
-      );
     } catch (error) {
       print('Error creating session: $error');
       throw error;

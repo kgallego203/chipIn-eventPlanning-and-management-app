@@ -1,3 +1,4 @@
+import 'package:chip_in/features/home/home_screen.dart';
 import 'package:chip_in/themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:chip_in/features/auth/services/auth_service.dart';
@@ -19,6 +20,14 @@ class LoginController {
       // Call the AppwriteAuth.createSession method to log in the user
       await AppwriteAuth.createSession(context, email, password);
 
+      // Navigate to HomePage after successful login
+      // This is possible because the context parameter is passed to the createSession method
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => const HomePage(),
+        ),
+      );
+
       // If successful, show a success snackbar
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Logged in successfully')),
@@ -32,6 +41,7 @@ class LoginController {
   }
 }
 
+// todo: add a navigator that after signup, it will route the user to the hompage
 class SignUpController {
   // Define GlobalKey<FormState> object for the form key
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -46,7 +56,8 @@ class SignUpController {
       TextEditingController();
 
   Future<void> signUp(BuildContext context) async {
-    // Get the values from the form fields
+    // When the signUp is triggered in the UI, it will perform the operations below:
+    // * Get the values from the form fields
     final firstname = firstNameController.text;
     final lastname = lastNameController.text;
     final email = emailController.text;
@@ -54,11 +65,17 @@ class SignUpController {
     final password = passwordController.text;
 
     try {
-      // Call the AppwriteAuth.createUser method to sign up the user
+      // Now the info entered by the user is stored in the variables above.
+      // * Call the AppwriteAuth.createUser method to sign up the user
       await AppwriteAuth.createUser(
-          firstname, lastname, username, email, password);
+          // You are passing the values of the variables in the .createUser method to be used in the auth_service.dart file
+          firstname,
+          lastname,
+          username,
+          email,
+          password);
 
-      // Clear the form fields after sign up success
+      // * Clear the form fields after sign up success
       firstNameController.text = '';
       lastNameController.text = '';
       emailController.text = '';
@@ -66,7 +83,7 @@ class SignUpController {
       passwordController.text = '';
       confirmPasswordController.text = '';
 
-      // Show a snackbar to indicate that the account was created
+      // * Show a snackbar to indicate that the account was created
       const snackBar = SnackBar(
         content: Text('Account Created!'),
         backgroundColor: Pallete.success200,
@@ -74,7 +91,7 @@ class SignUpController {
       );
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     } catch (error) {
-      // If there was an error, show an error snackbar
+      // * If there was an error, show an error snackbar
       final snackBar = SnackBar(
         content: Text('Error creating account: $error'),
         backgroundColor: Pallete.warning200,
