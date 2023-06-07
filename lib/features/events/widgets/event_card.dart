@@ -4,14 +4,10 @@ import 'package:chip_in/themes/palette.dart';
 import 'package:chip_in/features/events/models/event_model.dart';
 import 'package:chip_in/features/events/view/event_details_screen.dart';
 
-/// TODO: Make the event creator's first name and last name visible instead of their creator id
-
 class EventCard extends StatelessWidget {
-  final MyEventModel event; // The event object to display
-  final bool
-      showJoinButton; // A boolean to determine whether to show the join button or not
-  final VoidCallback?
-      onJoinPressed; // A callback to handle the join button press
+  final MyEventModel event;
+  final bool showJoinButton;
+  final VoidCallback? onJoinPressed;
 
   const EventCard({
     required this.event,
@@ -21,10 +17,8 @@ class EventCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final formattedDate = DateFormat('EEE, MMM d, y')
-        .format(event.dateTime); // Format the date of the event
-    final formattedTime = DateFormat('h:mm a')
-        .format(event.dateTime); // Format the time of the event
+    final formattedDate = DateFormat('EEE, MMM d, y').format(event.dateTime);
+    final formattedTime = DateFormat('h:mm a').format(event.dateTime);
 
     return GestureDetector(
       onTap: () {
@@ -49,79 +43,96 @@ class EventCard extends StatelessWidget {
             ),
           ],
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                event.title,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18.0,
-                ),
-              ),
-              const SizedBox(height: 8.0),
-              Row(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Icon(
-                    Icons.access_time,
-                    color: Colors.grey,
-                    size: 16.0,
-                  ),
-                  const SizedBox(width: 4.0),
                   Text(
-                    '$formattedDate at $formattedTime',
+                    event.title,
                     style: const TextStyle(
-                      color: Colors.grey,
-                      fontSize: 14.0,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18.0,
                     ),
                   ),
-                ],
-              ),
-              const SizedBox(height: 8.0),
-              Row(
-                children: [
-                  const Icon(
-                    Icons.location_on,
-                    color: Colors.grey,
-                    size: 16.0,
+                  const SizedBox(height: 8.0),
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.access_time,
+                        color: Pallete.neutral70,
+                        size: 16.0,
+                      ),
+                      const SizedBox(width: 4.0),
+                      Text(
+                        '$formattedDate at $formattedTime',
+                        style: const TextStyle(
+                          color: Pallete.neutral70,
+                          fontSize: 14.0,
+                        ),
+                      ),
+                    ],
                   ),
-                  const SizedBox(width: 4.0),
-                  Text(
-                    event.location,
-                    style: const TextStyle(
-                      color: Colors.grey,
-                      fontSize: 14.0,
+                  const SizedBox(height: 8.0),
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.location_on,
+                        color: Pallete.neutral70,
+                        size: 16.0,
+                      ),
+                      const SizedBox(width: 4.0),
+                      Text(
+                        event.location,
+                        style: const TextStyle(
+                          color: Pallete.neutral70,
+                          fontSize: 14.0,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8.0),
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.person,
+                        color: Pallete.neutral70,
+                        size: 16.0,
+                      ),
+                      const SizedBox(width: 4.0),
+                      Text(
+                        'Created by ${event.creatorId}',
+                        style: const TextStyle(
+                          color: Pallete.neutral70,
+                          fontSize: 14.0,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 16.0),
+                  if (showJoinButton)
+                    ElevatedButton(
+                      onPressed: onJoinPressed,
+                      child: const Text('Join'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Pallete.primary100,
+                        textStyle: const TextStyle(
+                          color: Pallete.neutral0,
+                          fontSize: 16,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        minimumSize: const Size(double.infinity, 48),
+                      ),
                     ),
-                  ),
                 ],
               ),
-              const SizedBox(height: 8.0),
-              Row(
-                children: [
-                  const Icon(
-                    Icons.person,
-                    color: Colors.grey,
-                    size: 16.0,
-                  ),
-                  const SizedBox(width: 4.0),
-                  Text(
-                    'Created by ${event.creatorId}',
-                    style: const TextStyle(
-                      color: Colors.grey,
-                      fontSize: 14.0,
-                    ),
-                  ),
-                ],
-              ),
-              if (showJoinButton) // Conditionally show the Join button
-                ElevatedButton(
-                  onPressed: onJoinPressed,
-                  child: const Text('Join'),
-                ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

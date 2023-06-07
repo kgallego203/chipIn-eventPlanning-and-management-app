@@ -67,7 +67,7 @@ class SignUpController {
     try {
       // Now the info entered by the user is stored in the variables above.
       // * Call the AppwriteAuth.createUser method to sign up the user
-      await AppwriteAuth.createUser(
+      await UserService.createUser(
           // You are passing the values of the variables in the .createUser method to be used in the auth_service.dart file
           firstname,
           lastname,

@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
     );
 
     final buttonStyle = ElevatedButton.styleFrom(
-      backgroundColor: Pallete.primary200,
+      backgroundColor: Pallete.primary100,
       textStyle: const TextStyle(
         color: Pallete.neutral0,
         fontSize: 16,
