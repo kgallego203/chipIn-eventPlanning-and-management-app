@@ -101,26 +101,4 @@ class EventService {
     }
     return eventList;
   }
-
-  // NOTE - IN PROGRESS
-  // * Function to join an event
-  static Future<bool> joinEvent(String eventId, String userId) async {
-    try {
-      // Create a new document in the attendees collection with the provided event data
-      await databases.createDocument(
-        databaseId: AppwriteConstants.databaseId,
-        collectionId: AppwriteConstants.attendeesCollection,
-        documentId: ID.unique(),
-        data: {
-          'eventId': eventId,
-          'userId': userId,
-        },
-      );
-      return true;
-    } catch (e) {
-      // If there was an error, log the error and return false
-      print('Failed to join event: $e');
-      return false;
-    }
-  }
 }
