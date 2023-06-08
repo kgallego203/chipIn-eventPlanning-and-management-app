@@ -1,44 +1,47 @@
-import 'package:chip_in/constants/appwrite_constants.dart';
+import 'package:intl/intl.dart';
 
 class MyEventModel {
-  String eventId; // Unique identifier for the event
-  String title; // Title of the event
-  DateTime dateTime; // Date and time of the event
-  String location; // Location of the event
-  String description; // Description of the event
-  String creatorId; // Unique identifier for the user who created the event
+  String eventId;
+  String title;
+  DateTime dateTime;
+  String location;
+  String creatorId;
+  String description;
+
+  // Define the eventDate and eventTime properties
+  String get eventDate => DateFormat('yyyy-MM-dd').format(dateTime);
+  String get eventTime => DateFormat('HH:mm:ss').format(dateTime);
 
   MyEventModel({
     required this.eventId,
     required this.title,
     required this.dateTime,
     required this.location,
-    required this.description,
     required this.creatorId,
+    required this.description,
   });
 
-  // Create an Event from JSON data
-  MyEventModel.fromJson(Map<String, dynamic> json)
-      : eventId = json['id'] ??
-            '', // If the 'id' key is null, set id to an empty string
-        title = json['title'],
-        dateTime = DateTime.parse(
-            json['date']), // Parse the 'date' string into a DateTime object
-        location = json['location'],
-        description = json['description'],
-        creatorId = json['creatorId'];
+  // Define the fromJson method to convert a Map to a MyEventModel object
+  factory MyEventModel.fromJson(Map<String, dynamic> json) {
+    return MyEventModel(
+      eventId: json['eventId'],
+      title: json['title'],
+      dateTime: DateTime.parse(json['date']),
+      location: json['location'],
+      creatorId: json['creatorId'],
+      description: json['description'],
+    );
+  }
 
-  // Convert our Event to JSON to make it easier when we store it in the database
+  // Define the toJson method to convert a MyEventModel object to a Map
   Map<String, dynamic> toJson() {
     return {
-      'eventId': AppwriteConstants
-          .eventsCollection, // Set the 'eventId' key to the eventsCollection constant from the AppwriteConstants class
+      'eventId': eventId,
       'title': title,
-      'date': dateTime
-          .toIso8601String(), // Convert the dateTime object to an ISO 8601 string
+      'date': dateTime.toIso8601String(),
       'location': location,
-      'description': description,
       'creatorId': creatorId,
+      'description': description,
     };
   }
 }

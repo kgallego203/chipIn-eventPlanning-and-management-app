@@ -68,7 +68,7 @@ class _EventCreationScreenState extends State<EventCreationScreen> {
       );
 
       MyEventModel newEvent = MyEventModel(
-        id: _id, // Set the id of the new event
+        eventId: _id, // Set the id of the new event
         title: _title, // Set the title of the new event
         dateTime: dateTime, // Set the date and time of the new event
         location: _location, // Set the location of the new event
