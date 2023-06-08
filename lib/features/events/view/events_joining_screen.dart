@@ -1,4 +1,5 @@
 import 'package:chip_in/features/auth/services/user_service.dart';
+import 'package:chip_in/features/events/models/attendees_model.dart';
 import 'package:chip_in/features/events/widgets/event_card.dart';
 import 'package:flutter/material.dart';
 import 'package:chip_in/features/events/models/event_model.dart';
@@ -14,6 +15,29 @@ class JoinEventsScreen extends StatefulWidget {
 }
 
 class _JoinEventsScreenState extends State<JoinEventsScreen> {
+  Future<void> joinEvent(MyEventModel event) async {
+    AttendeesModel myAttendeeModel = AttendeesModel(
+      eventId: event.eventId,
+      userId: currentUserId,
+    );
+    bool result = await EventService.joinEvent(myAttendeeModel);
+    if (result) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Successfully joined event!'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Failed to join event. Please try again.'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+    }
+  }
+
   List<MyEventModel> allEvents = [];
   String currentUserId = '';
 
@@ -37,10 +61,6 @@ class _JoinEventsScreenState extends State<JoinEventsScreen> {
     } catch (error) {
       // Handle error
     }
-  }
-
-  Future<void> joinEvent(MyEventModel event) async {
-    // TODO: Implement join event logic
   }
 
   @override

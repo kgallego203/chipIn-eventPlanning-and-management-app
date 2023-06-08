@@ -1,3 +1,4 @@
+import 'package:chip_in/features/auth/services/user_service.dart';
 import 'package:chip_in/features/events/models/event_model.dart';
 import 'package:chip_in/features/events/services/event_service.dart';
 import 'package:chip_in/features/events/widgets/event_card.dart';
@@ -13,58 +14,54 @@ class MyJoinedEventsScreen extends StatefulWidget {
 }
 
 class _MyJoinedEventsScreenState extends State<MyJoinedEventsScreen> {
-  List<MyEventModel> myJoinedEvents =
-      []; // Create a list to hold the user's joined events
-  bool loading =
-      true; // Create a boolean to track whether the events are still loading
+  List<MyEventModel> myJoinedEvents = [];
+  bool loading = true;
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   fetchMyJoinedEvents(); // Call the fetchMyJoinedEvents method when the screen is initialized
-  // }
+  @override
+  void initState() {
+    super.initState();
+    fetchMyJoinedEvents();
+  }
 
-  // Future<void> fetchMyJoinedEvents() async {
-  //   try {
-  //     String userId = await UserService.getCreatorId(); // Obtain the user ID
-  //     List<MyEventModel> events = EventService.getMyJoinedEvents(
-  //         userId); // Call the getMyJoinedEvents method of the eventService and pass in the user ID
-  //     setState(() {
-  //       myJoinedEvents =
-  //           events; // Set the myJoinedEvents list to the events returned by the getMyJoinedEvents method
-  //       loading = false; // Set loading to false
-  //     });
-  //   } catch (error) {
-  //     setState(() {
-  //       loading = false; // Set loading to false
-  //     });
-  //     // Handle error
-  //   }
-  // }
+  Future<void> fetchMyJoinedEvents() async {
+    try {
+      String userId = await UserService.getCreatorId();
+      List<MyEventModel> events =
+          await widget.eventService.getMyJoinedEvents(userId);
+      setState(() {
+        myJoinedEvents = events;
+        loading = false;
+      });
+    } catch (error) {
+      setState(() {
+        loading = false;
+      });
+      // Handle error
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My Joined Events'), // Set the title of the app bar
+        title: const Text('My Joined Events'),
       ),
-      body: loading // If the events are still loading
+      body: loading
           ? const Center(
-              child: CircularProgressIndicator()) // Show a loading indicator
-          : myJoinedEvents.isEmpty // If the user has not joined any events
+              child: CircularProgressIndicator(),
+            )
+          : myJoinedEvents.isEmpty
               ? const Center(
-                  child: Text(
-                      'You have not joined any events')) // Show a message indicating that no events have been joined
+                  child: Text('You have not joined any events'),
+                )
               : ListView.builder(
-                  itemCount: myJoinedEvents
-                      .length, // Set the number of items in the list view to the length of the myJoinedEvents list
+                  itemCount: myJoinedEvents.length,
                   itemBuilder: (context, index) {
-                    MyEventModel event = myJoinedEvents[
-                        index]; // Get the event at the current index
+                    MyEventModel event = myJoinedEvents[index];
                     return EventCard(
-                        event: event,
-                        showJoinButton:
-                            false); // Use the updated EventCard widget without the join button
+                      event: event,
+                      showJoinButton: false,
+                    );
                   },
                 ),
     );
