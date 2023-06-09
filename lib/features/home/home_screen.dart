@@ -8,6 +8,7 @@ import 'package:chip_in/features/events/view/my_created_events_screen.dart';
 import 'package:chip_in/features/events/view/events_joining_screen.dart';
 import 'package:chip_in/features/events/view/my_joined_events_screen.dart';
 import 'package:chip_in/features/events/widgets/event_card.dart';
+import 'package:chip_in/features/profile/view/profile_screen.dart';
 import 'package:chip_in/themes/palette.dart';
 import 'package:flutter/material.dart';
 
@@ -61,25 +62,28 @@ class HomePage extends StatelessWidget {
                     value: 'view_profile',
                     child: Text('View Profile'),
                   ),
-                  PopupMenuItem(
+                  const PopupMenuItem(
                     value: 'logout',
-                    child: const Text('Logout'),
-                    onTap: () async {
-                      await UserService.logout();
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => AuthenticationScreen(),
-                        ),
-                      );
-                    },
+                    child: Text('Logout'),
                   ),
                 ];
               },
-              onSelected: (value) {
+              onSelected: (value) async {
                 if (value == 'view_profile') {
-                  // TODO: Implement view profile functionality
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ProfileScreen(),
+                    ),
+                  );
                 } else if (value == 'logout') {
-                  // TODO: Implement logout functionality
+                  await UserService.logout();
+                  Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(
+                      builder: (context) => AuthenticationScreen(),
+                    ),
+                    (route) => false,
+                  );
                 }
               },
             ),
