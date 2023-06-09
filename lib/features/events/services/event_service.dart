@@ -20,7 +20,7 @@ class EventService {
           DateFormat('yyyy-MM-dd HH:mm:ss').format(eventDateTime);
 
       // Make the eventID exactly equal to the documentID
-      String eventId = const Uuid().v4();
+      String eventId = const Uuid().v4().replaceAll('-', '');
 
       await databases.createDocument(
         databaseId: AppwriteConstants.databaseId,
