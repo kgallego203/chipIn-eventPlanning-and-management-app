@@ -3,6 +3,7 @@ import 'package:chip_in/features/events/models/attendees_model.dart';
 import 'package:chip_in/features/events/models/event_model.dart';
 import 'package:chip_in/constants/appwrite_constants.dart';
 import 'package:intl/intl.dart';
+import 'package:uuid/uuid.dart';
 
 class EventService {
   static final Client client = Client()
@@ -18,7 +19,9 @@ class EventService {
       String formattedDate =
           DateFormat('yyyy-MM-dd HH:mm:ss').format(eventDateTime);
 
-      String eventId = ID.unique();
+      // Make the eventID exactly equal to the documentID
+      String eventId = const Uuid().v4();
+
       await databases.createDocument(
         databaseId: AppwriteConstants.databaseId,
         collectionId: AppwriteConstants.eventsCollection,
