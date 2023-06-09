@@ -20,6 +20,10 @@ class LoginController {
       // Call the AppwriteAuth.createSession method to log in the user
       await UserService.createSession(context, email, password);
 
+      // * Clear out the form fields after login success
+      emailController.text = '';
+      passwordController.text = '';
+
       // Navigate to HomePage after successful login
       // This is possible because the context parameter is passed to the createSession method
       Navigator.of(context).push(
