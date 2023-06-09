@@ -25,6 +25,7 @@ class EventService {
       await databases.createDocument(
         databaseId: AppwriteConstants.databaseId,
         collectionId: AppwriteConstants.eventsCollection,
+        // Assign the eventId to the documentId to have the same value
         documentId: eventId,
         data: {
           'eventId': eventId,
@@ -44,10 +45,11 @@ class EventService {
 
   static Future<bool> joinEvent(AttendeesModel attendee) async {
     try {
+      String documentId = const Uuid().v4().replaceAll('-', '');
       await databases.createDocument(
         databaseId: AppwriteConstants.databaseId,
         collectionId: AppwriteConstants.attendeesCollection,
-        documentId: ID.unique(),
+        documentId: documentId,
         data: {
           'userId': attendee.userId,
           'eventId': attendee.eventId,
