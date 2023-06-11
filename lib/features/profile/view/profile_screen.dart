@@ -17,13 +17,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profile Screen'),
+        title: const Text('Profile Screen'),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             TextField(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'User ID',
               ),
               onChanged: (value) {
@@ -33,7 +33,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               },
             ),
             TextField(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'User Name',
               ),
               onChanged: (value) {
@@ -43,7 +43,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               },
             ),
             TextField(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Password',
               ),
               onChanged: (value) {
@@ -53,7 +53,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               },
             ),
             TextField(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Profile Picture',
               ),
               onChanged: (value) {
@@ -63,7 +63,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               },
             ),
             TextField(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Additional Details',
               ),
               onChanged: (value) {
@@ -73,7 +73,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               },
             ),
             TextField(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Phone Number',
               ),
               onChanged: (value) {
@@ -86,7 +86,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               onPressed: () {
                 // Save profile data to database
               },
-              child: Text('Save'),
+              child: const Text('Save'),
             ),
           ],
         ),

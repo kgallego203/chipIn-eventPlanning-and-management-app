@@ -98,11 +98,16 @@ class EventService {
         for (var item in response.documents) {
           if (item.data['userId'] == userId) {
             String eventId = item.data['eventId'];
-            await databases.getDocument(
+            var eventResponse = await databases.getDocument(
               databaseId: AppwriteConstants.databaseId,
               collectionId: AppwriteConstants.eventsCollection,
               documentId: eventId,
             );
+            if (eventResponse.data != null) {
+              eventList.add(MyEventModel.fromJson(eventResponse.data));
+            } else {
+              print('Failed to get event with ID: $eventId');
+            }
           }
         }
       }
