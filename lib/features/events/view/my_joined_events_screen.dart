@@ -42,28 +42,40 @@ class _MyJoinedEventsScreenState extends State<MyJoinedEventsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('My Joined Events'),
-      ),
-      body: loading
-          ? const Center(
-              child: CircularProgressIndicator(),
-            )
-          : myJoinedEvents.isEmpty
-              ? const Center(
-                  child: Text('You have not joined any events'),
-                )
-              : ListView.builder(
-                  itemCount: myJoinedEvents.length,
-                  itemBuilder: (context, index) {
-                    MyEventModel event = myJoinedEvents[index];
-                    return EventCard(
-                      event: event,
-                      showJoinButton: false,
-                    );
-                  },
-                ),
-    );
+    if (loading) {
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text('My Joined Events'),
+        ),
+        body: const Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    } else if (myJoinedEvents.isEmpty) {
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text('My Joined Events'),
+        ),
+        body: const Center(
+          child: Text('You have not joined any events'),
+        ),
+      );
+    } else {
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text('My Joined Events'),
+        ),
+        body: ListView.builder(
+          itemCount: myJoinedEvents.length,
+          itemBuilder: (context, index) {
+            MyEventModel event = myJoinedEvents[index];
+            return EventCard(
+              event: event,
+              showJoinButton: false,
+            );
+          },
+        ),
+      );
+    }
   }
 }
