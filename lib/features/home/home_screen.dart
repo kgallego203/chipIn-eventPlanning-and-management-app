@@ -25,35 +25,43 @@ class HomePageLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<MyEventModel>>(
-      future: EventService.getAllEvents(),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          final events = snapshot.data!;
-          if (events.isEmpty) {
-            return const Text('No events to display');
-          }
-          return CarouselSlider.builder(
-            itemCount: events.length,
-            itemBuilder: (context, index, _) {
-              return EventCard(event: events[index]);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        const SizedBox(height: 15.0),
+        Expanded(
+          child: FutureBuilder<List<MyEventModel>>(
+            future: EventService.getAllEvents(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                final events = snapshot.data!;
+                if (events.isEmpty) {
+                  return const Text('No events to display');
+                }
+                return CarouselSlider.builder(
+                  itemCount: events.length,
+                  itemBuilder: (context, index, _) {
+                    return EventCard(event: events[index]);
+                  },
+                  options: CarouselOptions(
+                    height: 500,
+                    viewportFraction: 0.8,
+                    enlargeCenterPage: true,
+                    enableInfiniteScroll: true,
+                    autoPlay: true,
+                    autoPlayInterval: const Duration(seconds: 5),
+                    autoPlayCurve: Curves.fastOutSlowIn,
+                  ),
+                );
+              } else if (snapshot.hasError) {
+                return Text('Error: ${snapshot.error}');
+              } else {
+                return const CircularProgressIndicator();
+              }
             },
-            options: CarouselOptions(
-              height: 400,
-              viewportFraction: 0.8,
-              enlargeCenterPage: true,
-              enableInfiniteScroll: true,
-              autoPlay: true,
-              autoPlayInterval: const Duration(seconds: 5),
-              autoPlayCurve: Curves.fastOutSlowIn,
-            ),
-          );
-        } else if (snapshot.hasError) {
-          return Text('Error: ${snapshot.error}');
-        } else {
-          return const CircularProgressIndicator();
-        }
-      },
+          ),
+        ),
+      ],
     );
   }
 }
