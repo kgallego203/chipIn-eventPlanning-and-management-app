@@ -4,19 +4,27 @@ import 'package:chip_in/features/auth/view/authentication_screen.dart';
 import 'package:chip_in/features/events/models/event_model.dart';
 import 'package:chip_in/features/events/services/event_service.dart';
 import 'package:chip_in/features/events/view/event_creation_screen.dart';
-import 'package:chip_in/features/events/view/my_created_events_screen.dart';
 import 'package:chip_in/features/events/view/events_joining_screen.dart';
+import 'package:chip_in/features/events/view/my_created_events_screen.dart';
 import 'package:chip_in/features/events/view/my_joined_events_screen.dart';
 import 'package:chip_in/features/events/widgets/event_card.dart';
 import 'package:chip_in/features/profile/view/profile_screen.dart';
 import 'package:chip_in/themes/palette.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class HomePageLayout extends StatelessWidget {
+  const HomePageLayout({Key? key}) : super(key: key);
+
+  @override
   Widget build(BuildContext context) {
+    // Content of your homepage here
     final buttonStyle = ElevatedButton.styleFrom(
       backgroundColor: Pallete.primary100,
       textStyle: const TextStyle(
@@ -29,6 +37,97 @@ class HomePage extends StatelessWidget {
       minimumSize: const Size(200, 48), // Fixed button size
     );
 
+    return Column(
+      children: [
+        const SizedBox(
+          height: 16,
+        ),
+        FutureBuilder<List<MyEventModel>>(
+          future: EventService.getAllEvents(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              final events = snapshot.data!;
+              if (events.isEmpty) {
+                return const Text('No events to display');
+              }
+              return CarouselSlider.builder(
+                itemCount: events.length,
+                itemBuilder: (context, index, _) {
+                  return EventCard(event: events[index]);
+                },
+                options: CarouselOptions(
+                  height: 400,
+                  viewportFraction: 0.8,
+                  enlargeCenterPage: true,
+                  enableInfiniteScroll: true,
+                  autoPlay: true,
+                  autoPlayInterval: const Duration(seconds: 5),
+                  autoPlayCurve: Curves.fastOutSlowIn,
+                ),
+              );
+            } else if (snapshot.hasError) {
+              return Text('Error: ${snapshot.error}');
+            } else {
+              return const CircularProgressIndicator();
+            }
+          },
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+        ElevatedButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => EventCreationScreen(
+                  eventService: EventService(),
+                ),
+              ),
+            );
+          },
+          child: const Text('Create Event'),
+          style: buttonStyle,
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+        ElevatedButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => JoinEventsScreen(
+                  eventService: EventService(),
+                ),
+              ),
+            );
+          },
+          child: const Text('Join Events'),
+          style: buttonStyle,
+        ),
+      ],
+    );
+  }
+}
+
+class _HomePageState extends State<HomePage> {
+  int _selectedIndex = 0;
+
+  List<Widget> _widgetOptions = <Widget>[
+    HomePageLayout(),
+    MyJoinedEventsScreen(eventService: EventService()),
+    MyCreatedEventsScreen(eventService: EventService()),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Theme(
       data: ThemeData(
         colorScheme: ColorScheme.fromSwatch().copyWith(
@@ -46,7 +145,17 @@ class HomePage extends StatelessWidget {
           ),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
-          style: buttonStyle,
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Pallete.primary100,
+            textStyle: const TextStyle(
+              color: Pallete.neutral0,
+              fontSize: 16,
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+            minimumSize: const Size(200, 48), // Fixed button size
+          ),
         ),
       ),
       child: Scaffold(
@@ -99,110 +208,25 @@ class HomePage extends StatelessWidget {
             ),
           ],
         ),
-        body: Column(
-          children: [
-            const SizedBox(
-              height: 16,
+        body: _widgetOptions.elementAt(_selectedIndex),
+        bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
             ),
-            FutureBuilder<List<MyEventModel>>(
-              future: EventService.getAllEvents(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  final events = snapshot.data!;
-                  if (events.isEmpty) {
-                    return const Text('No events to display');
-                  }
-                  return CarouselSlider.builder(
-                    itemCount: events.length,
-                    itemBuilder: (context, index, _) {
-                      return EventCard(event: events[index]);
-                    },
-                    options: CarouselOptions(
-                      height: 400,
-                      viewportFraction: 0.8,
-                      enlargeCenterPage: true,
-                      enableInfiniteScroll: true,
-                      autoPlay: true,
-                      autoPlayInterval: const Duration(seconds: 5),
-                      autoPlayCurve: Curves.fastOutSlowIn,
-                    ),
-                  );
-                } else if (snapshot.hasError) {
-                  return Text('Error: ${snapshot.error}');
-                } else {
-                  return const CircularProgressIndicator();
-                }
-              },
+            BottomNavigationBarItem(
+              icon: Icon(Icons.people),
+              label: 'Joined Events',
             ),
-            const SizedBox(
-              height: 16,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => EventCreationScreen(
-                      eventService: EventService(),
-                    ),
-                  ),
-                );
-              },
-              child: const Text('Create Event'),
-              style: buttonStyle,
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => MyCreatedEventsScreen(
-                      eventService: EventService(),
-                    ),
-                  ),
-                );
-              },
-              child: const Text('My Created Events'),
-              style: buttonStyle,
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => JoinEventsScreen(
-                      eventService: EventService(),
-                    ),
-                  ),
-                );
-              },
-              child: const Text('Join Events'),
-              style: buttonStyle,
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => MyJoinedEventsScreen(
-                      eventService: EventService(),
-                    ),
-                  ),
-                );
-              },
-              style: buttonStyle,
-              child: const Text('My Joined Events'),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.event),
+              label: 'Created Events',
             ),
           ],
+          currentIndex: _selectedIndex,
+          selectedItemColor: Theme.of(context).primaryColor,
+          onTap: _onItemTapped,
         ),
       ),
     );
