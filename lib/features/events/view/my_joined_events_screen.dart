@@ -14,27 +14,29 @@ class MyJoinedEventsScreen extends StatefulWidget {
 }
 
 class _MyJoinedEventsScreenState extends State<MyJoinedEventsScreen> {
-  List<MyEventModel> myJoinedEvents = [];
-  bool loading = true;
+  List<MyEventModel> myJoinedEvents = []; // List to store the joined events
+  bool loading = true; // Variable to track if the events are loading
 
   @override
   void initState() {
     super.initState();
-    fetchMyJoinedEvents();
+    fetchMyJoinedEvents(); // Fetch the joined events when the screen is initialized
   }
 
   Future<void> fetchMyJoinedEvents() async {
     try {
-      String userId = await UserService.getCreatorId();
-      List<MyEventModel> events =
-          await widget.eventService.getMyJoinedEvents(userId);
+      String userId = await UserService
+          .getCreatorId(); // Get the current user ID using the UserService
+      List<MyEventModel> events = await widget.eventService.getMyJoinedEvents(
+          userId); // Fetch the joined events using the EventService
       setState(() {
-        myJoinedEvents = events;
-        loading = false;
+        myJoinedEvents =
+            events; // Update the list of joined events in the state
+        loading = false; // Set loading to false once the events are fetched
       });
     } catch (error) {
       setState(() {
-        loading = false;
+        loading = false; // Set loading to false in case of an error
       });
       // Handle error
     }
@@ -44,20 +46,24 @@ class _MyJoinedEventsScreenState extends State<MyJoinedEventsScreen> {
   Widget build(BuildContext context) {
     if (loading) {
       return const Center(
-        child: CircularProgressIndicator(),
+        child:
+            CircularProgressIndicator(), // Display a loading indicator while the events are being fetched
       );
     } else if (myJoinedEvents.isEmpty) {
       return const Center(
-        child: Text('You have not joined any events'),
+        child: Text(
+            'You have not joined any events'), // Display a message if there are no joined events
       );
     } else {
       return ListView.builder(
         itemCount: myJoinedEvents.length,
         itemBuilder: (context, index) {
-          MyEventModel event = myJoinedEvents[index];
+          MyEventModel event =
+              myJoinedEvents[index]; // Get the event at the current index
           return EventCard(
-            event: event,
-            showJoinButton: false,
+            event: event, // Pass the event to the EventCard widget
+            showJoinButton:
+                false, // Set showJoinButton to false since these are already joined events
           );
         },
       );

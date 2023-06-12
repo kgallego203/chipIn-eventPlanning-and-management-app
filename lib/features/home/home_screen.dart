@@ -13,6 +13,7 @@ import 'package:chip_in/themes/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
+// The home page widget
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -20,6 +21,7 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
+// Layout widget for the home page
 class HomePageLayout extends StatelessWidget {
   const HomePageLayout({Key? key}) : super(key: key);
 
@@ -86,30 +88,37 @@ class _HomePageState extends State<HomePage> {
     return Theme(
       data: ThemeData(
         colorScheme: ColorScheme.fromSwatch().copyWith(
-          background: Pallete.neutral0,
+          background: Pallete.neutral0, // Set the background color of the theme
         ),
         textTheme: const TextTheme(
           displayLarge: TextStyle(
-            color: Pallete.neutral100,
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
+            color: Pallete
+                .neutral100, // Set the text color of the displayLarge style
+            fontSize: 24, // Set the font size of the displayLarge style
+            fontWeight: FontWeight
+                .bold, // Set the font weight of the displayLarge style
           ),
           bodyLarge: TextStyle(
-            color: Pallete.neutral100,
-            fontSize: 16,
+            color:
+                Pallete.neutral100, // Set the text color of the bodyLarge style
+            fontSize: 16, // Set the font size of the bodyLarge style
           ),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor: Pallete.primary100,
+            backgroundColor: Pallete
+                .primary100, // Set the background color of the elevated button
             textStyle: const TextStyle(
-              color: Pallete.neutral0,
-              fontSize: 16,
+              color:
+                  Pallete.neutral0, // Set the text color of the elevated button
+              fontSize: 16, // Set the font size of the elevated button
             ),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(
+                  8), // Set the border radius of the elevated button
             ),
-            minimumSize: const Size(200, 48),
+            minimumSize: const Size(
+                200, 48), // Set the minimum size of the elevated button
           ),
         ),
       ),
@@ -121,13 +130,15 @@ class _HomePageState extends State<HomePage> {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 final userName = snapshot.data!;
-                return Text('Welcome, $userName!');
+                return Text(
+                    'Welcome, $userName!'); // Display the username in the app bar title
               } else {
                 return const Text('Home Page');
               }
             },
           ),
-          backgroundColor: Theme.of(context).primaryColor,
+          backgroundColor: Theme.of(context)
+              .primaryColor, // Set the background color of the app bar
           actions: [
             PopupMenuButton(
               itemBuilder: (BuildContext context) {
@@ -180,13 +191,15 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
           currentIndex: _selectedIndex,
-          selectedItemColor: Theme.of(context).primaryColor,
+          selectedItemColor: Theme.of(context)
+              .primaryColor, // Set the color of the selected item in the bottom navigation bar
           onTap: _onItemTapped,
         ),
         floatingActionButton: SpeedDial(
           animatedIcon: AnimatedIcons.menu_close,
           animatedIconTheme: const IconThemeData(size: 22.0),
-          backgroundColor: Pallete.primary100,
+          backgroundColor:
+              Pallete.primary100, // Set the background color of the speed dial
           visible: true,
           curve: Curves.bounceIn,
           children: [
