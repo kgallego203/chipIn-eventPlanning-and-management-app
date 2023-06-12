@@ -46,31 +46,67 @@ class EventCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            ClipRRect(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(8.0),
+                topRight: Radius.circular(8.0),
+              ),
+              child: Image.network(
+                'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80',
+                fit: BoxFit.cover,
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    event.title,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18.0,
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Flexible(
+                        flex: 1,
+                        child: Text(
+                          event.title,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18.0,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                        ),
+                      ),
+                      if (showJoinButton)
+                        ElevatedButton(
+                          onPressed: onJoinPressed,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Pallete.primary100,
+                            textStyle: const TextStyle(
+                              color: Pallete.neutral0,
+                              fontSize: 16,
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            minimumSize: const Size(100, 48),
+                          ),
+                          child: const Text('Join'),
+                        ),
+                    ],
                   ),
                   const SizedBox(height: 8.0),
                   Row(
                     children: [
                       const Icon(
                         Icons.access_time,
-                        color: Pallete.neutral70,
+                        color: Pallete.primary100,
                         size: 16.0,
                       ),
                       const SizedBox(width: 4.0),
                       Text(
                         '$formattedDate at $formattedTime',
                         style: const TextStyle(
-                          color: Pallete.neutral70,
+                          color: Pallete.primary100,
                           fontSize: 14.0,
                         ),
                       ),
@@ -81,14 +117,14 @@ class EventCard extends StatelessWidget {
                     children: [
                       const Icon(
                         Icons.location_on,
-                        color: Pallete.neutral70,
+                        color: Pallete.primary100,
                         size: 16.0,
                       ),
                       const SizedBox(width: 4.0),
                       Text(
                         event.location,
                         style: const TextStyle(
-                          color: Pallete.neutral70,
+                          color: Pallete.primary100,
                           fontSize: 14.0,
                         ),
                       ),
@@ -99,36 +135,20 @@ class EventCard extends StatelessWidget {
                     children: [
                       const Icon(
                         Icons.person,
-                        color: Pallete.neutral70,
+                        color: Pallete.primary100,
                         size: 16.0,
                       ),
                       const SizedBox(width: 4.0),
                       Text(
                         'Created by ${event.creatorId}',
                         style: const TextStyle(
-                          color: Pallete.neutral70,
+                          color: Pallete.primary100,
                           fontSize: 14.0,
                         ),
                       ),
                     ],
                   ),
                   const SizedBox(height: 16.0),
-                  if (showJoinButton)
-                    ElevatedButton(
-                      onPressed: onJoinPressed,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Pallete.primary100,
-                        textStyle: const TextStyle(
-                          color: Pallete.neutral0,
-                          fontSize: 16,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        minimumSize: const Size(double.infinity, 48),
-                      ),
-                      child: const Text('Join'),
-                    ),
                 ],
               ),
             ),
