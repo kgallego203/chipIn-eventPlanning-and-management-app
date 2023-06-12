@@ -86,8 +86,8 @@ class HomePageLayout extends StatelessWidget {
               ),
             );
           },
-          child: const Text('Create Event'),
           style: buttonStyle,
+          child: const Text('Create Event'),
         ),
         const SizedBox(
           height: 16,
@@ -103,8 +103,8 @@ class HomePageLayout extends StatelessWidget {
               ),
             );
           },
-          child: const Text('Join Events'),
           style: buttonStyle,
+          child: const Text('Join Events'),
         ),
       ],
     );
@@ -114,8 +114,8 @@ class HomePageLayout extends StatelessWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
-  List<Widget> _widgetOptions = <Widget>[
-    HomePageLayout(),
+  final List<Widget> _widgetOptions = <Widget>[
+    const HomePageLayout(),
     MyJoinedEventsScreen(eventService: EventService()),
     MyCreatedEventsScreen(eventService: EventService()),
   ];
