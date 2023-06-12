@@ -52,7 +52,17 @@ class HomePage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: const Text('Home Page'),
+          title: FutureBuilder<String>(
+            future: UserService.getUserName(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                final userName = snapshot.data!;
+                return Text('Welcome, $userName!');
+              } else {
+                return const Text('Home Page');
+              }
+            },
+          ),
           backgroundColor: Theme.of(context).primaryColor,
           actions: [
             PopupMenuButton(
@@ -91,16 +101,6 @@ class HomePage extends StatelessWidget {
         ),
         body: Column(
           children: [
-            const SizedBox(
-              height: 16,
-            ),
-            const Text(
-              'Upcoming Events',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
             const SizedBox(
               height: 16,
             ),
