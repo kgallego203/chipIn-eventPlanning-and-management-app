@@ -1,7 +1,9 @@
+import 'package:chip_in/features/auth/services/user_service.dart';
 import 'package:chip_in/themes/palette.dart';
 import 'package:flutter/material.dart';
 
 class MagicUrlScreen extends StatelessWidget {
+  MagicUrlScreen({super.key});
   final TextEditingController userIdController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
 
@@ -22,9 +24,9 @@ class MagicUrlScreen extends StatelessWidget {
                 hintText: 'User ID',
                 prefixIcon: const Icon(
                   Icons.person,
-                  color: Pallete.primary100,
+                  color: Palette.primary100,
                 ),
-                fillColor: Pallete.neutral10,
+                fillColor: Palette.neutral10,
                 filled: true,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8.0),
@@ -40,9 +42,9 @@ class MagicUrlScreen extends StatelessWidget {
                 hintText: 'Email',
                 prefixIcon: const Icon(
                   Icons.email,
-                  color: Pallete.primary100,
+                  color: Palette.primary100,
                 ),
-                fillColor: Pallete.neutral10,
+                fillColor: Palette.neutral10,
                 filled: true,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8.0),
@@ -52,12 +54,13 @@ class MagicUrlScreen extends StatelessWidget {
             ),
             const SizedBox(height: 16.0),
             ElevatedButton(
-              onPressed: () {
-                // Call your magic URL method here, passing the user ID and email
-                // e.g., UserService.createMagicURL(context, userIdController.text, emailController.text);
+              onPressed: () async {
+                String userId = userIdController.text;
+                String email = emailController.text;
+                await UserService.sendMagicURL(userId, email);
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Pallete.primary100,
+                backgroundColor: Palette.primary100,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),

@@ -10,15 +10,15 @@ class MyApp extends StatelessWidget {
       title: 'chipIn',
       theme: ThemeData(
         // Set the primary color to Pallete.primary100
-        primaryColor: Pallete.primary100,
+        primaryColor: Palette.primary100,
         // Set the color scheme to use Pallete.primary200 as the secondary color and Pallete.primary300 as the background color
         colorScheme: ThemeData().colorScheme.copyWith(
-              secondary: Pallete.primary200,
-              background: Pallete.primary300,
+              secondary: Palette.primary200,
+              background: Palette.primary300,
             ),
         // Set the app bar theme to use Pallete.primary300 as the background color
         appBarTheme: const AppBarTheme(
-          backgroundColor: Pallete.primary300,
+          backgroundColor: Palette.primary300,
         ),
       ),
       // Set the home screen to be the AuthenticationScreen widget

@@ -32,7 +32,7 @@ class EventCard extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 8.0),
         decoration: BoxDecoration(
-          color: Pallete.neutral0,
+          color: Palette.neutral0,
           borderRadius: BorderRadius.circular(8.0),
           boxShadow: [
             BoxShadow(
@@ -80,9 +80,9 @@ class EventCard extends StatelessWidget {
                         ElevatedButton(
                           onPressed: onJoinPressed,
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Pallete.primary100,
+                            backgroundColor: Palette.primary100,
                             textStyle: const TextStyle(
-                              color: Pallete.neutral0,
+                              color: Palette.neutral0,
                               fontSize: 16,
                             ),
                             shape: RoundedRectangleBorder(
@@ -99,14 +99,14 @@ class EventCard extends StatelessWidget {
                     children: [
                       const Icon(
                         Icons.access_time,
-                        color: Pallete.primary100,
+                        color: Palette.primary100,
                         size: 16.0,
                       ),
                       const SizedBox(width: 4.0),
                       Text(
                         '$formattedDate at $formattedTime',
                         style: const TextStyle(
-                          color: Pallete.primary100,
+                          color: Palette.primary100,
                           fontSize: 14.0,
                         ),
                       ),
@@ -117,14 +117,14 @@ class EventCard extends StatelessWidget {
                     children: [
                       const Icon(
                         Icons.location_on,
-                        color: Pallete.primary100,
+                        color: Palette.primary100,
                         size: 16.0,
                       ),
                       const SizedBox(width: 4.0),
                       Text(
                         event.location,
                         style: const TextStyle(
-                          color: Pallete.primary100,
+                          color: Palette.primary100,
                           fontSize: 14.0,
                         ),
                       ),
@@ -135,14 +135,14 @@ class EventCard extends StatelessWidget {
                     children: [
                       const Icon(
                         Icons.person,
-                        color: Pallete.primary100,
+                        color: Palette.primary100,
                         size: 16.0,
                       ),
                       const SizedBox(width: 4.0),
                       Text(
                         'Created by ${event.creatorId}',
                         style: const TextStyle(
-                          color: Pallete.primary100,
+                          color: Palette.primary100,
                           fontSize: 14.0,
                         ),
                       ),

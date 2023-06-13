@@ -149,33 +149,33 @@ class _EventCreationScreenState extends State<EventCreationScreen> {
             ),
             ListTile(
               leading: const Icon(Icons.calendar_today,
-                  color: Pallete
+                  color: Palette
                       .neutral70), // Set the leading icon for the list tile
               title: const Text('Date',
                   style: TextStyle(
-                      color: Pallete
+                      color: Palette
                           .neutral70)), // Set the title text for the list tile
               subtitle: Text(
                 '${_date.year}-${_date.month}-${_date.day}', // Set the subtitle text for the list tile
                 style: const TextStyle(
-                    color: Pallete
+                    color: Palette
                         .neutral100), // Set the style for the subtitle text
               ),
               onTap: _selectDate, // Set the onTap callback for the list tile
             ),
             ListTile(
               leading: const Icon(Icons.access_time,
-                  color: Pallete
+                  color: Palette
                       .neutral70), // Set the leading icon for the list tile
               title: const Text('Time',
                   style: TextStyle(
-                      color: Pallete
+                      color: Palette
                           .neutral70)), // Set the title text for the list tile
               subtitle: Text(
                 _time
                     .format(context), // Set the subtitle text for the list tile
                 style: const TextStyle(
-                    color: Pallete
+                    color: Palette
                         .neutral100), // Set the style for the subtitle text
               ),
               onTap: _selectTime, // Set the onTap callback for the list tile
@@ -185,9 +185,9 @@ class _EventCreationScreenState extends State<EventCreationScreen> {
               onPressed:
                   _submit, // Set the onPressed callback for the elevated button
               style: ElevatedButton.styleFrom(
-                backgroundColor: Pallete
+                backgroundColor: Palette
                     .primary200, // Set the background color for the elevated button
-                foregroundColor: Pallete
+                foregroundColor: Palette
                     .neutral0, // Set the foreground color for the elevated button
               ),
               child: const Text(

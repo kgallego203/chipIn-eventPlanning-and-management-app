@@ -90,7 +90,7 @@ class SignUpController {
       // * Show a snackbar to indicate that the account was created
       const snackBar = SnackBar(
         content: Text('Account Created!'),
-        backgroundColor: Pallete.success200,
+        backgroundColor: Palette.success200,
         behavior: SnackBarBehavior.floating,
       );
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -108,7 +108,7 @@ class SignUpController {
       // * If there was an error, show an error snackbar
       final snackBar = SnackBar(
         content: Text('Error creating account: $error'),
-        backgroundColor: Pallete.warning200,
+        backgroundColor: Palette.warning200,
         behavior: SnackBarBehavior.floating,
       );
       ScaffoldMessenger.of(context).showSnackBar(snackBar);

@@ -22,7 +22,7 @@ class LoginView extends StatelessWidget {
                   .emailController, // User's email input will be stored here
               decoration: InputDecoration(
                 hintText: 'Email',
-                fillColor: Pallete.neutral10,
+                fillColor: Palette.neutral10,
                 filled: true,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
@@ -46,7 +46,7 @@ class LoginView extends StatelessWidget {
               obscureText: true,
               decoration: InputDecoration(
                 hintText: 'Password',
-                fillColor: Pallete.neutral10,
+                fillColor: Palette.neutral10,
                 filled: true,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
@@ -66,7 +66,7 @@ class LoginView extends StatelessWidget {
             // Login Button
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Pallete.primary100,
+                backgroundColor: Palette.primary100,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),

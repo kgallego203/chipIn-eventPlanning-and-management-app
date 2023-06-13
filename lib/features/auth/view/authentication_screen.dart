@@ -35,7 +35,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
               style: TextStyle(
                 fontSize: 32,
                 fontWeight: FontWeight.bold,
-                color: Pallete.primary100,
+                color: Palette.primary100,
               ),
             ),
             Row(
@@ -44,7 +44,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                   'powered by ',
                   style: TextStyle(
                     fontSize: 12,
-                    color: Pallete.neutral70,
+                    color: Palette.neutral70,
                   ),
                 ),
                 Text(
@@ -59,7 +59,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                   ' and ',
                   style: TextStyle(
                     fontSize: 12,
-                    color: Pallete.neutral70,
+                    color: Palette.neutral70,
                   ),
                 ),
                 Text(
@@ -67,14 +67,14 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                   style: TextStyle(
                     fontSize: 15,
                     fontStyle: FontStyle.italic,
-                    color: Pallete.primary300,
+                    color: Palette.primary300,
                   ),
                 ),
               ],
             ),
           ],
         ),
-        backgroundColor: Pallete.neutral0,
+        backgroundColor: Palette.neutral0,
         toolbarHeight: 100, // Increase this number to make the AppBar taller
       ),
       body: Center(
@@ -92,8 +92,8 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Pallete.primary100,
-        unselectedItemColor: Pallete.neutral70,
+        selectedItemColor: Palette.primary100,
+        unselectedItemColor: Palette.neutral70,
         onTap: _onItemTapped,
       ),
     );

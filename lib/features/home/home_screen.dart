@@ -86,24 +86,24 @@ class _HomePageState extends State<HomePage> {
     return Theme(
       data: ThemeData(
         colorScheme: ColorScheme.fromSwatch().copyWith(
-          background: Pallete.neutral0,
+          background: Palette.neutral0,
         ),
         textTheme: const TextTheme(
           displayLarge: TextStyle(
-            color: Pallete.neutral100,
+            color: Palette.neutral100,
             fontSize: 24,
             fontWeight: FontWeight.bold,
           ),
           bodyLarge: TextStyle(
-            color: Pallete.neutral100,
+            color: Palette.neutral100,
             fontSize: 16,
           ),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor: Pallete.primary100,
+            backgroundColor: Palette.primary100,
             textStyle: const TextStyle(
-              color: Pallete.neutral0,
+              color: Palette.neutral0,
               fontSize: 16,
             ),
             shape: RoundedRectangleBorder(
@@ -186,7 +186,7 @@ class _HomePageState extends State<HomePage> {
         floatingActionButton: SpeedDial(
           animatedIcon: AnimatedIcons.menu_close,
           animatedIconTheme: const IconThemeData(size: 22.0),
-          backgroundColor: Pallete.primary100,
+          backgroundColor: Palette.primary100,
           visible: true,
           curve: Curves.bounceIn,
           children: [

@@ -32,15 +32,15 @@ TextFormField customFormField({
     decoration: InputDecoration(
       labelText: labelText, // Set the label text
       labelStyle:
-          const TextStyle(color: Pallete.neutral70), // Set the label text color
+          const TextStyle(color: Palette.neutral70), // Set the label text color
       enabledBorder: const UnderlineInputBorder(
         borderSide: BorderSide(
-            color: Pallete
+            color: Palette
                 .neutral70), // Set the border color when the field is not focused
       ),
       focusedBorder: const UnderlineInputBorder(
         borderSide: BorderSide(
-            color: Pallete
+            color: Palette
                 .primary200), // Set the border color when the field is focused
       ),
     ),

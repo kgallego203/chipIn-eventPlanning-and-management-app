@@ -20,11 +20,11 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Pallete.primary200,
+        backgroundColor: Palette.primary200,
         title: const Text(
           'Event Details',
           style: TextStyle(
-            color: Pallete.neutral0,
+            color: Palette.neutral0,
           ),
         ),
       ),
@@ -54,12 +54,12 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                       // Action to perform when the button is pressed
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Pallete.primary100,
+                      backgroundColor: Palette.primary100,
                     ),
                     child: const Text(
                       'Join Event',
                       style: TextStyle(
-                        color: Pallete.neutral0,
+                        color: Palette.neutral0,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -123,13 +123,13 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
             children: [
               Icon(
                 icon,
-                color: Pallete.primary100,
+                color: Palette.primary100,
               ),
               const SizedBox(width: 8.0),
               Text(
                 label,
                 style: const TextStyle(
-                  color: Pallete.primary100,
+                  color: Palette.primary100,
                   fontSize: 18.0,
                 ),
               ),
@@ -141,7 +141,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
           child: Text(
             value,
             style: const TextStyle(
-              color: Pallete.neutral70,
+              color: Palette.neutral70,
               fontSize: 18.0,
             ),
           ),

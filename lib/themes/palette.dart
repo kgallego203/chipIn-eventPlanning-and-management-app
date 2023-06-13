@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Pallete {
+class Palette {
   // Primary colors. These are generally used for main UI elements such as buttons, progress bars, etc.
 
   static const Color primary50 =

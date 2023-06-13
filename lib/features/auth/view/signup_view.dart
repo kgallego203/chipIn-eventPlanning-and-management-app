@@ -22,7 +22,7 @@ class SignUpView extends StatelessWidget {
               children: [
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Pallete.primary50,
+                    backgroundColor: Palette.primary50,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -35,7 +35,7 @@ class SignUpView extends StatelessWidget {
                 const SizedBox(width: 16),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Pallete.primary50,
+                    backgroundColor: Palette.primary50,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -48,7 +48,7 @@ class SignUpView extends StatelessWidget {
                 const SizedBox(width: 16),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Pallete.primary50,
+                    backgroundColor: Palette.primary50,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -72,7 +72,7 @@ class SignUpView extends StatelessWidget {
               children: [
                 Expanded(
                   child: Divider(
-                    color: Pallete.neutral50,
+                    color: Palette.neutral50,
                     thickness: 1,
                   ),
                 ),
@@ -81,14 +81,14 @@ class SignUpView extends StatelessWidget {
                   child: Text(
                     'Or',
                     style: TextStyle(
-                      color: Pallete.neutral50,
+                      color: Palette.neutral50,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
                 Expanded(
                   child: Divider(
-                    color: Pallete.neutral50,
+                    color: Palette.neutral50,
                     thickness: 1,
                   ),
                 ),
@@ -105,7 +105,7 @@ class SignUpView extends StatelessWidget {
                     controller: _signUpController.firstNameController,
                     decoration: InputDecoration(
                       hintText: 'First Name',
-                      fillColor: Pallete
+                      fillColor: Palette
                           .neutral10, // Set the fill color of the text field to neutral10 from the Pallete class
                       filled: true,
                       border: OutlineInputBorder(
@@ -126,7 +126,7 @@ class SignUpView extends StatelessWidget {
                     controller: _signUpController.lastNameController,
                     decoration: InputDecoration(
                       hintText: 'Last Name',
-                      fillColor: Pallete
+                      fillColor: Palette
                           .neutral10, // Set the fill color of the text field to neutral10 from the Pallete class
                       filled: true,
                       border: OutlineInputBorder(
@@ -147,7 +147,7 @@ class SignUpView extends StatelessWidget {
                     controller: _signUpController.emailController,
                     decoration: InputDecoration(
                       hintText: 'Email',
-                      fillColor: Pallete
+                      fillColor: Palette
                           .neutral10, // Set the fill color of the text field to neutral10 from the Pallete class
                       filled: true,
                       border: OutlineInputBorder(
@@ -172,7 +172,7 @@ class SignUpView extends StatelessWidget {
                     controller: _signUpController.usernameController,
                     decoration: InputDecoration(
                       hintText: 'Username',
-                      fillColor: Pallete
+                      fillColor: Palette
                           .neutral10, // Set the fill color of the text field to neutral10 from the Pallete class
                       filled: true,
                       border: OutlineInputBorder(
@@ -193,7 +193,7 @@ class SignUpView extends StatelessWidget {
                     controller: _signUpController.passwordController,
                     decoration: InputDecoration(
                       hintText: 'Password',
-                      fillColor: Pallete
+                      fillColor: Palette
                           .neutral10, // Set the fill color of the text field to neutral10 from the Pallete class
                       filled: true,
                       border: OutlineInputBorder(
@@ -215,7 +215,7 @@ class SignUpView extends StatelessWidget {
                     controller: _signUpController.confirmPasswordController,
                     decoration: InputDecoration(
                       hintText: 'Confirm Password',
-                      fillColor: Pallete
+                      fillColor: Palette
                           .neutral10, // Set the fill color of the text field to neutral10 from the Pallete class
                       filled: true,
                       border: OutlineInputBorder(
@@ -238,7 +238,7 @@ class SignUpView extends StatelessWidget {
                   // Button to submit the form and sign up the user
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Pallete.primary100,
+                      backgroundColor: Palette.primary100,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
