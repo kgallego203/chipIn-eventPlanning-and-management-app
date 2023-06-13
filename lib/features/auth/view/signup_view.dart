@@ -4,6 +4,8 @@ import 'package:chip_in/themes/palette.dart';
 import 'package:flutter/material.dart';
 
 class SignUpView extends StatelessWidget {
+  SignUpView({super.key});
+
   final _signUpController = SignUpController();
 
   @override
@@ -20,7 +22,7 @@ class SignUpView extends StatelessWidget {
               children: [
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Pallete.primary100,
+                    backgroundColor: Pallete.primary50,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -33,7 +35,7 @@ class SignUpView extends StatelessWidget {
                 const SizedBox(width: 16),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Pallete.primary100,
+                    backgroundColor: Pallete.primary50,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -46,7 +48,7 @@ class SignUpView extends StatelessWidget {
                 const SizedBox(width: 16),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Pallete.primary100,
+                    backgroundColor: Pallete.primary50,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),

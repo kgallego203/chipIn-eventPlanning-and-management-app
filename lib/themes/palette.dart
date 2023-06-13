@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 class Pallete {
   // Primary colors. These are generally used for main UI elements such as buttons, progress bars, etc.
+
+  static const Color primary50 =
+      Color.fromARGB(255, 252, 55, 121); // Lighter Pink
   static const Color primary100 = Color(0xFFf02e65); // Light Pink
   static const Color primary200 = Color(0xFFDA1A5B); // Medium Pink
   static const Color primary300 = Color(0xFFc00D53); // Dark Pink
