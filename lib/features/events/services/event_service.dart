@@ -51,7 +51,7 @@ class EventService {
         collectionId: AppwriteConstants.attendeesCollection,
         documentId: documentId,
         data: {
-          'userId': attendee.userId,
+          'userID': attendee.userId,
           'eventId': attendee.eventId,
         },
       );

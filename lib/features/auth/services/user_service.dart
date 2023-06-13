@@ -19,7 +19,6 @@ class UserService {
   // At the moment, this just creates an account in the console but it does not store it as a document
   // in the users colletion
   // TODO: After the user was created, it should automatically log them in (create session)
-  // TODO: The user's information should also be stored in the User Collection
   static Future<void> createUser(String firstname, String lastname,
       String username, String email, String password) async {
     try {
@@ -34,7 +33,8 @@ class UserService {
       final UserProfileModel userProfile = UserProfileModel(
           name: '$firstname $lastname',
           email: email,
-          userID: username,
+          userId: username,
+          password: password,
           dateOfBirth: null,
           phoneNumber: null,
           profilePicture: null,

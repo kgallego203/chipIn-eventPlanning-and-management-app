@@ -1,7 +1,8 @@
 class UserProfileModel {
   final String name; // User's full name
   final String email; // User's email address
-  final String userID; // Unique userIdentifier for the user
+  final String userId; // Unique userIdentifier for the user
+  final String password; // User's password
   final DateTime? dateOfBirth; // User's date of birth
   final String? phoneNumber; // User's phone number
   final String? profilePicture; // URL to user's profile picture
@@ -10,7 +11,8 @@ class UserProfileModel {
   UserProfileModel({
     required this.name,
     required this.email,
-    required this.userID,
+    required this.userId,
+    required this.password,
     this.dateOfBirth,
     this.phoneNumber,
     this.profilePicture,
@@ -22,7 +24,8 @@ class UserProfileModel {
     return UserProfileModel(
       name: json['name'],
       email: json['email'],
-      userID: json['userId'],
+      userId: json['userId'],
+      password: json['password'],
       dateOfBirth: DateTime.parse(json['dateOfBirth']),
       phoneNumber: json['phoneNumber'],
       profilePicture: json['profilePicture'],
@@ -35,7 +38,8 @@ class UserProfileModel {
     return {
       'name': name,
       'email': email,
-      'userId': userID,
+      'userId': userId,
+      'password': password,
       'dateOfBirth': dateOfBirth?.toIso8601String(),
       'phoneNumber': phoneNumber,
       'profilePicture': profilePicture,
