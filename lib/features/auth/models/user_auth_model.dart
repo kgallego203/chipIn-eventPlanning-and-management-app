@@ -1,3 +1,4 @@
+// Never used atm
 class UserAuthModel {
   final String name; // User's full name
   final String email; // User's email address

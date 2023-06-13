@@ -1,4 +1,5 @@
 import 'package:appwrite/models.dart';
+import 'package:chip_in/features/profile/models/user_profile_model.dart';
 import 'package:flutter/material.dart';
 import 'package:appwrite/appwrite.dart';
 import 'package:chip_in/constants/appwrite_constants.dart';
@@ -11,9 +12,12 @@ class UserService {
     ..setEndpoint(AppwriteConstants.endPoint)
     ..setProject(AppwriteConstants.projectId);
   static final Account account = Account(client);
+  static final Databases databases = Databases(client);
 
   // * SIGN UP METHOD
   // This method creates a new user account with the given details
+  // At the moment, this just creates an account in the console but it does not store it as a document
+  // in the users colletion
   // TODO: After the user was created, it should automatically log them in (create session)
   // TODO: The user's information should also be stored in the User Collection
   static Future<void> createUser(String firstname, String lastname,
@@ -25,6 +29,22 @@ class UserService {
         userId: username,
         email: email,
         password: password,
+      );
+      // Todo: Add a document here for the users collections
+      final UserProfileModel userProfile = UserProfileModel(
+          name: '$firstname $lastname',
+          email: email,
+          userID: username,
+          dateOfBirth: null,
+          phoneNumber: null,
+          profilePicture: null,
+          location: null);
+
+      await databases.createDocument(
+        databaseId: AppwriteConstants.databaseId,
+        collectionId: AppwriteConstants.usersCollection,
+        documentId: ID.unique(),
+        data: userProfile.toJson(),
       );
       print('User created successfully');
     } catch (error) {
@@ -88,4 +108,6 @@ class UserService {
       throw e;
     }
   }
+
+  // * Magic URL Method
 }
