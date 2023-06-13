@@ -65,13 +65,13 @@ class LoginView extends StatelessWidget {
 
             // Login Button
             ElevatedButton(
-              child: const Text('Login'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Pallete.primary100,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
+              child: const Text('Login'),
               onPressed: () async {
                 if (loginController.formKey.currentState != null &&
                     loginController.formKey.currentState!.validate()) {
