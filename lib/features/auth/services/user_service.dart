@@ -29,7 +29,6 @@ class UserService {
         email: email,
         password: password,
       );
-      // Todo: Add a document here for the users collections
       final UserProfileModel userProfile = UserProfileModel(
           name: '$firstname $lastname',
           email: email,

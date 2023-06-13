@@ -94,6 +94,16 @@ class SignUpController {
         behavior: SnackBarBehavior.floating,
       );
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+      // * Start a session for the new user
+      await UserService.createSession(context, email, password);
+
+      // * Navigate to the HomePage after successful login
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => const HomePage(),
+        ),
+      );
     } catch (error) {
       // * If there was an error, show an error snackbar
       final snackBar = SnackBar(
