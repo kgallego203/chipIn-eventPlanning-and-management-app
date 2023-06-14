@@ -95,7 +95,7 @@ class EventCard extends StatelessWidget {
                         ),
                     ],
                   ),
-                  const SizedBox(height: 8.0),
+                  const SizedBox(height: 23.0),
                   Row(
                     children: [
                       const Icon(
@@ -106,14 +106,14 @@ class EventCard extends StatelessWidget {
                       const SizedBox(width: 4.0),
                       Text(
                         '$formattedDate at $formattedTime',
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.black87, // Updated text color
-                          fontSize: 14.0,
+                          fontSize: 15.0,
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 8.0),
+                  const SizedBox(height: 16.0),
                   Row(
                     children: [
                       const Icon(
@@ -124,14 +124,14 @@ class EventCard extends StatelessWidget {
                       const SizedBox(width: 4.0),
                       Text(
                         event.location,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.black87, // Updated text color
-                          fontSize: 14.0,
+                          fontSize: 15.0,
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 8.0),
+                  const SizedBox(height: 16.0),
                   Row(
                     children: [
                       const Icon(
@@ -142,13 +142,35 @@ class EventCard extends StatelessWidget {
                       const SizedBox(width: 4.0),
                       Text(
                         'Created by ${event.creatorId}',
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.black87,
+                          fontSize: 15.0,
                         ),
                       ),
                     ],
                   ),
                   const SizedBox(height: 16.0),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment
+                        .start, // Aligns the icon and description text to the start
+                    children: [
+                      const Icon(
+                        Icons.description,
+                        color: Palette.primary100,
+                        size: 16.0,
+                      ),
+                      const SizedBox(width: 4.0),
+                      Expanded(
+                        child: Text(
+                          event.description,
+                          style: const TextStyle(
+                            color: Colors.black87, // Updated text color
+                            fontSize: 15.0,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),

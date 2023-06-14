@@ -43,7 +43,7 @@ class HomePageLayout extends StatelessWidget {
                     return EventCard(event: events[index]);
                   },
                   options: CarouselOptions(
-                    height: 500,
+                    height: 700,
                     viewportFraction: 0.8,
                     enlargeCenterPage: true,
                     enableInfiniteScroll: true,
