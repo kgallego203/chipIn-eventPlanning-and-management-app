@@ -8,7 +8,6 @@ import 'package:chip_in/features/events/view/events_joining_screen.dart';
 import 'package:chip_in/features/events/view/my_created_events_screen.dart';
 import 'package:chip_in/features/events/view/my_joined_events_screen.dart';
 import 'package:chip_in/features/events/widgets/event_card.dart';
-import 'package:chip_in/features/profile/view/profile_screen.dart';
 import 'package:chip_in/themes/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -133,24 +132,13 @@ class _HomePageState extends State<HomePage> {
               itemBuilder: (BuildContext context) {
                 return [
                   const PopupMenuItem(
-                    value: 'view_profile',
-                    child: Text('View Profile'),
-                  ),
-                  const PopupMenuItem(
                     value: 'logout',
                     child: Text('Logout'),
                   ),
                 ];
               },
               onSelected: (value) async {
-                if (value == 'view_profile') {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ProfileScreen(),
-                    ),
-                  );
-                } else if (value == 'logout') {
+                if (value == 'logout') {
                   await UserService.logout();
                   Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(

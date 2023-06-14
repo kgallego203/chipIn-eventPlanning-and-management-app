@@ -1,5 +1,5 @@
 import 'package:appwrite/models.dart';
-import 'package:chip_in/features/profile/models/user_profile_model.dart';
+import 'package:chip_in/features/auth/models/user_profile_model.dart';
 import 'package:flutter/material.dart';
 import 'package:appwrite/appwrite.dart';
 import 'package:chip_in/constants/appwrite_constants.dart';
