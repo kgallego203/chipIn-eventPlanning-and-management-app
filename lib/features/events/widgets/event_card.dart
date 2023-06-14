@@ -11,7 +11,7 @@ class EventCard extends StatelessWidget {
 
   const EventCard({
     required this.event,
-    this.showJoinButton = true,
+    this.showJoinButton = false,
     this.onJoinPressed,
   });
 
@@ -32,7 +32,7 @@ class EventCard extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 8.0),
         decoration: BoxDecoration(
-          color: Palette.neutral0,
+          color: Colors.pink[100], // Updated to a light pink color
           borderRadius: BorderRadius.circular(8.0),
           boxShadow: [
             BoxShadow(
@@ -71,6 +71,7 @@ class EventCard extends StatelessWidget {
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 18.0,
+                            color: Colors.black, // Updated text color
                           ),
                           overflow: TextOverflow.ellipsis,
                           maxLines: 2,
@@ -82,7 +83,7 @@ class EventCard extends StatelessWidget {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Palette.primary100,
                             textStyle: const TextStyle(
-                              color: Palette.neutral0,
+                              color: Colors.white, // Updated text color
                               fontSize: 16,
                             ),
                             shape: RoundedRectangleBorder(
@@ -105,8 +106,8 @@ class EventCard extends StatelessWidget {
                       const SizedBox(width: 4.0),
                       Text(
                         '$formattedDate at $formattedTime',
-                        style: const TextStyle(
-                          color: Palette.primary100,
+                        style: TextStyle(
+                          color: Colors.black87, // Updated text color
                           fontSize: 14.0,
                         ),
                       ),
@@ -123,8 +124,8 @@ class EventCard extends StatelessWidget {
                       const SizedBox(width: 4.0),
                       Text(
                         event.location,
-                        style: const TextStyle(
-                          color: Palette.primary100,
+                        style: TextStyle(
+                          color: Colors.black87, // Updated text color
                           fontSize: 14.0,
                         ),
                       ),
@@ -134,16 +135,15 @@ class EventCard extends StatelessWidget {
                   Row(
                     children: [
                       const Icon(
-                        Icons.person,
+                        Icons.account_circle, // Updated to a creator icon
                         color: Palette.primary100,
                         size: 16.0,
                       ),
                       const SizedBox(width: 4.0),
                       Text(
                         'Created by ${event.creatorId}',
-                        style: const TextStyle(
-                          color: Palette.primary100,
-                          fontSize: 14.0,
+                        style: TextStyle(
+                          color: Colors.black87,
                         ),
                       ),
                     ],

@@ -48,7 +48,7 @@ class HomePageLayout extends StatelessWidget {
                     enlargeCenterPage: true,
                     enableInfiniteScroll: true,
                     autoPlay: true,
-                    autoPlayInterval: const Duration(seconds: 5),
+                    autoPlayInterval: const Duration(seconds: 2),
                     autoPlayCurve: Curves.fastOutSlowIn,
                   ),
                 );
