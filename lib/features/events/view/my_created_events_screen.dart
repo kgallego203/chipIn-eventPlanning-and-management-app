@@ -46,9 +46,6 @@ class _MyCreatedEventsScreenState extends State<MyCreatedEventsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('My Created Events'), // Set the title of the app bar
-      ),
       body: loading // If the events are still loading
           ? const Center(
               child: CircularProgressIndicator()) // Show a loading indicator

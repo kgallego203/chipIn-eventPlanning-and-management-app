@@ -75,4 +75,17 @@ class UserService {
       throw e;
     }
   }
+
+  // * Method to get the currently logged in user's name
+// * This method retrieves the currently logged in user's details and returns their name
+  static Future<String> getUserName() async {
+    try {
+      // Use the get method of the account object to retrieve the currently logged in user's details
+      User response = await account.get();
+      return response.name; // Return the user's name
+    } catch (e) {
+      print('Failed to get user name: $e');
+      throw e;
+    }
+  }
 }
