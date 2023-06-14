@@ -103,11 +103,7 @@ class EventService {
               collectionId: AppwriteConstants.eventsCollection,
               documentId: eventId,
             );
-            if (eventResponse.data != null) {
-              eventList.add(MyEventModel.fromJson(eventResponse.data));
-            } else {
-              print('Failed to get event with ID: $eventId');
-            }
+            eventList.add(MyEventModel.fromJson(eventResponse.data));
           }
         }
       }

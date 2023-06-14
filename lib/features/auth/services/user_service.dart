@@ -111,12 +111,14 @@ class UserService {
   // * Magic URL Method
   // * This method sends a magic URL to the user's email address
   // * The user can then click on the link to log in without a password
+  // TODO: Set up 3rd Party Email Provider
   static Future<void> sendMagicURL(String userId, String email) async {
     try {
       // Use the createMagicURL method of the account object to send a magic URL to the user's email address
       await account.createMagicURLSession(
         userId: userId,
         email: email,
+        // url: ,
       );
       print('Magic URL sent successfully');
     } catch (e) {
