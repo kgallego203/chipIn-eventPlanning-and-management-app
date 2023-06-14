@@ -3,6 +3,8 @@
 - Values that should never change.
 
 */
+import 'package:appwrite/appwrite.dart';
+
 class AppwriteConstants {
 /* AUTH */
 
@@ -42,4 +44,16 @@ class AppwriteConstants {
   /// notified about the event. These notifications could then be sent out
   /// by some backend process.
   static const String notificationsCollection = '6475dedab82ae245b3eb';
+}
+
+class AppwriteService {
+  static const String endPoint = AppwriteConstants.endPoint;
+  static const String projectId = AppwriteConstants.projectId;
+
+  static Client getClient() {
+    final Client client = Client()
+      ..setEndpoint(endPoint)
+      ..setProject(projectId);
+    return client;
+  }
 }

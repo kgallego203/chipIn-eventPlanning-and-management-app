@@ -2,15 +2,13 @@ import 'package:appwrite/models.dart';
 import 'package:chip_in/features/auth/models/user_profile_model.dart';
 import 'package:flutter/material.dart';
 import 'package:appwrite/appwrite.dart';
-import 'package:chip_in/constants/appwrite_constants.dart';
+import 'package:chip_in/constants/appwrite_constants_services.dart';
 
 // This is a static class AppwriteAuth that contains methods for user authentication
 class UserService {
   // The code block initializes a Client and an Account object from the appwrite package,
   // which will be used for making API requests to the Appwrite server
-  static final Client client = Client()
-    ..setEndpoint(AppwriteConstants.endPoint)
-    ..setProject(AppwriteConstants.projectId);
+  static final Client client = AppwriteService.getClient();
   static final Account account = Account(client);
   static final Databases databases = Databases(client);
 

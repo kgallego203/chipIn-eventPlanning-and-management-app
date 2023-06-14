@@ -1,14 +1,12 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:chip_in/features/events/models/attendees_model.dart';
 import 'package:chip_in/features/events/models/event_model.dart';
-import 'package:chip_in/constants/appwrite_constants.dart';
+import 'package:chip_in/constants/appwrite_constants_services.dart';
 import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 
 class EventService {
-  static final Client client = Client()
-    ..setEndpoint(AppwriteConstants.endPoint)
-    ..setProject(AppwriteConstants.projectId);
+  static final Client client = AppwriteService.getClient();
   static final Account account = Account(client);
   static final Databases databases = Databases(client);
 
