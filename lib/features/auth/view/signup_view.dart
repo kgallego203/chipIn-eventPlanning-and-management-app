@@ -1,5 +1,4 @@
 import 'package:chip_in/features/auth/controller/auth_controller.dart';
-import 'package:chip_in/features/auth/view/other%20methods/magic_url.dart';
 import 'package:chip_in/themes/palette.dart';
 import 'package:flutter/material.dart';
 
@@ -55,13 +54,13 @@ class SignUpView extends StatelessWidget {
                   ),
                   child: const Text('Magic URL'),
                   onPressed: () {
-                    // TODO: Implement sign up with magic URL
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => MagicUrlScreen(),
-                      ),
-                    );
+                    // // TODO: Implement sign up with magic URL
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => MagicUrlScreen(),
+                    //   ),
+                    // );
                   },
                 ),
               ],
