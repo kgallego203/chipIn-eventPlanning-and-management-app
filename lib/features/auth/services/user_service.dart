@@ -95,7 +95,7 @@ class UserService {
     }
   }
 
-  // * Method to get the currently logged in user's name
+// * Method to get the currently logged in user's name
 // * This method retrieves the currently logged in user's details and returns their name
   static Future<String> getUserName() async {
     try {
@@ -109,4 +109,19 @@ class UserService {
   }
 
   // * Magic URL Method
+  // * This method sends a magic URL to the user's email address
+  // * The user can then click on the link to log in without a password
+  static Future<void> sendMagicURL(String userId, String email) async {
+    try {
+      // Use the createMagicURL method of the account object to send a magic URL to the user's email address
+      await account.createMagicURLSession(
+        userId: userId,
+        email: email,
+      );
+      print('Magic URL sent successfully');
+    } catch (e) {
+      print('Failed to send magic URL: $e');
+      throw e;
+    }
+  }
 }
