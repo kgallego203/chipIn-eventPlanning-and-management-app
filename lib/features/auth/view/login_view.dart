@@ -1,6 +1,7 @@
 import 'package:chip_in/features/auth/controller/auth_controller.dart';
 import 'package:chip_in/themes/palette.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginView extends StatelessWidget {
   // Create an instance of the LoginController class by assigning it to the loginController variable
@@ -11,15 +12,29 @@ class LoginView extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Form(
-        key: loginController
-            .formKey, // The instance of the LoginController() can invoke the formKey instance of the GlobalKey<FormState> class
+        key: loginController.formKey,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Email Field
+            // New GitHub Login Button
+            ElevatedButton.icon(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.black, // Background color
+                foregroundColor: Colors.white, // Text color
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+              icon: const Icon(FontAwesomeIcons.github),
+              label: const Text('Login with GitHub'),
+              onPressed: () {},
+            ),
+
+            const SizedBox(height: 16),
+
+            // Existing form fields and button...
             TextFormField(
-              controller: loginController
-                  .emailController, // User's email input will be stored here
+              controller: loginController.emailController,
               decoration: InputDecoration(
                 hintText: 'Email',
                 fillColor: Palette.neutral10,
@@ -39,10 +54,8 @@ class LoginView extends StatelessWidget {
 
             const SizedBox(height: 16),
 
-            // Password Field
             TextFormField(
-              controller: loginController
-                  .passwordController, // User's password input will be stored here
+              controller: loginController.passwordController,
               obscureText: true,
               decoration: InputDecoration(
                 hintText: 'Password',
@@ -63,7 +76,6 @@ class LoginView extends StatelessWidget {
 
             const SizedBox(height: 16),
 
-            // Login Button
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Palette.primary100,
