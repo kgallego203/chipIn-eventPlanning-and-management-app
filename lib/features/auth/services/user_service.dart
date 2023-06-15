@@ -105,21 +105,16 @@ class UserService {
     }
   }
 
-  // // * Magic URL Method
-  // // * This method sends a magic URL to the user's email address
-  // // * The user can then click on the link to log in without a password
-  // static Future<void> sendMagicURL(String userId, String email) async {
-  //   try {
-  //     // Use the createMagicURL method of the account object to send a magic URL to the user's email address
-  //     await account.createMagicURLSession(
-  //       userId: userId,
-  //       email: email,
-  //       // url: ,
-  //     );
-  //     print('Magic URL sent successfully');
-  //   } catch (e) {
-  //     print('Failed to send magic URL: $e');
-  //     throw e;
-  //   }
-  // }
+  // * Function for GithHub OAuth
+  static Future<void> initiateGithubOAuth() async {
+    try {
+      await account.createOAuth2Session(
+        provider: 'github',
+      );
+    } on AppwriteException catch (e) {
+      print('Appwrite Exception: ${e.message}');
+    } catch (e) {
+      print('Unknown Exception: $e');
+    }
+  }
 }

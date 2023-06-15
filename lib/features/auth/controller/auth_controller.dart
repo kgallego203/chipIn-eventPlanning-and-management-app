@@ -45,7 +45,6 @@ class LoginController {
   }
 }
 
-// todo: add a navigator that after signup, it will route the user to the hompage
 class SignUpController {
   // Define GlobalKey<FormState> object for the form key
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();

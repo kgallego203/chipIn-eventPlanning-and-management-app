@@ -1,4 +1,5 @@
 import 'package:chip_in/features/auth/controller/auth_controller.dart';
+import 'package:chip_in/features/auth/services/user_service.dart';
 import 'package:chip_in/themes/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -27,7 +28,7 @@ class SignUpView extends StatelessWidget {
               icon: const Icon(FontAwesomeIcons.github),
               label: const Text('Sign Up with GitHub'),
               onPressed: () {
-                // TODO: Implement sign up with GitHub
+                UserService.initiateGithubOAuth();
               },
             ),
             const SizedBox(height: 16),
