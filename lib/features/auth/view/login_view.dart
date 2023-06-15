@@ -32,6 +32,35 @@ class LoginView extends StatelessWidget {
 
             const SizedBox(height: 16),
 
+            const Row(
+              children: [
+                Expanded(
+                  child: Divider(
+                    color: Palette.neutral50,
+                    thickness: 1,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8),
+                  child: Text(
+                    'Or',
+                    style: TextStyle(
+                      color: Palette.neutral50,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Divider(
+                    color: Palette.neutral50,
+                    thickness: 1,
+                  ),
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 16),
+
             // Existing form fields and button...
             TextFormField(
               controller: loginController.emailController,
