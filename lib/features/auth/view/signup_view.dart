@@ -1,69 +1,34 @@
 import 'package:chip_in/features/auth/controller/auth_controller.dart';
 import 'package:chip_in/themes/palette.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SignUpView extends StatelessWidget {
-  SignUpView({super.key});
+  SignUpView({Key? key});
 
   final _signUpController = SignUpController();
 
   @override
   Widget build(BuildContext context) {
-    // A form with several text form fields for the user to enter their information
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            // Buttons to sign up the user with Google, phone (SMS code), and magic URL
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Palette.primary50,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  child: const Text('Google'),
-                  onPressed: () {
-                    // TODO: Implement sign up with Google
-                  },
+            // GitHub Sign Up Button
+            ElevatedButton.icon(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.black,
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
                 ),
-                const SizedBox(width: 16),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Palette.primary50,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  child: const Text('Phone'),
-                  onPressed: () {
-                    // TODO: Implement sign up with phone (SMS code)
-                  },
-                ),
-                const SizedBox(width: 16),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Palette.primary50,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  child: const Text('Magic URL'),
-                  onPressed: () {
-                    // // TODO: Implement sign up with magic URL
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => MagicUrlScreen(),
-                    //   ),
-                    // );
-                  },
-                ),
-              ],
+              ),
+              icon: const Icon(FontAwesomeIcons.github),
+              label: const Text('Sign Up with GitHub'),
+              onPressed: () {
+                // TODO: Implement sign up with GitHub
+              },
             ),
             const SizedBox(height: 16),
             // "Or" line
@@ -104,8 +69,7 @@ class SignUpView extends StatelessWidget {
                     controller: _signUpController.firstNameController,
                     decoration: InputDecoration(
                       hintText: 'First Name',
-                      fillColor: Palette
-                          .neutral10, // Set the fill color of the text field to neutral10 from the Pallete class
+                      fillColor: Palette.neutral10,
                       filled: true,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
@@ -125,8 +89,7 @@ class SignUpView extends StatelessWidget {
                     controller: _signUpController.lastNameController,
                     decoration: InputDecoration(
                       hintText: 'Last Name',
-                      fillColor: Palette
-                          .neutral10, // Set the fill color of the text field to neutral10 from the Pallete class
+                      fillColor: Palette.neutral10,
                       filled: true,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
@@ -146,8 +109,7 @@ class SignUpView extends StatelessWidget {
                     controller: _signUpController.emailController,
                     decoration: InputDecoration(
                       hintText: 'Email',
-                      fillColor: Palette
-                          .neutral10, // Set the fill color of the text field to neutral10 from the Pallete class
+                      fillColor: Palette.neutral10,
                       filled: true,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
@@ -171,8 +133,7 @@ class SignUpView extends StatelessWidget {
                     controller: _signUpController.usernameController,
                     decoration: InputDecoration(
                       hintText: 'Username',
-                      fillColor: Palette
-                          .neutral10, // Set the fill color of the text field to neutral10 from the Pallete class
+                      fillColor: Palette.neutral10,
                       filled: true,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
@@ -192,8 +153,7 @@ class SignUpView extends StatelessWidget {
                     controller: _signUpController.passwordController,
                     decoration: InputDecoration(
                       hintText: 'Password',
-                      fillColor: Palette
-                          .neutral10, // Set the fill color of the text field to neutral10 from the Pallete class
+                      fillColor: Palette.neutral10,
                       filled: true,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
@@ -214,8 +174,7 @@ class SignUpView extends StatelessWidget {
                     controller: _signUpController.confirmPasswordController,
                     decoration: InputDecoration(
                       hintText: 'Confirm Password',
-                      fillColor: Palette
-                          .neutral10, // Set the fill color of the text field to neutral10 from the Pallete class
+                      fillColor: Palette.neutral10,
                       filled: true,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
@@ -246,8 +205,7 @@ class SignUpView extends StatelessWidget {
                     onPressed: () async {
                       if (_signUpController.formKey.currentState != null &&
                           _signUpController.formKey.currentState!.validate()) {
-                        await _signUpController.signUp(
-                            context); // If it's true, it will trigger the .signUp method from the SignUpController class
+                        await _signUpController.signUp(context);
                       }
                     },
                   ),
