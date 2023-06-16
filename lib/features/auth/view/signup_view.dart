@@ -28,7 +28,7 @@ class SignUpView extends StatelessWidget {
               icon: const Icon(FontAwesomeIcons.github),
               label: const Text('Sign Up with GitHub'),
               onPressed: () {
-                UserService.initiateGithubOAuth();
+                UserService.initiateGithubOAuth(context);
               },
             ),
             const SizedBox(height: 16),

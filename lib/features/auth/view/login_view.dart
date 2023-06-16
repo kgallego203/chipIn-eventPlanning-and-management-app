@@ -28,8 +28,8 @@ class LoginView extends StatelessWidget {
               ),
               icon: const Icon(FontAwesomeIcons.github),
               label: const Text('Login with GitHub'),
-              onPressed: () {
-                UserService.initiateGithubOAuth();
+              onPressed: () async {
+                await UserService.initiateGithubOAuth(context);
               },
             ),
 

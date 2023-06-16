@@ -1,5 +1,6 @@
 import 'package:appwrite/models.dart';
 import 'package:chip_in/features/auth/models/user_profile_model.dart';
+import 'package:chip_in/features/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:appwrite/appwrite.dart';
 import 'package:chip_in/constants/appwrite_constants_services.dart';
@@ -106,10 +107,15 @@ class UserService {
   }
 
   // * Function for GithHub OAuth
-  static Future<void> initiateGithubOAuth() async {
+  static Future<void> initiateGithubOAuth(context) async {
     try {
       await account.createOAuth2Session(
         provider: 'github',
+      );
+      // Navigate to the home screen
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const HomePage()),
       );
     } on AppwriteException catch (e) {
       print('Appwrite Exception: ${e.message}');
